@@ -1,0 +1,237 @@
+---
+layout: modern
+permalink: /
+title: "About"
+seo_title: "Shiqi Wu — Mathematics & Computer Science"
+description: "Shiqi Wu is a master's student in Mathematics at Anhui University, working on foundational questions in mathematics and computer science."
+redirect_from:
+  - /about/
+  - /about.html
+---
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>Mathematics &amp; Computer Science</p>
+      <h1 class="hero__title">{{ site.author.name }}</h1>
+      <p class="hero__lede">Master’s student in Mathematics at <strong>{{ site.author.employer }}</strong>, working on foundational questions in mathematics and computer science.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ '/cv/' | relative_url }}">
+          Curriculum vitae
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn" href="https://github.com/{{ site.author.github }}">
+          GitHub
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--quiet" href="mailto:{{ site.author.email }}">Email</a>
+      </div>
+    </div>
+
+    <figure class="hero__figure">
+      <div class="hero__frame">
+        <img src="{{ '/images/profile-landscape.webp' | relative_url }}"
+             width="1036" height="691" loading="eager" decoding="async"
+             alt="A snowy alpine valley with pine trees, a stream, and sunlit mountains, painted by Tony Heller.">
+      </div>
+      <figcaption>Painting by Tony Heller</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <dl class="facts">
+      <div class="fact">
+        <dt class="fact__label">Institution</dt>
+        <dd class="fact__value">{{ site.author.employer }}</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact__label">Program</dt>
+        <dd class="fact__value">Master’s in Mathematics</dd>
+      </div>
+      <div class="fact">
+        <dt class="fact__label">Focus</dt>
+        <dd class="fact__value">Foundations of mathematics &amp; computer science</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">01</span>
+      <h2>About</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="about">
+      <p class="about__statement">I study the foundations of mathematics and computer science — <em>why</em> methods work, and under what conditions.</p>
+      <div class="about__text">
+        <p>My research interests lie in foundational research in mathematics and computer science, with an emphasis on mathematical principles, rigorous reasoning, and theoretical understanding.</p>
+        <p>My current work connects mathematical foundations of learning and reasoning with uncertainty-aware multimodal methods.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">02</span>
+      <h2>Research interests</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <ul class="interest-grid">
+      <li class="interest-card">
+        <span class="interest-card__glyph" aria-hidden="true">∑</span>
+        <h3>Mathematics</h3>
+        <p>Mathematical principles, rigorous reasoning, and theoretical analysis.</p>
+      </li>
+      <li class="interest-card">
+        <span class="interest-card__glyph" aria-hidden="true">λ</span>
+        <h3>Computer science</h3>
+        <p>Fundamental principles of computation and algorithms, with an emphasis on understanding why and under what conditions methods work.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">03</span>
+      <h2>Current research projects</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="project-grid">
+      {% for project in site.data.research.projects %}
+      <article class="project-card" style="--d: {{ forloop.index0 | times: 60 }}ms">
+        <div class="project-card__top">
+          <span class="project-card__index">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+          <span class="project-card__field">{{ project.field }}</span>
+        </div>
+        <h3>{{ project.title }}</h3>
+        <p class="project-card__summary">{{ project.summary }}</p>
+        <p class="project-card__focus"><span>Focus</span>{{ project.focus }}</p>
+        {% if project.links.size > 0 %}
+        <div class="project-card__links">
+          {% for link in project.links %}
+          <a class="link-arrow" href="{{ link.url }}" target="_blank" rel="noopener">
+            {{ link.label }}
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if site.data.research.materials.size > 0 %}
+    <div class="materials">
+      <h3>Manuscripts</h3>
+      <ul>
+        {% for material in site.data.research.materials %}
+        <li><a href="{{ material.url }}">{{ material.label }}</a> <span class="materials__platform">{{ material.platform }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if site.data.cv.projects.size > 0 %}
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">04</span>
+      <h2>Earlier research experience</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="experience-list">
+      {% for project in site.data.cv.projects %}
+      <article class="experience-card">
+        <div class="experience-card__meta">
+          <p class="experience-card__area">{{ project.research_area }}</p>
+          <div class="chips">
+            <span class="chip chip--accent">{{ project.role }}</span>
+            <span class="chip">{{ project.status }}</span>
+          </div>
+        </div>
+        <h3>{{ project.name }}</h3>
+        <p class="experience-card__program">{{ project.program }}</p>
+        <p class="experience-card__summary">{{ project.summary }}</p>
+        {% if project.highlights.size > 0 %}
+        <ul class="detail-list">
+          {% for highlight in project.highlights %}
+          <li>{{ highlight }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% if project.keywords.size > 0 %}
+        <ul class="chip-list" aria-label="Keywords">
+          {% for keyword in project.keywords %}
+          <li class="chip">{{ keyword }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">05</span>
+      <h2>Education</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <ol class="timeline">
+      {% for education in site.data.cv.education %}
+      <li class="timeline__item">
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <div class="timeline__body">
+          <div class="timeline__top">
+            <h3>{{ education.institution }}</h3>
+            <span class="chip chip--accent">In progress</span>
+          </div>
+          <p class="timeline__role">{{ education.studyType }} in {{ education.area }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section section--contact" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <svg class="contact-panel__ornament" viewBox="0 0 260 260" fill="none" aria-hidden="true">
+        <circle cx="130" cy="160" r="44" stroke="currentColor" stroke-width="1.1"/>
+        <circle cx="130" cy="160" r="72" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        <circle cx="130" cy="160" r="100" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+        <path d="M2 160h256" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M130 62v16M74 88l11 11M186 88l-11 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      <p class="eyebrow">06 — Contact</p>
+      <h2 class="contact-panel__title">Get in touch</h2>
+      <p class="contact-panel__text">Email is the most reliable way to reach me. You can also find my code and projects on GitHub.</p>
+      <a class="contact-panel__email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+      <div class="contact-panel__actions">
+        <button class="btn btn--primary" type="button" data-copy-email="{{ site.author.email }}">
+          Copy email
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="8.3" height="8.3" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M10.8 3.2H4.4a1.6 1.6 0 0 0-1.6 1.6v6.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn" href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn--quiet" href="{{ '/cv/' | relative_url }}">Curriculum vitae</a>
+      </div>
+    </div>
+  </div>
+</section>
