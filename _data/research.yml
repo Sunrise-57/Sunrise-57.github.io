@@ -19,17 +19,17 @@ projects:
         url: "https://github.com/Sunrise-57/AST3-RGBT-Tracking"
 
   - id: fuzzy-mathematics
-    title: "聚合算子在一般代数结构上的推广：综述"
-    field: "Fuzzy mathematics · Survey draft"
-    summary: "This survey studies how fuzzy aggregation operators are extended from the unit interval to more general algebraic and ordered structures. It examines t-norms, t-conorms, uninorms, and overlap functions through questions of existence, construction, and characterization, emphasizing the structural assumptions that each result requires."
-    focus: "Aggregation operators, ordered structures, existence, construction, and characterization."
+    title: "Fuzzy Multimodal Learning for VQA with a Novel Optimization Strategy Centered on Overlap Functions"
+    field: "Fuzzy mathematics · Visual question answering"
+    summary: "This project investigates multimodal uncertainty in visual question answering through a loss-optimization strategy based on fuzzy logic and overlap functions. My contributions include method design, model implementation, experimental analysis, and manuscript revision."
+    focus: "Fuzzy logic, overlap functions, multimodal uncertainty, and optimization."
     links: []
 
   - id: cross-modal-tracking
-    title: "基于模态自监督及不确定性引导的RGBT目标跟踪"
-    field: "Master's thesis research · Multimodal perception"
-    summary: "This broader research line examines how visible and thermal information should be combined when modalities provide unequal or conflicting evidence. The focus is on modality self-supervision, uncertainty modeling, and adaptive fusion under occlusion, changing illumination, and modality degradation."
-    focus: "Complementary information, uncertainty-aware fusion, and tracking robustness."
+    title: "Efficient Cross-Modal Visual Tracking via Distillation-Guided Parameter Isolation"
+    field: "Cross-modal tracking · Robustness evaluation"
+    summary: "This project studies robustness in cross-modal visual tracking when modality switches cause abrupt changes in target appearance. It explores distillation-guided parameter isolation, with my contributions focused on improving the experimental protocol, analyzing failure cases, and revising the manuscript."
+    focus: "Modality switching, knowledge distillation, parameter isolation, and failure analysis."
     links: []
 
 materials: []

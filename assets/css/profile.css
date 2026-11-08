@@ -195,3 +195,8 @@
 .material-platform {
   font-size: 0.85em;
 }
+
+.page__content .project-role {
+  margin: 0 0 0.75rem;
+  font-size: 0.85em;
+}

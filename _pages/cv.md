@@ -29,6 +29,22 @@ My research interests lie in foundational research in mathematics and computer s
 - **{{ interest.name }}**{% if interest.keywords.size > 0 %}: {{ interest.keywords | join: ", " }}{% endif %}
 {% endfor %}
 
+## Project experience
+
+{% for project in site.data.cv.projects %}
+### {{ project.name }}
+
+**{{ project.program }}**
+
+{{ project.role }} · {{ project.status }}
+
+{{ project.summary }}
+
+{% for highlight in project.highlights %}
+- {{ highlight }}
+{% endfor %}
+{% endfor %}
+
 {% if site.publications.size > 0 %}
 ## Publications
 

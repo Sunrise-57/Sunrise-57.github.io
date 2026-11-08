@@ -65,6 +65,21 @@ My research interests lie in foundational research in mathematics and computer s
   {% endif %}
 </section>
 
+{% if site.data.cv.projects.size > 0 %}
+<section class="profile-section" aria-labelledby="earlier-projects">
+  <h2 id="earlier-projects">Earlier research experience</h2>
+  {% for project in site.data.cv.projects %}
+  <article class="research-project" aria-labelledby="{{ project.id }}">
+    <p class="project-field">{{ project.program | escape }}</p>
+    <h3 id="{{ project.id }}">{{ project.name | escape }}</h3>
+    <p class="project-role"><strong>{{ project.role | escape }}</strong> · {{ project.status | escape }}</p>
+    <p>{{ project.summary | escape }}</p>
+    <p class="project-focus"><strong>Focus:</strong> {{ project.keywords | join: ", " | escape }}.</p>
+  </article>
+  {% endfor %}
+</section>
+{% endif %}
+
 <section class="profile-section" aria-labelledby="education">
   <h2 id="education">Education</h2>
   {% for education in site.data.cv.education %}

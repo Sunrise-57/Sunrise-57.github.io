@@ -47,5 +47,25 @@
   "publications": [],
   "presentations": [],
   "teaching": [],
-  "portfolio": []
+  "portfolio": [],
+  "projects": [
+    {
+      "id": "undergraduate-biological-control",
+      "name": "生物防治中的竞争排斥模型研究",
+      "program": "Provincial Undergraduate Innovation and Entrepreneurship Training Program",
+      "role": "Project leader",
+      "status": "Completed",
+      "summary": "Developed a competitive-exclusion model with diffusion and aggregation terms to study population competition in biological control, spatially heterogeneous resources, and individual aggregation behavior.",
+      "highlights": [
+        "Led model derivation, qualitative analysis, and numerical simulation.",
+        "Used MATLAB for equation discretization, parameter experiments, and visualization."
+      ],
+      "keywords": [
+        "Differential equations",
+        "Dynamical systems",
+        "Numerical methods",
+        "MATLAB"
+      ]
+    }
+  ]
 }
