@@ -1,64 +1,46 @@
 ---
-layout: archive
-title: "CV"
+layout: single
+title: "Curriculum vitae"
+description: "Education and research interests of Shiqi Wu."
 permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
+  - /resume/
+  - /resume-json
+  - /resume-json/
 ---
 
-{% include base_path %}
+<p class="profile-kicker">{{ site.author.name }}</p>
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+## Education
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+{% for education in site.data.cv.education %}
+### {{ education.institution }}
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+{{ education.studyType }} in {{ education.area }}
+{% endfor %}
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+## Research interests
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+{% for interest in site.data.cv.interests %}
+- **{{ interest.name }}**{% if interest.keywords.size > 0 %}: {{ interest.keywords | join: ", " }}{% endif %}
+{% endfor %}
+
+{% if site.publications.size > 0 %}
+## Publications
+
+<ul>
+{% for post in site.publications reversed %}
+  {% include archive-single-cv.html %}
+{% endfor %}
+</ul>
+{% endif %}
+
+## Contact
+
+{% if site.author.email %}
+Email: [{{ site.author.email }}](mailto:{{ site.author.email }})
+{% endif %}
+
+GitHub: [{{ site.author.github }}](https://github.com/{{ site.author.github }})

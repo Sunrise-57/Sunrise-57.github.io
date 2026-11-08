@@ -1,0 +1,143 @@
+/* Personal academic profile; shared theme variables preserve light/dark mode. */
+.page__content {
+  line-height: 1.75;
+}
+
+.page__title {
+  line-height: 1.2;
+}
+
+.page__content h2[id] {
+  scroll-margin-top: 6rem;
+}
+
+.page__content .profile-kicker {
+  margin: 0 0 1rem;
+  color: var(--global-text-color);
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.page__content .profile-intro {
+  max-width: 40rem;
+  margin-bottom: 1rem;
+  font-size: 1.25em;
+  line-height: 1.65;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1.6rem 0 2.5rem;
+}
+
+.page__content .profile-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: 4px;
+  color: var(--global-text-color);
+  font-size: 0.85em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page__content .profile-links a:hover,
+.page__content .profile-links a:focus-visible {
+  border-color: var(--global-link-color);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.profile-section {
+  margin-top: 2.5rem;
+}
+
+.page__content .research-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: research;
+}
+
+.research-list li {
+  position: relative;
+  margin: 0;
+  padding: 1.1rem 0 1.1rem 2.6rem;
+  border-bottom: 1px solid var(--global-border-color);
+  counter-increment: research;
+}
+
+.research-list li::before {
+  position: absolute;
+  top: 1.2rem;
+  left: 0;
+  content: "0" counter(research);
+  color: var(--global-text-color);
+  font-size: 0.75em;
+  font-variant-numeric: tabular-nums;
+}
+
+.research-list h3,
+.education-entry h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+.page__content .research-list p,
+.page__content .education-entry p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.education-entry {
+  margin: 1.2rem 0;
+}
+
+.contact-email {
+  overflow-wrap: anywhere;
+}
+
+.sidebar .author__bio {
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .page__content .profile-intro {
+    font-size: 1.1em;
+  }
+
+  .profile-links {
+    margin-bottom: 2rem;
+  }
+
+  .research-list li {
+    padding-left: 2rem;
+  }
+}
+
+@media print {
+  body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .sidebar,
+  .profile-links {
+    display: none;
+  }
+
+  .page {
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
+}

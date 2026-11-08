@@ -13,9 +13,7 @@ title: "Shiqi Wu"
 name: &name "Shiqi Wu"
 description: &description "Master's student in Mathematics, Anhui University"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
-url: "https://Sunrise-57.github.io"
+url: "https://sunrise-57.github.io"
 baseurl: ""
 repository: "Sunrise-57/Sunrise-57.github.io"
 
@@ -25,24 +23,24 @@ repository: "Sunrise-57/Sunrise-57.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "wushiqi"
+  name             : "Shiqi Wu"
   pronouns         : # example: "she/her"  
-  bio              : "I am currently a master's student in Mathematics at Anhui University. My research interests include multimodal reliable perception, RGBT tracking, test-time adaptation, uncertainty modeling, and robust learning."
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Master's student in Mathematics. Interested in reliable multimodal perception and robust learning."
+  location         :
+  employer         : "Anhui University"
   uri              : # URL
   email            : "wushiqi57520@gamil.com" 
 
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : # Add your verified Google Scholar profile URL.
   inspire-hep      : # URL
   impactstory      : # URL
-  orcid            : "https://orcid.org/yourorcidurl"
+  orcid            :
   semantic         : # URL
   ssrn             : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           :
   researchgate     : # URL
   scopus           : # URL
   zotero           : # URL
@@ -52,13 +50,13 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           : "Sunrise-57"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
   artstation       : # Username
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          :
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
@@ -96,7 +94,7 @@ publication_category:
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
-future                   : true
+future                   : false
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
@@ -126,7 +124,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true      # Show the feed when original posts are available.
   path                   : # blank (default) uses feed.xml
 
 
@@ -193,6 +191,51 @@ exclude:
   - README
   - tmp
   - vendor
+  # Retain template examples in the repository without publishing them.
+  - _portfolio/portfolio-1.md
+  - _portfolio/portfolio-2.html
+  - _posts/2012-08-14-blog-post-1.md
+  - _posts/2013-08-14-blog-post-2.md
+  - _posts/2014-08-14-blog-post-3.md
+  - _posts/2015-08-14-blog-post-4.md
+  - _posts/2199-01-01-future-post.md
+  - _publications/2009-10-01-paper-title-number-1.md
+  - _publications/2010-10-01-paper-title-number-2.md
+  - _publications/2015-10-01-paper-title-number-3.md
+  - _publications/2024-02-17-paper-title-number-4.md
+  - _publications/2025-06-08-paper-title-number-5.md
+  - _talks/2012-03-01-talk-1.md
+  - _talks/2013-03-01-tutorial-1.md
+  - _talks/2014-02-01-talk-2.md
+  - _talks/2014-03-01-talk-3.md
+  - _teaching/2014-spring-teaching-1.md
+  - _teaching/2015-spring-teaching-2.md
+  - _pages/archive-layout-with-content.md
+  - _pages/category-archive.html
+  - _pages/collection-archive.html
+  - _pages/markdown.md
+  - _pages/non-menu-page.md
+  - _pages/page-archive.html
+  - _pages/portfolio.html
+  - _pages/tag-archive.html
+  - _pages/talkmap.html
+  - _pages/talks.html
+  - _pages/teaching.html
+  - _pages/terms.md
+  - _pages/year-archive.html
+  - talkmap
+  - talkmap.py
+  - talkmap.ipynb
+  - talkmap_out.ipynb
+  - markdown_generator
+  - scripts
+  - files/bibtex1.bib
+  - files/paper1.pdf
+  - files/paper2.pdf
+  - files/paper3.pdf
+  - files/slides1.pdf
+  - files/slides2.pdf
+  - files/slides3.pdf
 keep_files:
   - .git
   - .svn
