@@ -2115,81 +2115,37 @@ html.reveal-ready [data-reveal].is-visible {
   .chip--accent { background: #f2f2f2; color: #111; }
   .cv-project + .cv-project { break-inside: avoid; }
 }
-/* Distinct manuscript versions within a research project. */
+/* Concise manuscript summaries. */
 .project-item[id], .manuscript-version[id] {
   scroll-margin-top: 7rem;
 }
-.project-versions {
-  margin-top: 1.5rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
-}
-.project-versions__heading {
-  margin: 0 0 0.2rem;
-  color: var(--ink);
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-}
 .manuscript-version {
-  padding: 1.15rem 0;
+  padding: 0.95rem 0;
+}
+.manuscript-version:first-child {
+  padding-top: 0;
 }
 .manuscript-version + .manuscript-version {
   border-top: 1px solid var(--line);
 }
-.manuscript-version__label {
-  margin: 0;
-  color: var(--accent-ink);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  line-height: 1.6;
-}
 .manuscript-version__title {
-  margin-top: 0.45rem;
+  margin: 0;
   color: var(--ink);
   font-family: var(--font-serif);
   font-size: 1.05rem;
+  font-weight: 500;
   line-height: 1.5;
-}
-.manuscript-version__file {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.9rem;
-  margin-top: 0.6rem;
-  color: var(--ink-muted);
-  font-size: 0.75rem;
-  line-height: 1.6;
-}
-.manuscript-version__file code {
-  color: var(--ink-soft);
-  font-family: var(--font-mono);
-  font-size: inherit;
-  overflow-wrap: anywhere;
 }
 .manuscript-version__summary {
   max-width: 66ch;
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
   color: var(--ink-soft);
   font-size: 0.9rem;
-  line-height: 1.75;
+  line-height: 1.72;
 }
-.manuscript-version__scope, .project-versions__hint {
-  max-width: 70ch;
-  margin-top: 0.7rem;
+.manuscript-version__keywords {
+  margin-top: 0.55rem;
   color: var(--ink-muted);
   font-size: 0.8rem;
-  line-height: 1.7;
-}
-.manuscript-version .link-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 44px;
-  margin-top: 0.3rem;
-  font-size: 0.82rem;
-}
-.project-versions__hint {
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--line);
+  line-height: 1.65;
 }

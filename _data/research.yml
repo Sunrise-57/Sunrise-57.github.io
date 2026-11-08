@@ -18,22 +18,22 @@ projects:
     field: "TFM-theory · Foundations of tabular in-context learning"
     summary: "I investigate the computational capabilities and limitations of tabular foundation models through the Linear In-Context Query (LinICQ) task. The project examines how model depth, numerical precision, and explicit reasoning steps affect the computations these models can perform, with careful attention to the assumptions and scope of theoretical bounds."
     key: "Computational complexity, in-context learning, and sequential reasoning."
-    links: []
+    links:
+      - label: "Overleaf"
+        url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
     versions:
       - id: "tfm-main-version"
-        label: "Computational-limits version"
+        label: "Computational limits"
         source_file: "main.tex"
-        location: "Overleaf folder 1"
-        url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
+        summary: "Examines what fixed-depth tabular models can compute through the Linear In-Context Query task. The focus is on model depth, numerical precision, and the role of explicit reasoning steps."
+        keywords: ["Tabular foundation models","In-context learning","Computational complexity","Chain-of-Thought"]
 
       - id: "tfm-average-risk-version"
-        label: "Revised average-risk version"
+        label: "Average-risk analysis"
         title: "Computational Limits of Fixed-Depth Tabular Foundation Models: A Conditional Average-Case Separation"
         source_file: "tabf_bounds_revised.tex"
-        location: "Overleaf folder 3"
-        summary: "On constructed noiseless tabular ICL tasks, this manuscript separates information sufficiency from computational resources. Assuming non-uniform TC⁰ ≠ NC¹, it bounds average accuracy for fixed-depth threshold-circuit predictors at infinitely many problem sizes, while a polynomial-step feedback algorithm attains Bayes accuracy."
-        scope: "Conditional results for the constructed task family; applying them to a specific model requires checking its complete inference process."
-        url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
+        summary: "Studies average prediction risk in constructed tabular in-context learning tasks. Under a circuit-complexity separation assumption, it compares fixed-depth prediction with feedback computation that grows with problem size."
+        keywords: ["Average risk","Bayes risk","Fixed-depth computation","Feedback computation"]
 
   - id: ast3
     theme: multimodal

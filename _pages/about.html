@@ -157,24 +157,20 @@ redirect_from:
               </svg>
             </summary>
             <div class="project-item__body">
+              {% if project.versions.size > 0 %}
+              <div class="project-versions">
+                {% for version in project.versions %}
+                <article class="manuscript-version" id="{{ version.id }}">
+                  <h4 class="manuscript-version__title">{{ version.title | default: version.label | escape }}</h4>
+                  <p class="manuscript-version__summary">{{ version.summary | escape }}</p>
+                  <p class="manuscript-version__keywords"><strong>Keywords:</strong> {{ version.keywords | join: ", " | escape }}.</p>
+                </article>
+                {% endfor %}
+              </div>
+              {% else %}
               <p class="project-item__field">{{ project.field }}</p>
               <p class="project-item__summary-text">{{ project.summary }}</p>
               <p class="project-item__key"><span>Key</span>{{ project.key }}</p>
-              {% if project.versions.size > 0 %}
-              <section class="project-versions" aria-label="Manuscript versions">
-                <h4 class="project-versions__heading">{{ project.versions.size }} manuscript versions</h4>
-                {% for version in project.versions %}
-                <article class="manuscript-version" id="{{ version.id }}">
-                  <h5 class="manuscript-version__label">{{ version.label | escape }}</h5>
-                  {% if version.title %}<p class="manuscript-version__title">{{ version.title | escape }}</p>{% endif %}
-                  <p class="manuscript-version__file"><code>{{ version.source_file | escape }}</code><span>{{ version.location | escape }}</span></p>
-                  {% if version.summary %}<p class="manuscript-version__summary">{{ version.summary | escape }}</p>{% endif %}
-                  {% if version.scope %}<p class="manuscript-version__scope"><strong>Scope:</strong> {{ version.scope | escape }}</p>{% endif %}
-                  <a class="link-arrow" href="{{ version.url | escape }}" target="_blank" rel="noopener">Open Overleaf project <span aria-hidden="true">↗</span></a>
-                </article>
-                {% endfor %}
-                <p class="project-versions__hint">Select the named file in its numbered folder within the Overleaf project.</p>
-              </section>
               {% endif %}
               {% if project.links.size > 0 %}
               <div class="project-item__links">
