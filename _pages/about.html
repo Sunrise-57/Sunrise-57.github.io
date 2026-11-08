@@ -105,26 +105,46 @@ redirect_from:
       <span class="section-rule" aria-hidden="true"></span>
     </div>
 
-    <div class="project-grid">
-      {% for project in site.data.research.projects %}
-      <article class="project-card" style="--d: {{ forloop.index0 | times: 60 }}ms">
-        <div class="project-card__top">
-          <span class="project-card__index">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
-          <span class="project-card__field">{{ project.field }}</span>
-        </div>
-        <h3>{{ project.title }}</h3>
-        <p class="project-card__summary">{{ project.summary }}</p>
-        <p class="project-card__focus"><span>Focus</span>{{ project.focus }}</p>
-        {% if project.links.size > 0 %}
-        <div class="project-card__links">
-          {% for link in project.links %}
-          <a class="link-arrow" href="{{ link.url }}" target="_blank" rel="noopener">
-            {{ link.label }}
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+    <div class="theme-list">
+      {% for theme in site.data.research.themes %}
+      {% assign theme_projects = site.data.research.projects | where: "theme", theme.id %}
+      <article class="theme-block">
+        <header class="theme-block__head">
+          <span class="theme-block__index" aria-hidden="true">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+          <div class="theme-block__intro">
+            <h3 class="theme-block__title">{{ theme.label }}</h3>
+            <p class="theme-block__note">{{ theme.note }}</p>
+          </div>
+          <span class="theme-block__count">{{ theme_projects.size }} {% if theme_projects.size == 1 %}project{% else %}projects{% endif %}</span>
+        </header>
+
+        <div class="theme-block__projects">
+          {% for project in theme_projects %}
+          <details class="project-item" name="theme-{{ theme.id }}">
+            <summary class="project-item__summary">
+              <span class="project-item__title">{{ project.title }}</span>
+              <svg class="project-item__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 6l4.5 4.5L12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="project-item__body">
+              <p class="project-item__field">{{ project.field }}</p>
+              <p class="project-item__summary-text">{{ project.summary }}</p>
+              <p class="project-item__focus"><span>Focus</span>{{ project.focus }}</p>
+              {% if project.links.size > 0 %}
+              <div class="project-item__links">
+                {% for link in project.links %}
+                <a class="link-arrow" href="{{ link.url }}" target="_blank" rel="noopener">
+                  {{ link.label }}
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </details>
           {% endfor %}
         </div>
-        {% endif %}
       </article>
       {% endfor %}
     </div>
@@ -151,33 +171,45 @@ redirect_from:
       <span class="section-rule" aria-hidden="true"></span>
     </div>
 
-    <div class="experience-list">
+    <div class="theme-list">
       {% for project in site.data.cv.projects %}
-      <article class="experience-card">
-        <div class="experience-card__meta">
-          <p class="experience-card__area">{{ project.research_area }}</p>
-          <div class="chips">
-            <span class="chip chip--accent">{{ project.role }}</span>
-            <span class="chip">{{ project.status }}</span>
+      <article class="theme-block">
+        <header class="theme-block__head">
+          <span class="theme-block__index" aria-hidden="true">01</span>
+          <div class="theme-block__intro">
+            <h3 class="theme-block__title">{{ project.research_area }}</h3>
+            <p class="theme-block__note">{{ project.program }}</p>
           </div>
+          <span class="theme-block__count">{{ project.role }} · {{ project.status }}</span>
+        </header>
+
+        <div class="theme-block__projects">
+          <details class="project-item" open>
+            <summary class="project-item__summary">
+              <span class="project-item__title">{{ project.name }}</span>
+              <svg class="project-item__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 6l4.5 4.5L12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="project-item__body">
+              <p class="project-item__summary-text">{{ project.summary }}</p>
+              {% if project.highlights.size > 0 %}
+              <ul class="detail-list">
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% if project.keywords.size > 0 %}
+              <ul class="chip-list" aria-label="Keywords">
+                {% for keyword in project.keywords %}
+                <li class="chip">{{ keyword }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </details>
         </div>
-        <h3>{{ project.name }}</h3>
-        <p class="experience-card__program">{{ project.program }}</p>
-        <p class="experience-card__summary">{{ project.summary }}</p>
-        {% if project.highlights.size > 0 %}
-        <ul class="detail-list">
-          {% for highlight in project.highlights %}
-          <li>{{ highlight }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        {% if project.keywords.size > 0 %}
-        <ul class="chip-list" aria-label="Keywords">
-          {% for keyword in project.keywords %}
-          <li class="chip">{{ keyword }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
       </article>
       {% endfor %}
     </div>

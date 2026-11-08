@@ -82,8 +82,8 @@
   /* Reveal on scroll ----------------------------------------------------- */
   /* Above-the-fold blocks stay static; only content further down animates. */
   var revealTargets = document.querySelectorAll(
-    ".section-head, .about > *, .interest-card, .project-card, " +
-    ".experience-card, .timeline__item, .contact-panel, .cv-section"
+    ".section-head, .about > *, .interest-card, .theme-block, " +
+    ".timeline__item, .contact-panel, .cv-section"
   );
 
   if (revealTargets.length && root.classList.contains("reveal-ready") && !reduceMotion) {

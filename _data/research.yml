@@ -1,6 +1,19 @@
-# Current research projects and manuscript links.
+# Current research, organised by theme.
+# Visitors scan the theme names first; each project's write-up is collapsed
+# behind its title. Add a theme below, then tag a project with its id.
+
+themes:
+  - id: learning-theory
+    label: "Learning theory"
+    note: "Why in-context learning works — and what model depth, numerical precision, and explicit reasoning steps can, and cannot, buy."
+
+  - id: multimodal
+    label: "Uncertainty-aware multimodal methods"
+    note: "How models behave when modalities disagree, drop out, or change mid-stream — and how to adapt at test time."
+
 projects:
   - id: tfm-theory
+    theme: learning-theory
     title: "Linear In-Context Query Tasks and Their Chain-of-Thought Solutions"
     field: "TFM-theory · Foundations of tabular in-context learning"
     summary: "I investigate the computational capabilities and limitations of tabular foundation models through the Linear In-Context Query (LinICQ) task. The project examines how model depth, numerical precision, and explicit reasoning steps affect the computations these models can perform, with careful attention to the assumptions and scope of theoretical bounds."
@@ -10,6 +23,7 @@ projects:
         url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
 
   - id: ast3
+    theme: multimodal
     title: "Test-Time Training with Adaptive Supervision for RGB-T Tracking"
     field: "AST3 · Test-time training"
     summary: "This project studies how to adapt a tracker at test time when modality reliability changes from frame to frame. AST3 evaluates RGB, thermal, and fused predictions, uses peak entropy to select a supervision anchor, and applies confidence-guided alignment to reduce error accumulation from unreliable self-supervision."
@@ -19,6 +33,7 @@ projects:
         url: "https://github.com/Sunrise-57/AST3-RGBT-Tracking"
 
   - id: fuzzy-mathematics
+    theme: multimodal
     title: "Fuzzy Multimodal Learning for VQA with a Novel Optimization Strategy Centered on Overlap Functions"
     field: "Fuzzy mathematics · Visual question answering"
     summary: "This project investigates multimodal uncertainty in visual question answering through a loss-optimization strategy based on fuzzy logic and overlap functions. My contributions include method design, model implementation, experimental analysis, and manuscript revision."
@@ -26,6 +41,7 @@ projects:
     links: []
 
   - id: cross-modal-tracking
+    theme: multimodal
     title: "Efficient Cross-Modal Visual Tracking via Distillation-Guided Parameter Isolation"
     field: "Cross-modal tracking · Robustness evaluation"
     summary: "This project studies robustness in cross-modal visual tracking when modality switches cause abrupt changes in target appearance. It explores distillation-guided parameter isolation, with my contributions focused on improving the experimental protocol, analyzing failure cases, and revising the manuscript."
