@@ -4,7 +4,7 @@
     "label": "Master's student in Mathematics",
     "email": "wushiqi57520@gamil.com",
     "website": "https://sunrise-57.github.io",
-    "summary": "Master's student in Mathematics at Anhui University. Research interests include multimodal reliable perception, RGBT tracking, test-time adaptation, uncertainty modeling, and robust learning.",
+    "summary": "Master's student in Mathematics at Anhui University. My research interests lie in foundational research in mathematics and computer science, with an emphasis on mathematical principles, rigorous reasoning, and theoretical understanding.",
     "profiles": [
       {
         "network": "GitHub",
@@ -25,21 +25,19 @@
   ],
   "interests": [
     {
-      "name": "Multimodal reliable perception",
+      "name": "Mathematics",
       "keywords": [
-        "RGBT tracking"
+        "Mathematical principles",
+        "Rigorous reasoning",
+        "Theoretical analysis"
       ]
     },
     {
-      "name": "Adaptation and robust learning",
+      "name": "Computer science",
       "keywords": [
-        "Test-time adaptation",
-        "Robust learning"
+        "Principles of computation",
+        "Algorithmic foundations"
       ]
-    },
-    {
-      "name": "Uncertainty modeling",
-      "keywords": []
     }
   ],
   "work": [],

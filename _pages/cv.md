@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Curriculum vitae"
-description: "Education and research interests of Shiqi Wu."
+description: "Education and foundational research interests in mathematics and computer science of Shiqi Wu."
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -22,6 +22,8 @@ redirect_from:
 {% endfor %}
 
 ## Research interests
+
+My research interests lie in foundational research in mathematics and computer science, with an emphasis on mathematical principles, rigorous reasoning, and theoretical understanding.
 
 {% for interest in site.data.cv.interests %}
 - **{{ interest.name }}**{% if interest.keywords.size > 0 %}: {{ interest.keywords | join: ", " }}{% endif %}

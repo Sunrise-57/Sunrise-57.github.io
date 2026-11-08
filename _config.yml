@@ -11,7 +11,7 @@ locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
 title: "Shiqi Wu"
 name: &name "Shiqi Wu"
-description: &description "Master's student in Mathematics, Anhui University"
+description: &description "Shiqi Wu, a master's student in Mathematics at Anhui University, interested in foundational research in mathematics and computer science."
 title_separator          : "-"
 url: "https://sunrise-57.github.io"
 baseurl: ""
@@ -25,7 +25,7 @@ author:
   avatar           : "profile.png"
   name             : "Shiqi Wu"
   pronouns         : # example: "she/her"  
-  bio              : "Master's student in Mathematics. Interested in reliable multimodal perception and robust learning."
+  bio              : "Master's student in Mathematics. Interested in foundational research in mathematics and computer science."
   location         :
   employer         : "Anhui University"
   uri              : # URL

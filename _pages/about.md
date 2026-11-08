@@ -1,18 +1,18 @@
 ---
 permalink: /
 title: "About"
-description: "Shiqi Wu, a master's student in Mathematics at Anhui University, with research interests in multimodal reliable perception and robust learning."
+description: "Shiqi Wu, a master's student in Mathematics at Anhui University, with research interests in foundational questions in mathematics and computer science."
 author_profile: true
 redirect_from:
   - /about/
   - /about.html
 ---
 
-<p class="profile-kicker">Mathematics &amp; Reliable Perception</p>
+<p class="profile-kicker">Mathematics &amp; Computer Science</p>
 
 <p class="profile-intro">I am <strong>{{ site.author.name }}</strong>, a master's student in Mathematics at <strong>{{ site.author.employer }}</strong>.</p>
 
-My research interests include multimodal reliable perception, RGBT tracking, test-time adaptation, uncertainty modeling, and robust learning.
+My research interests lie in foundational research in mathematics and computer science, with an emphasis on mathematical principles, rigorous reasoning, and theoretical understanding.
 
 <div class="profile-links">
   <a href="{{ '/cv/' | relative_url }}">View CV <span aria-hidden="true">&rarr;</span></a>
@@ -23,16 +23,12 @@ My research interests include multimodal reliable perception, RGBT tracking, tes
   <h2 id="research">Research interests</h2>
   <ol class="research-list">
     <li>
-      <h3>Multimodal reliable perception</h3>
-      <p>RGBT tracking and reliable perception across visual modalities.</p>
+      <h3>Mathematics</h3>
+      <p>Mathematical principles, rigorous reasoning, and theoretical analysis.</p>
     </li>
     <li>
-      <h3>Adaptation &amp; robust learning</h3>
-      <p>Test-time adaptation and robust learning under changing conditions.</p>
-    </li>
-    <li>
-      <h3>Uncertainty modeling</h3>
-      <p>Modeling uncertainty in perception and learning.</p>
+      <h3>Computer science</h3>
+      <p>Fundamental principles of computation and algorithms, with an emphasis on understanding why and under what conditions methods work.</p>
     </li>
   </ol>
 </section>
