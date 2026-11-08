@@ -200,3 +200,10 @@
   margin: 0 0 0.75rem;
   font-size: 0.85em;
 }
+
+/* Keep the supplied landscape image circular in the profile. */
+.author__avatar img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+}

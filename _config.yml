@@ -22,7 +22,7 @@ repository: "Sunrise-57/Sunrise-57.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "profile-landscape.webp"
   name             : "Shiqi Wu"
   pronouns         : # example: "she/her"  
   bio              : "Master's student in Mathematics. Interested in foundational research in mathematics and computer science."
