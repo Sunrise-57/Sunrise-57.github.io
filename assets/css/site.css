@@ -698,15 +698,6 @@ main,
   height: 116px;
   opacity: 0.3;
 }
-.margin-figure__label {
-  display: block;
-  margin-top: 0.55rem;
-  color: var(--ink-muted);
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
 
 @media (min-width: 1440px) {
   .margin-figure { display: block; }
