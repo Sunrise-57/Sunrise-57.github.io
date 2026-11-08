@@ -55,17 +55,18 @@
       "program": "Provincial Undergraduate Innovation and Entrepreneurship Training Program",
       "role": "Project leader",
       "status": "Completed",
-      "summary": "Developed a competitive-exclusion model with diffusion and aggregation terms to study population competition in biological control, spatially heterogeneous resources, and individual aggregation behavior.",
+      "summary": "This project uses dynamical systems and differential-equation modeling to study competitive exclusion in biological control. The model includes diffusion and aggregation terms to examine population competition, spatially heterogeneous resources, and individual aggregation behavior.",
       "highlights": [
-        "Led model derivation, qualitative analysis, and numerical simulation.",
+        "Led model derivation, qualitative analysis of the dynamical model, and numerical simulation.",
         "Used MATLAB for equation discretization, parameter experiments, and visualization."
       ],
       "keywords": [
-        "Differential equations",
         "Dynamical systems",
+        "Differential equations",
         "Numerical methods",
         "MATLAB"
-      ]
+      ],
+      "research_area": "Dynamical systems and differential equations"
     }
   ]
 }

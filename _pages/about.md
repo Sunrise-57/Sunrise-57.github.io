@@ -70,8 +70,9 @@ My research interests lie in foundational research in mathematics and computer s
   <h2 id="earlier-projects">Earlier research experience</h2>
   {% for project in site.data.cv.projects %}
   <article class="research-project" aria-labelledby="{{ project.id }}">
-    <p class="project-field">{{ project.program | escape }}</p>
+    {% if project.research_area %}<p class="project-field">{{ project.research_area | escape }}</p>{% endif %}
     <h3 id="{{ project.id }}">{{ project.name | escape }}</h3>
+    <p class="project-role">{{ project.program | escape }}</p>
     <p class="project-role"><strong>{{ project.role | escape }}</strong> · {{ project.status | escape }}</p>
     <p>{{ project.summary | escape }}</p>
     <p class="project-focus"><strong>Focus:</strong> {{ project.keywords | join: ", " | escape }}.</p>

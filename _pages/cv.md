@@ -34,6 +34,10 @@ My research interests lie in foundational research in mathematics and computer s
 {% for project in site.data.cv.projects %}
 ### {{ project.name }}
 
+{% if project.research_area %}
+**Research area:** {{ project.research_area }}
+{% endif %}
+
 **{{ project.program }}**
 
 {{ project.role }} · {{ project.status }}
