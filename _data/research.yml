@@ -1,8 +1,8 @@
 # Current research projects and manuscript links.
 projects:
   - id: tfm-theory
-    title: "TFM-theory"
-    field: "Foundations of tabular in-context learning"
+    title: "线性 In-Context Query 任务及其 CoT 求解方案"
+    field: "TFM-theory · Foundations of tabular in-context learning"
     summary: "I investigate the computational capabilities and limitations of tabular foundation models through the Linear In-Context Query (LinICQ) task. The project examines how model depth, numerical precision, and explicit reasoning steps affect the computations these models can perform, with careful attention to the assumptions and scope of theoretical bounds."
     focus: "Computational complexity, in-context learning, and sequential reasoning."
     links:
@@ -10,8 +10,8 @@ projects:
         url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
 
   - id: ast3
-    title: "AST3: adaptive supervision for RGB-T tracking"
-    field: "Test-time training"
+    title: "Test-Time Training with Adaptive Supervision for RGB-T Tracking"
+    field: "AST3 · Test-time training"
     summary: "This project studies how to adapt a tracker at test time when modality reliability changes from frame to frame. AST3 evaluates RGB, thermal, and fused predictions, uses peak entropy to select a supervision anchor, and applies confidence-guided alignment to reduce error accumulation from unreliable self-supervision."
     focus: "Reliability estimation, supervision selection, and stable online adaptation."
     links:
@@ -19,15 +19,15 @@ projects:
         url: "https://github.com/Sunrise-57/AST3-RGBT-Tracking"
 
   - id: fuzzy-mathematics
-    title: "Fuzzy mathematics and uncertainty modeling"
-    field: "Axioms and algebraic structures"
-    summary: "I study the axiomatic and algebraic structure of fuzzy aggregation operators, including t-norms, uninorms, and overlap functions, and their extensions to ordered structures. A related line examines decision evaluation and fuzzy clustering, emphasizing duality, consistency, and the conditions under which a construction remains valid."
-    focus: "Aggregation operators, ordered structures, decision evaluation, and fuzzy clustering."
+    title: "聚合算子在一般代数结构上的推广：综述"
+    field: "Fuzzy mathematics · Survey draft"
+    summary: "This survey studies how fuzzy aggregation operators are extended from the unit interval to more general algebraic and ordered structures. It examines t-norms, t-conorms, uninorms, and overlap functions through questions of existence, construction, and characterization, emphasizing the structural assumptions that each result requires."
+    focus: "Aggregation operators, ordered structures, existence, construction, and characterization."
     links: []
 
   - id: cross-modal-tracking
-    title: "Cross-modal tracking with reliability and uncertainty"
-    field: "Multimodal perception"
+    title: "基于模态自监督及不确定性引导的RGBT目标跟踪"
+    field: "Master's thesis research · Multimodal perception"
     summary: "This broader research line examines how visible and thermal information should be combined when modalities provide unequal or conflicting evidence. The focus is on modality self-supervision, uncertainty modeling, and adaptive fusion under occlusion, changing illumination, and modality degradation."
     focus: "Complementary information, uncertainty-aware fusion, and tracking robustness."
     links: []
