@@ -276,6 +276,67 @@ button {
   gap: 0.45rem;
 }
 
+/* Ambient background ------------------------------------------------------- */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient__grid {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  height: calc(100vh + 260px);
+  width: max(var(--gutter), calc(50% - 570px));
+  background-image: radial-gradient(circle, var(--line-strong) 0.9px, transparent 1.2px);
+  background-size: 26px 26px;
+  opacity: 0.45;
+  transform: translate3d(0, calc(var(--grid-shift, 0px) * -1), 0);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 55%);
+  mask-image: linear-gradient(90deg, transparent, #000 55%);
+}
+.ambient__grid--left { left: 0; }
+.ambient__grid--right { right: 0; left: auto; transform: translate3d(0, calc(var(--grid-shift, 0px) * -1), 0) scaleX(-1); }
+
+.ambient__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 900px;
+  margin: -450px 0 0 -450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 118, 58, 0.18) 0%, rgba(196, 118, 58, 0) 60%);
+  opacity: 0;
+  transition: opacity 1s ease;
+  will-change: transform;
+}
+[data-theme="dark"] .ambient__glow {
+  background: radial-gradient(circle, rgba(232, 155, 98, 0.15) 0%, rgba(232, 155, 98, 0) 60%);
+}
+.ambient__glow.is-active { opacity: 0.9; }
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1279px) {
+  .ambient__grid { display: none; }
+}
+
+[data-theme="dark"] .ambient__grid { opacity: 0.4; }
+@media (hover: none) {
+  .ambient__glow { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient__glow { display: none; }
+}
+
 /* Header ------------------------------------------------------------------- */
 .progress {
   position: fixed;
@@ -468,6 +529,7 @@ button {
   justify-self: end;
   width: 100%;
   max-width: 460px;
+  perspective: 900px;
 }
 
 .hero__frame {
@@ -1328,6 +1390,8 @@ html.reveal-ready [data-reveal].is-visible {
   display: grid;
   justify-items: start;
   gap: 0.65rem;
+  max-width: 640px;
+  margin-inline: auto;
   padding: clamp(2.25rem, 5vw, 3.5rem);
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius-lg);
@@ -1930,6 +1994,8 @@ html.reveal-ready [data-reveal].is-visible {
 /* Print -------------------------------------------------------------------- */
 @media print {
   @page { margin: 18mm 16mm; }
+
+  .ambient { display: none !important; }
 
   body {
     background: #fff;
