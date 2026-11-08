@@ -18,8 +18,21 @@ projects:
     field: "TFM-theory · Foundations of tabular in-context learning"
     summary: "I investigate the computational capabilities and limitations of tabular foundation models through the Linear In-Context Query (LinICQ) task. The project examines how model depth, numerical precision, and explicit reasoning steps affect the computations these models can perform, with careful attention to the assumptions and scope of theoretical bounds."
     key: "Computational complexity, in-context learning, and sequential reasoning."
-    links:
-      - label: "Average-risk version (Overleaf)"
+    links: []
+    versions:
+      - id: "tfm-main-version"
+        label: "Computational-limits version"
+        source_file: "main.tex"
+        location: "Overleaf folder 1"
+        url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
+
+      - id: "tfm-average-risk-version"
+        label: "Revised average-risk version"
+        title: "Computational Limits of Fixed-Depth Tabular Foundation Models: A Conditional Average-Case Separation"
+        source_file: "tabf_bounds_revised.tex"
+        location: "Overleaf folder 3"
+        summary: "On constructed noiseless tabular ICL tasks, this manuscript separates information sufficiency from computational resources. Assuming non-uniform TC⁰ ≠ NC¹, it bounds average accuracy for fixed-depth threshold-circuit predictors at infinitely many problem sizes, while a polynomial-step feedback algorithm attains Bayes accuracy."
+        scope: "Conditional results for the constructed task family; applying them to a specific model requires checking its complete inference process."
         url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
 
   - id: ast3
