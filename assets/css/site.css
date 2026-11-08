@@ -291,15 +291,40 @@ button {
   left: 0;
   height: calc(100vh + 260px);
   width: max(var(--gutter), calc(50% - 570px));
-  background-image: radial-gradient(circle, var(--line-strong) 0.9px, transparent 1.2px);
-  background-size: 26px 26px;
-  opacity: 0.45;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.7;
   transform: translate3d(0, calc(var(--grid-shift, 0px) * -1), 0);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 55%);
-  mask-image: linear-gradient(90deg, transparent, #000 55%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%);
+  mask-image: linear-gradient(90deg, transparent, #000 60%);
 }
 .ambient__grid--left { left: 0; }
 .ambient__grid--right { right: 0; left: auto; transform: translate3d(0, calc(var(--grid-shift, 0px) * -1), 0) scaleX(-1); }
+
+/* Ruler ticks along the content edge, like a printed plate */
+.ambient__ruler {
+  position: absolute;
+  top: 68px;
+  width: 7px;
+  height: calc(100vh + 260px);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--line-strong) 0 1px,
+    transparent 1px 24px
+  );
+  opacity: 0.55;
+  transform: translate3d(0, calc(var(--grid-shift, 0px) * -1), 0);
+}
+.ambient__ruler--left {
+  left: max(var(--gutter), calc(50% - 570px));
+  border-left: 1px solid var(--line-strong);
+}
+.ambient__ruler--right {
+  right: max(var(--gutter), calc(50% - 570px));
+  border-right: 1px solid var(--line-strong);
+}
 
 .ambient__glow {
   position: absolute;
@@ -319,22 +344,50 @@ button {
 }
 .ambient__glow.is-active { opacity: 0.9; }
 
+.ambient__compass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  color: var(--line-strong);
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  will-change: transform;
+}
+.ambient__compass svg {
+  width: 100%;
+  height: 100%;
+  animation: compass-spin 240s linear infinite;
+}
+.ambient__compass.is-active { opacity: 0.7; }
+[data-theme="dark"] .ambient__compass { color: #4a4238; }
+[data-theme="dark"] .ambient__compass.is-active { opacity: 0.6; }
+
+@keyframes compass-spin {
+  to { transform: rotate(360deg); }
+}
+
 main,
 .site-footer {
   position: relative;
   z-index: 1;
 }
 
-@media (max-width: 1279px) {
-  .ambient__grid { display: none; }
-}
-
 [data-theme="dark"] .ambient__grid { opacity: 0.4; }
+
+@media (max-width: 1279px) {
+  .ambient__grid,
+  .ambient__ruler { display: none; }
+}
 @media (hover: none) {
-  .ambient__glow { display: none; }
+  .ambient__glow,
+  .ambient__compass { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ambient__glow { display: none; }
+  .ambient__glow,
+  .ambient__compass { display: none; }
 }
 
 /* Header ------------------------------------------------------------------- */
@@ -602,10 +655,12 @@ main,
 }
 .section-index {
   color: var(--accent-ink);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  font-style: italic;
+  letter-spacing: 0.06em;
 }
+.section-index::after { content: "."; }
 .section-head h2 {
   font-size: clamp(1.65rem, 3vw, 2.2rem);
   font-weight: 450;
@@ -623,6 +678,38 @@ main,
   margin-bottom: 2.5rem;
   color: var(--ink-soft);
   font-size: 0.98rem;
+}
+
+/* Marginal figure plates --------------------------------------------------- */
+.section { position: relative; }
+
+.margin-figure {
+  display: none;
+  position: absolute;
+  top: clamp(3rem, 5vw, 4.5rem);
+  left: calc(50% + 590px);
+  width: 116px;
+  color: var(--accent-ink);
+  text-align: center;
+  pointer-events: none;
+}
+.margin-figure svg {
+  width: 116px;
+  height: 116px;
+  opacity: 0.3;
+}
+.margin-figure__label {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1440px) {
+  .margin-figure { display: block; }
 }
 
 /* About -------------------------------------------------------------------- */

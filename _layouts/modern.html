@@ -68,7 +68,17 @@ layout: null
   <div class="ambient" aria-hidden="true">
     <span class="ambient__grid ambient__grid--left"></span>
     <span class="ambient__grid ambient__grid--right"></span>
+    <span class="ambient__ruler ambient__ruler--left"></span>
+    <span class="ambient__ruler ambient__ruler--right"></span>
     <span class="ambient__glow" data-ambient-glow></span>
+    <span class="ambient__compass" data-ambient-compass>
+      <svg viewBox="0 0 240 240" fill="none">
+        <circle cx="120" cy="120" r="116" stroke="currentColor" stroke-width="1" stroke-dasharray="1.5 7"/>
+        <circle cx="120" cy="120" r="84" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+        <path d="M120 2v16M120 222v16M2 120h16M222 120h16" stroke="currentColor" stroke-width="1"/>
+        <circle cx="120" cy="120" r="1.8" fill="currentColor"/>
+      </svg>
+    </span>
   </div>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="progress" aria-hidden="true"><span class="progress__bar" id="progress-bar"></span></div>

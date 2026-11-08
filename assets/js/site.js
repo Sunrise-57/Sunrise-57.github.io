@@ -269,6 +269,7 @@
   }
 /* Ambient cursor glow --------------------------------------------------- */
   var glow = document.querySelector("[data-ambient-glow]");
+  var compass = document.querySelector("[data-ambient-compass]");
   var finePointer = window.matchMedia("(hover: hover) and (min-width: 1180px)").matches;
   if (glow && !reduceMotion && finePointer) {
     var target = { x: window.innerWidth / 2, y: window.innerHeight * 0.4 };
@@ -279,7 +280,9 @@
     var glowLoop = function () {
       pos.x += (target.x - pos.x) * 0.09;
       pos.y += (target.y - pos.y) * 0.09;
-      glow.style.transform = "translate3d(" + pos.x.toFixed(1) + "px," + pos.y.toFixed(1) + "px,0)";
+      var transform = "translate3d(" + pos.x.toFixed(1) + "px," + pos.y.toFixed(1) + "px,0)";
+      glow.style.transform = transform;
+      if (compass) compass.style.transform = transform;
       if (Math.abs(target.x - pos.x) > 0.5 || Math.abs(target.y - pos.y) > 0.5) {
         glowRaf = window.requestAnimationFrame(glowLoop);
       } else {
@@ -293,6 +296,7 @@
       if (!glowOn) {
         glowOn = true;
         glow.classList.add("is-active");
+        if (compass) compass.classList.add("is-active");
       }
       if (!glowRaf) glowRaf = window.requestAnimationFrame(glowLoop);
     }, { passive: true });
@@ -300,6 +304,7 @@
     document.addEventListener("pointerleave", function () {
       glowOn = false;
       glow.classList.remove("is-active");
+      if (compass) compass.classList.remove("is-active");
     });
   }
 
