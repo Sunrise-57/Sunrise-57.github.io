@@ -33,6 +33,38 @@ My research interests lie in foundational research in mathematics and computer s
   </ol>
 </section>
 
+<section class="profile-section" aria-labelledby="projects">
+  <h2 id="projects">Current research projects</h2>
+  <p>My current work connects mathematical foundations of learning and reasoning with uncertainty-aware multimodal methods.</p>
+  <div class="project-list">
+    {% for project in site.data.research.projects %}
+    <article class="research-project" aria-labelledby="{{ project.id }}">
+      <p class="project-field">{{ project.field | escape }}</p>
+      <h3 id="{{ project.id }}">{{ project.title | escape }}</h3>
+      <p>{{ project.summary | escape }}</p>
+      <p class="project-focus"><strong>Focus:</strong> {{ project.focus | escape }}</p>
+      {% if project.links.size > 0 %}
+      <div class="project-links">
+        {% for link in project.links %}
+        <a href="{{ link.url | escape }}">{{ link.label | escape }} <span aria-hidden="true">&nearr;</span></a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% if site.data.research.materials.size > 0 %}
+  <div class="research-materials">
+    <h3>Manuscripts</h3>
+    <ul>
+      {% for material in site.data.research.materials %}
+      <li><a href="{{ material.url | escape }}">{{ material.label | escape }}</a> <span class="material-platform">({{ material.platform | escape }})</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</section>
+
 <section class="profile-section" aria-labelledby="education">
   <h2 id="education">Education</h2>
   {% for education in site.data.cv.education %}

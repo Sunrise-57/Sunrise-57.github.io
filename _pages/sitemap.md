@@ -8,6 +8,7 @@ sitemap: false
 
 - [About]({{ '/' | relative_url }})
 - [Research interests]({{ '/#research' | relative_url }})
+- [Current research projects]({{ '/#projects' | relative_url }})
 - [CV]({{ '/cv/' | relative_url }})
 - [Publications]({{ '/publications/' | relative_url }})
 - [Contact]({{ '/#contact' | relative_url }})

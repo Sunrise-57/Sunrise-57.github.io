@@ -141,3 +141,57 @@
     padding: 0;
   }
 }
+
+/* Research projects follow the same restrained academic layout. */
+.project-list {
+  margin-top: 1.5rem;
+}
+
+.research-project {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.research-project:first-child {
+  padding-top: 0;
+}
+
+.page__content .project-field {
+  margin: 0 0 0.5rem;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.research-project h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05em;
+  line-height: 1.45;
+  scroll-margin-top: 6rem;
+}
+
+.page__content .project-focus {
+  margin: 0.75rem 0 0;
+  font-size: 0.85em;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+  font-size: 0.85em;
+}
+
+.research-materials {
+  margin-top: 1.5rem;
+}
+
+.research-materials h3 {
+  margin-top: 0;
+}
+
+.material-platform {
+  font-size: 0.85em;
+}
