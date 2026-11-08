@@ -527,7 +527,7 @@ main,
 /* Hero --------------------------------------------------------------------- */
 .hero {
   position: relative;
-  padding: clamp(3rem, 7vw, 6rem) 0 clamp(2rem, 4vw, 3rem);
+  padding: clamp(2.25rem, 4.5vw, 3.5rem) 0 clamp(1.5rem, 2.5vw, 2rem);
   overflow: clip;
   isolation: isolate;
 }
@@ -548,21 +548,21 @@ main,
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
   align-items: center;
-  gap: clamp(2.5rem, 5vw, 5rem);
+  gap: clamp(2rem, 4vw, 3.5rem);
 }
 
 .hero__title {
-  margin: 1.1rem 0 1.35rem;
-  font-size: clamp(3.1rem, 7.4vw, 5.6rem);
+  margin: 0.75rem 0 1rem;
+  font-size: clamp(2.7rem, 6.2vw, 4.7rem);
   font-weight: 450;
   line-height: 0.95;
   letter-spacing: -0.035em;
 }
 
 .hero__lede {
-  max-width: 34ch;
+  max-width: 38ch;
   font-family: var(--font-serif);
-  font-size: clamp(1.22rem, 1.9vw, 1.5rem);
+  font-size: clamp(1.12rem, 1.6vw, 1.3rem);
   font-weight: 400;
   line-height: 1.5;
   color: var(--ink);
@@ -574,14 +574,14 @@ main,
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-  margin-top: 2rem;
+  margin-top: 1.6rem;
 }
 
 .hero__figure {
   margin: 0;
   justify-self: end;
   width: 100%;
-  max-width: 460px;
+  max-width: 400px;
   perspective: 900px;
 }
 
@@ -611,33 +611,6 @@ main,
   font-size: 0.82rem;
   font-style: italic;
   text-align: center;
-}
-
-/* Facts strip -------------------------------------------------------------- */
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(2.75rem, 5vw, 4.25rem);
-  border-top: 1px solid var(--line);
-}
-.fact {
-  padding: 1.35rem 1.6rem 1.35rem 0;
-  border-left: 1px solid var(--line);
-  padding-left: 1.6rem;
-}
-.fact:first-child { border-left: 0; padding-left: 0; }
-.fact__label {
-  color: var(--ink-muted);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-.fact__value {
-  margin-top: 0.35rem;
-  color: var(--ink);
-  font-size: 0.95rem;
-  line-height: 1.5;
 }
 
 /* Sections ----------------------------------------------------------------- */
@@ -1984,13 +1957,6 @@ html.reveal-ready [data-reveal].is-visible {
   .site-nav a[aria-current="page"]::after,
   .site-nav a.is-active::after { display: none; }
   .theme-toggle { margin-left: 0; }
-
-  .facts { grid-template-columns: 1fr; }
-  .fact {
-    border-left: 0;
-    padding: 1rem 0;
-  }
-  .fact + .fact { border-top: 1px solid var(--line); }
 
   .interest-grid { grid-template-columns: 1fr; }
   .section-head { flex-wrap: wrap; gap: 0.5rem 0.9rem; }
