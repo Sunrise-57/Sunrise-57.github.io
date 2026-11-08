@@ -1,0 +1,73 @@
+﻿---
+layout: modern
+---
+{% assign sorted = site.notes | sort: "date" %}
+{% assign idx = -1 %}
+{% for n in sorted %}{% if n.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{% assign prev = nil %}
+{% assign next = nil %}
+{% if idx > 0 %}{% assign prev_idx = idx | minus: 1 %}{% assign prev = sorted[prev_idx] %}{% endif %}
+{% assign next_idx = idx | plus: 1 %}
+{% if idx >= 0 and next_idx < sorted.size %}{% assign next = sorted[next_idx] %}{% endif %}
+
+<article class="note">
+  <header class="note-head">
+    <div class="note-shell">
+      <nav class="note-crumb" aria-label="Breadcrumb">
+        <a href="{{ '/notes/' | relative_url }}">Notes</a>
+        {% if page.topics and page.topics.size > 0 %}
+          {% assign first_slug = page.topics[0] %}
+          {% assign first_topic = site.data.topics | where: "slug", first_slug | first %}
+          <span class="note-crumb__sep" aria-hidden="true">/</span>
+          <span>{{ first_topic.label | default: first_slug }}</span>
+        {% endif %}
+      </nav>
+
+      <h1 class="note-title">{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="note-subtitle">{{ page.subtitle }}</p>{% endif %}
+
+      <div class="note-meta">
+        <time class="note-meta__date" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+        {% if page.topics and page.topics.size > 0 %}
+        <ul class="note-meta__topics">
+          {% for slug in page.topics %}
+            {% assign topic = site.data.topics | where: "slug", slug | first %}
+            <li><a class="chip chip--link" href="{{ '/notes/' | relative_url }}?topic={{ slug }}">{{ topic.label | default: slug }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="note-shell note-layout">
+    <div class="prose" id="note-content">
+      {{ content }}
+    </div>
+
+    <aside class="note-toc" data-toc hidden aria-label="On this page">
+      <p class="note-toc__title">On this page</p>
+      <nav class="note-toc__nav" data-toc-nav></nav>
+    </aside>
+  </div>
+
+  <footer class="note-foot">
+    <div class="note-shell">
+      <div class="note-pager">
+        {% if prev %}
+        <a class="note-pager__item" href="{{ prev.url | relative_url }}">
+          <span class="note-pager__label">← Previous</span>
+          <strong>{{ prev.title }}</strong>
+        </a>
+        {% endif %}
+        {% if next %}
+        <a class="note-pager__item note-pager__item--next" href="{{ next.url | relative_url }}">
+          <span class="note-pager__label">Next →</span>
+          <strong>{{ next.title }}</strong>
+        </a>
+        {% endif %}
+      </div>
+      <a class="note-back" href="{{ '/notes/' | relative_url }}">All notes</a>
+    </div>
+  </footer>
+</article>

@@ -1,0 +1,19 @@
+# Topic vocabulary for /notes/. Add a topic here, then use its slug in a
+# note's front matter:  topics: ["machine-learning", "sociology"]
+- slug: machine-learning
+  label: Machine Learning
+
+- slug: deep-learning
+  label: Deep Learning
+
+- slug: reinforcement-learning
+  label: Reinforcement Learning
+
+- slug: mathematics
+  label: Mathematics
+
+- slug: sociology
+  label: Sociology
+
+- slug: economics
+  label: Economics

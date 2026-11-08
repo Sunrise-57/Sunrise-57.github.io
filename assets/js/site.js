@@ -181,4 +181,84 @@
   document.querySelectorAll("[data-print]").forEach(function (button) {
     button.addEventListener("click", function () { window.print(); });
   });
+
+  /* Notes: topic filter -------------------------------------------------- */
+  var filterBar = document.querySelector("[data-notes-filter]");
+  if (filterBar) {
+    var rows = Array.prototype.slice.call(document.querySelectorAll(".note-row"));
+    var countEl = document.querySelector("[data-notes-count]");
+    var emptyEl = document.querySelector("[data-notes-empty-filter]");
+    var chips = Array.prototype.slice.call(filterBar.querySelectorAll("[data-filter]"));
+
+    var applyFilter = function (topic, remember) {
+      var visible = 0;
+      rows.forEach(function (row) {
+        var topics = (row.getAttribute("data-topics") || "").split(" ").filter(Boolean);
+        var show = topic === "all" || topics.indexOf(topic) !== -1;
+        row.hidden = !show;
+        if (show) visible += 1;
+      });
+      chips.forEach(function (chip) {
+        var active = chip.getAttribute("data-filter") === topic;
+        chip.classList.toggle("is-active", active);
+        chip.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      if (emptyEl) emptyEl.hidden = visible !== 0;
+      if (countEl) countEl.textContent = visible + (visible === 1 ? " note" : " notes");
+      if (remember) {
+        var url = new URL(window.location.href);
+        if (topic === "all") url.searchParams.delete("topic");
+        else url.searchParams.set("topic", topic);
+        window.history.replaceState({}, "", url);
+      }
+    };
+
+    filterBar.addEventListener("click", function (event) {
+      var chip = event.target.closest("[data-filter]");
+      if (!chip) return;
+      applyFilter(chip.getAttribute("data-filter"), true);
+    });
+
+    var requested = new URLSearchParams(window.location.search).get("topic");
+    if (requested && chips.some(function (chip) { return chip.getAttribute("data-filter") === requested; })) {
+      applyFilter(requested, false);
+    }
+  }
+
+  /* Notes: table of contents --------------------------------------------- */
+  var toc = document.querySelector("[data-toc]");
+  var tocNav = document.querySelector("[data-toc-nav]");
+  var noteContent = document.getElementById("note-content");
+  if (toc && tocNav && noteContent) {
+    var headings = Array.prototype.slice.call(noteContent.querySelectorAll("h2, h3"));
+    if (headings.length >= 3) {
+      var tocLinks = headings.map(function (heading, index) {
+        if (!heading.id) heading.id = "section-" + (index + 1);
+        var link = document.createElement("a");
+        link.className = "note-toc__link" + (heading.tagName === "H3" ? " note-toc__link--h3" : "");
+        link.href = "#" + heading.id;
+        link.textContent = heading.textContent;
+        tocNav.appendChild(link);
+        return link;
+      });
+      toc.hidden = false;
+
+      var setActiveHeading = function () {
+        var current = null;
+        headings.forEach(function (heading) {
+          if (heading.getBoundingClientRect().top <= window.innerHeight * 0.35) current = heading;
+        });
+        tocLinks.forEach(function (link) {
+          link.classList.toggle("is-active", !!current && link.getAttribute("href") === "#" + current.id);
+        });
+      };
+      var tocTick = false;
+      window.addEventListener("scroll", function () {
+        if (tocTick) return;
+        tocTick = true;
+        window.requestAnimationFrame(function () { setActiveHeading(); tocTick = false; });
+      }, { passive: true });
+      setActiveHeading();
+    }
+  }
 })();

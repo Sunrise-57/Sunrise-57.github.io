@@ -1,0 +1,78 @@
+﻿---
+layout: modern
+permalink: /notes/
+title: "Notes"
+seo_title: "Notes — Shiqi Wu"
+description: "Working notes on papers and ideas in machine learning, deep learning, reinforcement learning, sociology, and economics."
+---
+
+<section class="notes-hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>Notes</p>
+    <h1 class="notes-hero__title">Reading notes</h1>
+    <p class="notes-hero__lede">Working notes on papers, talks, and ideas — machine learning, deep learning, reinforcement learning, sociology, economics, and whatever else keeps me thinking.</p>
+  </div>
+</section>
+
+<section class="notes-main">
+  <div class="wrap">
+    {% assign notes = site.notes | sort: "date" | reverse %}
+
+    {% if notes.size > 0 %}
+    <div class="notes-toolbar">
+      <div class="notes-filter" role="group" aria-label="Filter notes by topic" data-notes-filter>
+        <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">
+          All <span class="filter-chip__count">{{ notes.size }}</span>
+        </button>
+        {% for topic in site.data.topics %}
+          {% assign count = 0 %}
+          {% for note in notes %}
+            {% if note.topics and note.topics contains topic.slug %}{% assign count = count | plus: 1 %}{% endif %}
+          {% endfor %}
+          {% if count > 0 %}
+          <button type="button" class="filter-chip" data-filter="{{ topic.slug }}" aria-pressed="false">
+            {{ topic.label }} <span class="filter-chip__count">{{ count }}</span>
+          </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p class="notes-count" data-notes-count>{{ notes.size }} {% if notes.size == 1 %}note{% else %}notes{% endif %}</p>
+    </div>
+
+    <div class="notes-list" data-notes-list>
+      {% for note in notes %}
+      <a class="note-row" href="{{ note.url | relative_url }}" data-topics="{{ note.topics | join: ' ' }}">
+        <time class="note-row__date" datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: "%Y-%m-%d" }}</time>
+        <div class="note-row__body">
+          <h2 class="note-row__title">{{ note.title }}</h2>
+          {% if note.summary %}<p class="note-row__summary">{{ note.summary }}</p>{% endif %}
+          {% if note.topics and note.topics.size > 0 %}
+          <ul class="note-row__topics">
+            {% for slug in note.topics %}
+              {% assign topic = site.data.topics | where: "slug", slug | first %}
+              <li class="chip">{{ topic.label | default: slug }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        <span class="note-row__arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8h10.5M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="notes-empty-filter" data-notes-empty-filter hidden>No notes in this topic yet.</p>
+    {% else %}
+    <div class="notes-empty">
+      <svg class="notes-empty__mark" width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2.5 17.5h19" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M6.75 17.5a5.25 5.25 0 0 1 10.5 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 4.5v2.1M5.9 7.15l1.5 1.5M18.1 7.15l-1.5 1.5" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <p class="notes-empty__title">The first note is on its way.</p>
+      <p class="notes-empty__text">I am still collecting the first batch of reading notes. They will show up here as soon as they are written.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
