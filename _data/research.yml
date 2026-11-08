@@ -1,7 +1,7 @@
 # Current research projects and manuscript links.
 projects:
   - id: tfm-theory
-    title: "线性 In-Context Query 任务及其 CoT 求解方案"
+    title: "Linear In-Context Query Tasks and Their Chain-of-Thought Solutions"
     field: "TFM-theory · Foundations of tabular in-context learning"
     summary: "I investigate the computational capabilities and limitations of tabular foundation models through the Linear In-Context Query (LinICQ) task. The project examines how model depth, numerical precision, and explicit reasoning steps affect the computations these models can perform, with careful attention to the assumptions and scope of theoretical bounds."
     focus: "Computational complexity, in-context learning, and sequential reasoning."
