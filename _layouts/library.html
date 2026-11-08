@@ -1,0 +1,74 @@
+---
+layout: modern
+---
+{% assign d = site.data %}
+{% if page.lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
+{% assign ui = d.ui %}
+{% assign items = d.library.items %}
+{% assign categories = d.library.categories %}
+
+<section class="notes-hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{{ ui.library.eyebrow }}</p>
+    <h1 class="notes-hero__title">{{ ui.library.title }}</h1>
+    <p class="notes-hero__lede">{{ ui.library.lede }}</p>
+  </div>
+</section>
+
+<section class="notes-main" data-filter-scope>
+  <div class="wrap">
+    {% if items.size > 0 %}
+    <div class="notes-toolbar">
+      <div class="notes-filter" role="group" aria-label="{{ ui.library.filter_label }}" data-filter-bar data-filter-param="type" data-filter-noun="{{ ui.library.one }}" data-filter-noun-many="{{ ui.library.many }}">
+        <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">
+          {{ ui.notes.all }} <span class="filter-chip__count">{{ items.size }}</span>
+        </button>
+        {% for category in categories %}
+          {% assign count = 0 %}
+          {% for item in items %}
+            {% if item.category == category.id %}{% assign count = count | plus: 1 %}{% endif %}
+          {% endfor %}
+          {% if count > 0 %}
+          <button type="button" class="filter-chip" data-filter="{{ category.id }}" aria-pressed="false">
+            {{ category.label }} <span class="filter-chip__count">{{ count }}</span>
+          </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p class="notes-count" data-filter-count>{{ items.size }} {% if items.size == 1 %}{{ ui.library.one }}{% else %}{{ ui.library.many }}{% endif %}</p>
+    </div>
+
+    <div class="library-grid">
+      {% for item in items %}
+      {% assign category = categories | where: "id", item.category | first %}
+      <article class="library-item" data-filter-item data-filter-tags="{{ item.category }}">
+        <span class="library-item__type">{{ category.label | default: item.category }}</span>
+        <h2 class="library-item__title">{{ item.title }}</h2>
+        {% if item.creator or item.year %}
+        <p class="library-item__meta">{{ item.creator }}{% if item.creator and item.year %} · {% endif %}{{ item.year }}</p>
+        {% endif %}
+        {% if item.note %}<p class="library-item__note">{{ item.note }}</p>{% endif %}
+        {% if item.link %}
+        <a class="library-item__link" href="{{ item.link }}" target="_blank" rel="noopener">
+          {{ ui.library.more }}
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+
+    <p class="notes-empty-filter" data-filter-empty hidden>{{ ui.library.empty_filter }}</p>
+    {% else %}
+    <div class="notes-empty">
+      <svg class="notes-empty__mark" width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2.5 17.5h19" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M6.75 17.5a5.25 5.25 0 0 1 10.5 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 4.5v2.1M5.9 7.15l1.5 1.5M18.1 7.15l-1.5 1.5" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <p class="notes-empty__title">{{ ui.library.empty_title }}</p>
+      <p class="notes-empty__text">{{ ui.library.empty_text }}</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

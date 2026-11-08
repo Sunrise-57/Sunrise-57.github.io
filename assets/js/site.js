@@ -60,7 +60,7 @@
     navToggle.addEventListener("click", function () {
       var open = nav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      if (navLabel) navLabel.textContent = open ? "Close" : "Menu";
+      if (navLabel) navLabel.textContent = open ? navToggle.getAttribute("data-label-open") : navToggle.getAttribute("data-label-closed");
     });
     nav.addEventListener("click", function (event) {
       if (event.target.closest("a")) {
@@ -195,6 +195,7 @@
     var chips = Array.prototype.slice.call(bar.querySelectorAll("[data-filter]"));
     var param = bar.getAttribute("data-filter-param") || "tag";
     var noun = bar.getAttribute("data-filter-noun") || "item";
+    var nounMany = bar.getAttribute("data-filter-noun-many") || (noun + "s");
 
     var applyFilter = function (value, remember) {
       var visible = 0;
@@ -210,7 +211,7 @@
         chip.setAttribute("aria-pressed", active ? "true" : "false");
       });
       if (emptyEl) emptyEl.hidden = visible !== 0;
-      if (countEl) countEl.textContent = visible + " " + noun + (visible === 1 ? "" : "s");
+      if (countEl) countEl.textContent = visible + " " + (visible === 1 ? noun : nounMany);
       if (remember) {
         var url = new URL(window.location.href);
         if (value === "all") url.searchParams.delete(param);

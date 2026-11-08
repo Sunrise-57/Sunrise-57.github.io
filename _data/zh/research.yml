@@ -1,0 +1,62 @@
+# 当前研究，按主题分组。英文对应文件是 _data/research.yml。
+
+themes:
+  - id: learning-theory
+    label: "学习理论"
+    note: "上下文学习为何有效——模型深度、数值精度与显式推理步骤能带来什么，又带不来什么。"
+
+  - id: multimodal
+    label: "不确定性感知的多模态方法"
+    note: "当模态彼此矛盾、缺失或中途变化时，模型会如何表现，以及如何在测试时自适应。"
+
+projects:
+  - id: tfm-theory
+    theme: learning-theory
+    title: "线性上下文查询任务及其思维链解法"
+    field: "TFM 理论 · 表格基础模型的上下文学习基础"
+    summary: "我通过线性上下文查询（LinICQ）任务研究表格基础模型的计算能力与局限。项目考察模型深度、数值精度与显式推理步骤如何影响这些模型能执行的计算，并仔细界定理论结论的假设与适用范围。"
+    key: "计算复杂性、上下文学习与序列推理。"
+    links:
+      - label: "Overleaf"
+        url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
+    versions:
+      - id: "tfm-main-version"
+        label: "计算极限"
+        source_file: "main.tex"
+        summary: "考察固定深度的表格模型通过线性上下文查询任务能计算什么，重点在模型深度、数值精度与显式推理步骤的作用。"
+        keywords: ["表格基础模型", "上下文学习", "计算复杂性", "思维链"]
+
+      - id: "tfm-average-risk-version"
+        label: "平均风险分析"
+        title: "固定深度表格基础模型的计算极限：一个条件的平均情形分离"
+        source_file: "tabf_bounds_revised.tex"
+        summary: "研究构造的表格上下文学习任务中的平均预测风险。在一个电路复杂性分离假设下，比较固定深度预测与随问题规模增长的回馈计算。"
+        keywords: ["平均风险", "贝叶斯风险", "固定深度计算", "回馈计算"]
+
+  - id: ast3
+    theme: multimodal
+    title: "面向 RGB-T 跟踪的自适应监督测试时训练"
+    field: "AST3 · 测试时训练"
+    summary: "项目研究当模态可靠性逐帧变化时，如何在测试阶段自适应跟踪器。AST3 评估 RGB、热红外与融合预测，用峰值熵选择监督锚点，并通过置信度引导的对齐减少不可靠自监督造成的误差累积。"
+    key: "可靠性估计、监督选择与稳定的在线自适应。"
+    links:
+      - label: "项目仓库"
+        url: "https://github.com/Sunrise-57/AST3-RGBT-Tracking"
+
+  - id: fuzzy-mathematics
+    theme: multimodal
+    title: "以重叠函数为核心的新型优化策略用于模糊多模态视觉问答"
+    field: "模糊数学 · 视觉问答"
+    summary: "项目通过基于模糊逻辑与重叠函数的损失优化策略，研究视觉问答中的多模态不确定性。我的贡献包括方法设计、模型实现、实验分析与稿件修改。"
+    key: "模糊逻辑、重叠函数、多模态不确定性与优化。"
+    links: []
+
+  - id: cross-modal-tracking
+    theme: multimodal
+    title: "基于蒸馏引导参数隔离的高效跨模态视觉跟踪"
+    field: "跨模态跟踪 · 鲁棒性评估"
+    summary: "项目研究跨模态视觉跟踪中，模态切换导致目标外观突变时的鲁棒性。探索蒸馏引导的参数隔离；我的工作集中在改进实验协议、分析失败案例与修改稿件。"
+    key: "模态切换、知识蒸馏、参数隔离与失败分析。"
+    links: []
+
+materials: []

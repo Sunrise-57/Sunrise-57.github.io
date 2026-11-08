@@ -1,0 +1,18 @@
+# 笔记主题词表（中文）。英文对应文件是 _data/topics.yml。
+- slug: machine-learning
+  label: 机器学习
+
+- slug: deep-learning
+  label: 深度学习
+
+- slug: reinforcement-learning
+  label: 强化学习
+
+- slug: mathematics
+  label: 数学
+
+- slug: sociology
+  label: 社会学
+
+- slug: economics
+  label: 经济学

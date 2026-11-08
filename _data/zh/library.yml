@@ -1,0 +1,12 @@
+# 书影音条目（中文）。英文对应文件是 _data/library.yml。
+categories:
+  - id: books
+    label: "书籍"
+  - id: music
+    label: "音乐"
+  - id: video
+    label: "影像"
+  - id: hobbies
+    label: "兴趣"
+
+items: []

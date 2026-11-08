@@ -1,0 +1,71 @@
+---
+layout: modern
+---
+{% assign d = site.data %}
+{% if page.lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
+{% assign ui = d.ui %}
+{% assign base = "" %}
+{% if page.lang == "zh" %}{% assign base = "/zh" %}{% endif %}
+{% assign home_url = base | append: "/" %}
+{% assign arrow = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' %}
+
+<div class="sitemap">
+  <div class="wrap">
+    <header class="sitemap__header">
+      <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{{ ui.sitemap.eyebrow }}</p>
+      <h1 class="sitemap__title">{{ ui.sitemap.title }}</h1>
+      <p class="sitemap__intro">{{ ui.sitemap.lede }}</p>
+    </header>
+
+    <nav class="sitemap__list" aria-label="{{ ui.sitemap.eyebrow }}">
+      <a class="sitemap__item" href="{{ home_url }}#about">
+        <span class="sitemap__index">01</span>
+        <span class="sitemap__label">{{ ui.nav.about }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.about_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ home_url }}#research">
+        <span class="sitemap__index">02</span>
+        <span class="sitemap__label">{{ ui.home.interests_title }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.research_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ home_url }}#projects">
+        <span class="sitemap__index">03</span>
+        <span class="sitemap__label">{{ ui.home.projects_title }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.projects_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ home_url }}#experience">
+        <span class="sitemap__index">04</span>
+        <span class="sitemap__label">{{ ui.home.experience_title }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.experience_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ base }}/notes/">
+        <span class="sitemap__index">05</span>
+        <span class="sitemap__label">{{ ui.nav.notes }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.notes_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ base }}/library/">
+        <span class="sitemap__index">06</span>
+        <span class="sitemap__label">{{ ui.nav.library }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.library_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ base }}/cv/">
+        <span class="sitemap__index">07</span>
+        <span class="sitemap__label">{{ ui.cv.eyebrow }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.cv_desc }}</span>
+        {{ arrow }}
+      </a>
+      <a class="sitemap__item" href="{{ home_url }}#contact">
+        <span class="sitemap__index">08</span>
+        <span class="sitemap__label">{{ ui.nav.contact }}</span>
+        <span class="sitemap__desc">{{ ui.sitemap.contact_desc }}</span>
+        {{ arrow }}
+      </a>
+    </nav>
+  </div>
+</div>

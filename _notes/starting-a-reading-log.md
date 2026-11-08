@@ -4,6 +4,8 @@ subtitle: "What this section is for, and what a note in it usually looks like."
 date: 2026-11-08
 topics: ["machine-learning", "sociology"]
 summary: "A short note on why these pages exist: papers I read, the parts that stay with me, and the questions they leave open."
+lang: en
+alt_url: /zh/notes/starting-a-reading-log/
 math: false
 ---
 

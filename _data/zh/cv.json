@@ -1,0 +1,69 @@
+{
+  "basics": {
+    "name": "Shiqi Wu",
+    "label": "数学专业硕士研究生",
+    "affiliation": "安徽大学",
+    "email": "wushiqi57520@gmail.com",
+    "website": "https://sunrise-57.github.io/zh/",
+    "summary": "安徽大学数学专业硕士研究生。我的兴趣在于数学、计算机科学、人工智能与经济学的根本问题，重视原理、严谨推理，以及理解方法为何成立。",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "Sunrise-57",
+        "url": "https://github.com/Sunrise-57"
+      }
+    ]
+  },
+  "education": [
+    {
+      "institution": "安徽大学",
+      "area": "数学",
+      "studyType": "硕士研究生",
+      "startDate": "",
+      "endDate": "",
+      "courses": []
+    }
+  ],
+  "interests": [
+    {
+      "name": "数学",
+      "keywords": ["数学原理", "严谨推理", "理论分析"]
+    },
+    {
+      "name": "计算机科学",
+      "keywords": ["计算原理", "算法基础"]
+    },
+    {
+      "name": "人工智能原理",
+      "keywords": ["学习理论", "计算极限", "推理"]
+    },
+    {
+      "name": "经济学",
+      "keywords": ["经济模型", "激励与选择"]
+    }
+  ],
+  "work": [],
+  "skills": [],
+  "languages": [],
+  "references": [],
+  "publications": [],
+  "presentations": [],
+  "teaching": [],
+  "portfolio": [],
+  "projects": [
+    {
+      "id": "undergraduate-biological-control",
+      "name": "生物防治中的竞争排斥模型",
+      "program": "省级大学生创新创业训练计划",
+      "role": "项目负责人",
+      "status": "已完成",
+      "summary": "项目用动力系统与微分方程建模研究生物防治中的竞争排斥，模型包含扩散与聚集项，用以考察种群竞争、空间异质资源与个体聚集行为。",
+      "highlights": [
+        "负责模型推导、动力模型的定性分析与数值模拟。",
+        "使用 MATLAB 进行方程离散化、参数实验与可视化。"
+      ],
+      "keywords": ["动力系统", "微分方程", "数值方法", "MATLAB"],
+      "research_area": "动力系统与微分方程"
+    }
+  ]
+}

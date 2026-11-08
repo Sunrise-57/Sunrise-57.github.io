@@ -1,0 +1,78 @@
+---
+layout: modern
+---
+{% assign d = site.data %}
+{% if page.lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
+{% assign ui = d.ui %}
+{% assign base = "" %}
+{% if page.lang == "zh" %}{% assign base = "/zh" %}{% endif %}
+{% assign notes = site.notes | where: "lang", page.lang | sort: "date" | reverse %}
+
+<section class="notes-hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{{ ui.notes.eyebrow }}</p>
+    <h1 class="notes-hero__title">{{ ui.notes.title }}</h1>
+    <p class="notes-hero__lede">{{ ui.notes.lede }}</p>
+  </div>
+</section>
+
+<section class="notes-main" data-filter-scope>
+  <div class="wrap">
+    {% if notes.size > 0 %}
+    <div class="notes-toolbar">
+      <div class="notes-filter" role="group" aria-label="{{ ui.notes.eyebrow }}" data-filter-bar data-filter-param="topic" data-filter-noun="{{ ui.notes.one }}" data-filter-noun-many="{{ ui.notes.many }}">
+        <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">
+          {{ ui.notes.all }} <span class="filter-chip__count">{{ notes.size }}</span>
+        </button>
+        {% for topic in d.topics %}
+          {% assign count = 0 %}
+          {% for note in notes %}
+            {% if note.topics and note.topics contains topic.slug %}{% assign count = count | plus: 1 %}{% endif %}
+          {% endfor %}
+          {% if count > 0 %}
+          <button type="button" class="filter-chip" data-filter="{{ topic.slug }}" aria-pressed="false">
+            {{ topic.label }} <span class="filter-chip__count">{{ count }}</span>
+          </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p class="notes-count" data-filter-count>{{ notes.size }} {% if notes.size == 1 %}{{ ui.notes.one }}{% else %}{{ ui.notes.many }}{% endif %}</p>
+    </div>
+
+    <div class="notes-list">
+      {% for note in notes %}
+      <a class="note-row" href="{{ note.url | relative_url }}" data-filter-item data-filter-tags="{{ note.topics | join: ' ' }}">
+        <time class="note-row__date" datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: "%Y-%m-%d" }}</time>
+        <div class="note-row__body">
+          <h2 class="note-row__title">{{ note.title }}</h2>
+          {% if note.summary %}<p class="note-row__summary">{{ note.summary }}</p>{% endif %}
+          {% if note.topics and note.topics.size > 0 %}
+          <ul class="note-row__topics">
+            {% for slug in note.topics %}
+              {% assign topic = d.topics | where: "slug", slug | first %}
+              <li class="chip">{{ topic.label | default: slug }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        <span class="note-row__arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8h10.5M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="notes-empty-filter" data-filter-empty hidden>{{ ui.notes.empty_filter }}</p>
+    {% else %}
+    <div class="notes-empty">
+      <svg class="notes-empty__mark" width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2.5 17.5h19" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M6.75 17.5a5.25 5.25 0 0 1 10.5 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 4.5v2.1M5.9 7.15l1.5 1.5M18.1 7.15l-1.5 1.5" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <p class="notes-empty__title">{{ ui.notes.empty_title }}</p>
+      <p class="notes-empty__text">{{ ui.notes.empty_text }}</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

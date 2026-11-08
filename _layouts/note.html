@@ -1,23 +1,30 @@
 ---
 layout: modern
 ---
-{% assign sorted = site.notes | sort: "date" %}
+{% assign lang = page.lang | default: "en" %}
+{% assign d = site.data %}
+{% if lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
+{% assign ui = d.ui %}
+{% assign base = "" %}
+{% if lang == "zh" %}{% assign base = "/zh" %}{% endif %}
+{% assign notes_url = base | append: "/notes/" %}
+{% assign lang_notes = site.notes | where: "lang", lang | sort: "date" %}
 {% assign idx = -1 %}
-{% for n in sorted %}{% if n.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{% for n in lang_notes %}{% if n.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
 {% assign prev = nil %}
 {% assign next = nil %}
-{% if idx > 0 %}{% assign prev_idx = idx | minus: 1 %}{% assign prev = sorted[prev_idx] %}{% endif %}
+{% if idx > 0 %}{% assign prev_idx = idx | minus: 1 %}{% assign prev = lang_notes[prev_idx] %}{% endif %}
 {% assign next_idx = idx | plus: 1 %}
-{% if idx >= 0 and next_idx < sorted.size %}{% assign next = sorted[next_idx] %}{% endif %}
+{% if idx >= 0 and next_idx < lang_notes.size %}{% assign next = lang_notes[next_idx] %}{% endif %}
 
-<article class="note">
+<article class="note" lang="{{ ui.html_lang }}">
   <header class="note-head">
     <div class="note-shell">
       <nav class="note-crumb" aria-label="Breadcrumb">
-        <a href="{{ '/notes/' | relative_url }}">Notes</a>
+        <a href="{{ notes_url }}">{{ ui.notes.breadcrumb }}</a>
         {% if page.topics and page.topics.size > 0 %}
           {% assign first_slug = page.topics[0] %}
-          {% assign first_topic = site.data.topics | where: "slug", first_slug | first %}
+          {% assign first_topic = d.topics | where: "slug", first_slug | first %}
           <span class="note-crumb__sep" aria-hidden="true">/</span>
           <span>{{ first_topic.label | default: first_slug }}</span>
         {% endif %}
@@ -31,8 +38,8 @@ layout: modern
         {% if page.topics and page.topics.size > 0 %}
         <ul class="note-meta__topics">
           {% for slug in page.topics %}
-            {% assign topic = site.data.topics | where: "slug", slug | first %}
-            <li><a class="chip chip--link" href="{{ '/notes/' | relative_url }}?topic={{ slug }}">{{ topic.label | default: slug }}</a></li>
+            {% assign topic = d.topics | where: "slug", slug | first %}
+            <li><a class="chip chip--link" href="{{ notes_url }}?topic={{ slug }}">{{ topic.label | default: slug }}</a></li>
           {% endfor %}
         </ul>
         {% endif %}
@@ -45,8 +52,8 @@ layout: modern
       {{ content }}
     </div>
 
-    <aside class="note-toc" data-toc hidden aria-label="On this page">
-      <p class="note-toc__title">On this page</p>
+    <aside class="note-toc" data-toc hidden aria-label="{{ ui.notes.on_this_page }}">
+      <p class="note-toc__title">{{ ui.notes.on_this_page }}</p>
       <nav class="note-toc__nav" data-toc-nav></nav>
     </aside>
   </div>
@@ -56,18 +63,18 @@ layout: modern
       <div class="note-pager">
         {% if prev %}
         <a class="note-pager__item" href="{{ prev.url | relative_url }}">
-          <span class="note-pager__label">← Previous</span>
+          <span class="note-pager__label">← {{ ui.notes.previous }}</span>
           <strong>{{ prev.title }}</strong>
         </a>
         {% endif %}
         {% if next %}
         <a class="note-pager__item note-pager__item--next" href="{{ next.url | relative_url }}">
-          <span class="note-pager__label">Next →</span>
+          <span class="note-pager__label">{{ ui.notes.next }} →</span>
           <strong>{{ next.title }}</strong>
         </a>
         {% endif %}
       </div>
-      <a class="note-back" href="{{ '/notes/' | relative_url }}">All notes</a>
+      <a class="note-back" href="{{ notes_url }}">{{ ui.notes.all_notes }}</a>
     </div>
   </footer>
 </article>

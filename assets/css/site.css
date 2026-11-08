@@ -490,6 +490,40 @@ main,
   transform: rotate(12deg);
 }
 .theme-toggle__sun { display: none; }
+
+/* Language switch ---------------------------------------------------------- */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  min-width: 40px;
+  margin-left: 0.7rem;
+  padding: 0 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.lang-switch:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+html[lang="zh-CN"] { line-break: strict; }
+html[lang="zh-CN"] .eyebrow { letter-spacing: 0.1em; }
+html[lang="zh-CN"] .hero__title { letter-spacing: -0.02em; }
+html[lang="zh-CN"] .hero__lede { line-height: 1.75; }
+html[lang="zh-CN"] .about__statement { line-height: 1.55; }
+html[lang="zh-CN"] .theme-block__note { font-style: normal; }
+html[lang="zh-CN"] .note-row__title,
+html[lang="zh-CN"] .notes-hero__title,
+html[lang="zh-CN"] .cv-hero__name { letter-spacing: -0.01em; }
 [data-theme="dark"] .theme-toggle__sun { display: block; }
 [data-theme="dark"] .theme-toggle__moon { display: none; }
 

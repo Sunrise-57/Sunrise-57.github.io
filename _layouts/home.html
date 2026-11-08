@@ -1,0 +1,290 @@
+---
+layout: modern
+---
+{% assign d = site.data %}
+{% if page.lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
+{% assign ui = d.ui %}
+{% assign base = "" %}
+{% if page.lang == "zh" %}{% assign base = "/zh" %}{% endif %}
+{% assign home_url = base | append: "/" %}
+{% assign cv_url = base | append: "/cv/" %}
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{{ ui.home.eyebrow }}</p>
+      <h1 class="hero__title">{{ site.author.name }}</h1>
+      <p class="hero__lede">{{ ui.home.lede }}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ cv_url }}">
+          {{ ui.home.cv_button }}
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn" href="https://github.com/{{ site.author.github }}">
+          {{ ui.home.github }}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--quiet" href="mailto:{{ site.author.email }}">{{ ui.home.email }}</a>
+      </div>
+    </div>
+
+    <figure class="hero__figure">
+      <div class="hero__frame">
+        <img src="{{ '/images/profile-landscape.webp' | relative_url }}"
+             width="1036" height="691" loading="eager" decoding="async"
+             alt="{{ ui.home.painting_alt }}">
+      </div>
+      <figcaption>{{ ui.home.painting_caption }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <span class="margin-figure" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1">
+      <circle cx="44" cy="60" r="32"/>
+      <circle cx="76" cy="60" r="32"/>
+      <path d="M60 28v64"/>
+      <circle cx="44" cy="60" r="1.6" fill="currentColor" stroke="none"/>
+      <circle cx="76" cy="60" r="1.6" fill="currentColor" stroke="none"/>
+    </svg>
+  </span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">I</span>
+      <h2>{{ ui.home.about_title }}</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="about">
+      <p class="about__statement">{{ ui.home.about_statement }}</p>
+      <div class="about__text">
+        <p>{{ ui.home.about_p1 }}</p>
+        <p>{{ ui.home.about_p2 }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">II</span>
+      <h2>{{ ui.home.interests_title }}</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <ul class="interest-grid">
+      {% for interest in d.interests %}
+      <li class="interest-card">
+        <span class="interest-card__glyph" aria-hidden="true">{{ interest.glyph }}</span>
+        <h3>{{ interest.title }}</h3>
+        <p>{{ interest.text }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <span class="margin-figure" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1">
+      <circle cx="26" cy="34" r="6"/>
+      <circle cx="66" cy="20" r="6"/>
+      <circle cx="100" cy="48" r="6"/>
+      <circle cx="46" cy="78" r="6"/>
+      <circle cx="88" cy="94" r="6"/>
+      <path d="M31.5 36.5l29-14M71.5 22.5l23 18.5M96.5 53l-6.5 35M82.5 90.5l-30.5-9M51 73.5l11.5-48"/>
+    </svg>
+  </span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">III</span>
+      <h2>{{ ui.home.projects_title }}</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="theme-list">
+      {% for theme in d.research.themes %}
+      {% assign theme_projects = d.research.projects | where: "theme", theme.id %}
+      <article class="theme-block">
+        <header class="theme-block__head">
+          <span class="theme-block__index" aria-hidden="true">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+          <div class="theme-block__intro">
+            <h3 class="theme-block__title">{{ theme.label }}</h3>
+            <p class="theme-block__note">{{ theme.note }}</p>
+          </div>
+          <span class="theme-block__count">{{ theme_projects.size }} {% if theme_projects.size == 1 %}{{ ui.home.project_one }}{% else %}{{ ui.home.project_many }}{% endif %}</span>
+        </header>
+
+        <div class="theme-block__projects">
+          {% for project in theme_projects %}
+          <details class="project-item" id="{{ project.id }}" name="theme-{{ theme.id }}"{% if project.versions.size > 0 %} open{% endif %}>
+            <summary class="project-item__summary">
+              <span class="project-item__title">{{ project.title }}</span>
+              <svg class="project-item__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 6l4.5 4.5L12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="project-item__body">
+              {% if project.versions.size > 0 %}
+              <div class="project-versions">
+                {% for version in project.versions %}
+                <article class="manuscript-version" id="{{ version.id }}">
+                  <h4 class="manuscript-version__title">{{ version.title | default: version.label | escape }}</h4>
+                  <p class="manuscript-version__summary">{{ version.summary | escape }}</p>
+                  <p class="manuscript-version__keywords"><strong>{{ ui.home.keywords_label }}</strong> {{ version.keywords | join: ui.home.list_separator | escape }}</p>
+                </article>
+                {% endfor %}
+              </div>
+              {% else %}
+              <p class="project-item__field">{{ project.field }}</p>
+              <p class="project-item__summary-text">{{ project.summary }}</p>
+              <p class="project-item__key"><span>{{ ui.home.key_label }}</span>{{ project.key }}</p>
+              {% endif %}
+              {% if project.links.size > 0 %}
+              <div class="project-item__links">
+                {% for link in project.links %}
+                <a class="link-arrow" href="{{ link.url }}" target="_blank" rel="noopener">
+                  {{ link.label }}
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12M10.5 9.5v3H3.5V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </details>
+          {% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if d.research.materials.size > 0 %}
+    <div class="materials">
+      <h3>{{ ui.home.manuscripts }}</h3>
+      <ul>
+        {% for material in d.research.materials %}
+        <li><a href="{{ material.url }}">{{ material.label }}</a> <span class="materials__platform">{{ material.platform }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if d.cv.projects.size > 0 %}
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">IV</span>
+      <h2>{{ ui.home.experience_title }}</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="theme-list">
+      {% for project in d.cv.projects %}
+      <article class="theme-block">
+        <header class="theme-block__head">
+          <span class="theme-block__index" aria-hidden="true">01</span>
+          <div class="theme-block__intro">
+            <h3 class="theme-block__title">{{ project.research_area }}</h3>
+            <p class="theme-block__note">{{ project.program }}</p>
+          </div>
+          <span class="theme-block__count">{{ project.role }} · {{ project.status }}</span>
+        </header>
+
+        <div class="theme-block__projects">
+          <details class="project-item" open>
+            <summary class="project-item__summary">
+              <span class="project-item__title">{{ project.name }}</span>
+              <svg class="project-item__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 6l4.5 4.5L12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="project-item__body">
+              <p class="project-item__summary-text">{{ project.summary }}</p>
+              {% if project.highlights.size > 0 %}
+              <ul class="detail-list">
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% if project.keywords.size > 0 %}
+              <ul class="chip-list" aria-label="{{ ui.home.keywords_aria }}">
+                {% for keyword in project.keywords %}
+                <li class="chip">{{ keyword }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </details>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" id="education">
+  <span class="margin-figure" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M14 100h94"/>
+      <path d="M14 100V14"/>
+      <path d="M10 20l4-6 4 6"/>
+      <path d="M26 100Q60 22 94 100"/>
+      <circle cx="60" cy="61" r="2" fill="currentColor" stroke="none"/>
+      <path d="M60 61v39" stroke-dasharray="2 4"/>
+    </svg>
+  </span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-index" aria-hidden="true">V</span>
+      <h2>{{ ui.home.education_title }}</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+
+    <ol class="timeline">
+      {% for education in d.cv.education %}
+      <li class="timeline__item">
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <div class="timeline__body">
+          <div class="timeline__top">
+            <h3>{{ education.institution }}</h3>
+            <span class="chip chip--accent">{{ ui.home.in_progress }}</span>
+          </div>
+          <p class="timeline__role">{{ education.studyType }}{{ ui.home.education_join }}{{ education.area }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section section--contact" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <svg class="contact-panel__ornament" viewBox="0 0 260 260" fill="none" aria-hidden="true">
+        <circle cx="130" cy="160" r="44" stroke="currentColor" stroke-width="1.1"/>
+        <circle cx="130" cy="160" r="72" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        <circle cx="130" cy="160" r="100" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+        <path d="M2 160h256" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M130 62v16M74 88l11 11M186 88l-11 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      <p class="eyebrow">{{ ui.home.contact_eyebrow }}</p>
+      <h2 class="contact-panel__title">{{ ui.home.contact_title }}</h2>
+      <p class="contact-panel__text">{{ ui.home.contact_text }}</p>
+      <a class="contact-panel__email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+      <div class="contact-panel__actions">
+        <button class="btn btn--primary" type="button" data-copy-email="{{ site.author.email }}">
+          {{ ui.home.copy_email }}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.2" y="5.2" width="8.3" height="8.3" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M10.8 3.2H4.4a1.6 1.6 0 0 0-1.6 1.6v6.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn" href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">{{ ui.home.github }}</a>
+        <a class="btn btn--quiet" href="{{ cv_url }}">{{ ui.home.cv_button }}</a>
+      </div>
+    </div>
+  </div>
+</section>
