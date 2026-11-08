@@ -17,7 +17,7 @@ projects:
     title: "Linear In-Context Query Tasks and Their Chain-of-Thought Solutions"
     field: "TFM-theory · Foundations of tabular in-context learning"
     summary: "I investigate the computational capabilities and limitations of tabular foundation models through the Linear In-Context Query (LinICQ) task. The project examines how model depth, numerical precision, and explicit reasoning steps affect the computations these models can perform, with careful attention to the assumptions and scope of theoretical bounds."
-    focus: "Computational complexity, in-context learning, and sequential reasoning."
+    key: "Computational complexity, in-context learning, and sequential reasoning."
     links:
       - label: "Average-risk version (Overleaf)"
         url: "https://www.overleaf.com/project/6a7bd66b6d53b2467c6e386c"
@@ -27,7 +27,7 @@ projects:
     title: "Test-Time Training with Adaptive Supervision for RGB-T Tracking"
     field: "AST3 · Test-time training"
     summary: "This project studies how to adapt a tracker at test time when modality reliability changes from frame to frame. AST3 evaluates RGB, thermal, and fused predictions, uses peak entropy to select a supervision anchor, and applies confidence-guided alignment to reduce error accumulation from unreliable self-supervision."
-    focus: "Reliability estimation, supervision selection, and stable online adaptation."
+    key: "Reliability estimation, supervision selection, and stable online adaptation."
     links:
       - label: "Project repository"
         url: "https://github.com/Sunrise-57/AST3-RGBT-Tracking"
@@ -37,7 +37,7 @@ projects:
     title: "Fuzzy Multimodal Learning for VQA with a Novel Optimization Strategy Centered on Overlap Functions"
     field: "Fuzzy mathematics · Visual question answering"
     summary: "This project investigates multimodal uncertainty in visual question answering through a loss-optimization strategy based on fuzzy logic and overlap functions. My contributions include method design, model implementation, experimental analysis, and manuscript revision."
-    focus: "Fuzzy logic, overlap functions, multimodal uncertainty, and optimization."
+    key: "Fuzzy logic, overlap functions, multimodal uncertainty, and optimization."
     links: []
 
   - id: cross-modal-tracking
@@ -45,7 +45,7 @@ projects:
     title: "Efficient Cross-Modal Visual Tracking via Distillation-Guided Parameter Isolation"
     field: "Cross-modal tracking · Robustness evaluation"
     summary: "This project studies robustness in cross-modal visual tracking when modality switches cause abrupt changes in target appearance. It explores distillation-guided parameter isolation, with my contributions focused on improving the experimental protocol, analyzing failure cases, and revising the manuscript."
-    focus: "Modality switching, knowledge distillation, parameter isolation, and failure analysis."
+    key: "Modality switching, knowledge distillation, parameter isolation, and failure analysis."
     links: []
 
 materials: []

@@ -1,0 +1,35 @@
+# Personal recommendations — books, music, video, and side interests.
+#
+# Add an item under `items:` and tag it with one of the category ids below.
+# `note` is the part people actually read: one or two sentences on why it is
+# worth their time. `link` and `year` are optional.
+#
+# categories:
+#   - id: books
+#     label: "Books"
+#   - id: music
+#     label: "Music"
+#   - id: video
+#     label: "Video"
+#   - id: hobbies
+#     label: "Hobbies & interests"
+#
+# items:
+#   - category: books
+#     title: "Gödel, Escher, Bach"
+#     creator: "Douglas Hofstadter"
+#     year: 1979
+#     note: "The book that made me take self-reference seriously."
+#     link: "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach"
+
+categories:
+  - id: books
+    label: "Books"
+  - id: music
+    label: "Music"
+  - id: video
+    label: "Video"
+  - id: hobbies
+    label: "Hobbies & interests"
+
+items: []

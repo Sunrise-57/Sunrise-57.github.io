@@ -182,48 +182,50 @@
     button.addEventListener("click", function () { window.print(); });
   });
 
-  /* Notes: topic filter -------------------------------------------------- */
-  var filterBar = document.querySelector("[data-notes-filter]");
-  if (filterBar) {
-    var rows = Array.prototype.slice.call(document.querySelectorAll(".note-row"));
-    var countEl = document.querySelector("[data-notes-count]");
-    var emptyEl = document.querySelector("[data-notes-empty-filter]");
-    var chips = Array.prototype.slice.call(filterBar.querySelectorAll("[data-filter]"));
+  /* Filterable lists (notes by topic, library by type) ------------------- */
+  document.querySelectorAll("[data-filter-bar]").forEach(function (bar) {
+    var scope = bar.closest("[data-filter-scope]") || document;
+    var items = Array.prototype.slice.call(scope.querySelectorAll("[data-filter-item]"));
+    var countEl = scope.querySelector("[data-filter-count]");
+    var emptyEl = scope.querySelector("[data-filter-empty]");
+    var chips = Array.prototype.slice.call(bar.querySelectorAll("[data-filter]"));
+    var param = bar.getAttribute("data-filter-param") || "tag";
+    var noun = bar.getAttribute("data-filter-noun") || "item";
 
-    var applyFilter = function (topic, remember) {
+    var applyFilter = function (value, remember) {
       var visible = 0;
-      rows.forEach(function (row) {
-        var topics = (row.getAttribute("data-topics") || "").split(" ").filter(Boolean);
-        var show = topic === "all" || topics.indexOf(topic) !== -1;
-        row.hidden = !show;
+      items.forEach(function (item) {
+        var tags = (item.getAttribute("data-filter-tags") || "").split(" ").filter(Boolean);
+        var show = value === "all" || tags.indexOf(value) !== -1;
+        item.hidden = !show;
         if (show) visible += 1;
       });
       chips.forEach(function (chip) {
-        var active = chip.getAttribute("data-filter") === topic;
+        var active = chip.getAttribute("data-filter") === value;
         chip.classList.toggle("is-active", active);
         chip.setAttribute("aria-pressed", active ? "true" : "false");
       });
       if (emptyEl) emptyEl.hidden = visible !== 0;
-      if (countEl) countEl.textContent = visible + (visible === 1 ? " note" : " notes");
+      if (countEl) countEl.textContent = visible + " " + noun + (visible === 1 ? "" : "s");
       if (remember) {
         var url = new URL(window.location.href);
-        if (topic === "all") url.searchParams.delete("topic");
-        else url.searchParams.set("topic", topic);
+        if (value === "all") url.searchParams.delete(param);
+        else url.searchParams.set(param, value);
         window.history.replaceState({}, "", url);
       }
     };
 
-    filterBar.addEventListener("click", function (event) {
+    bar.addEventListener("click", function (event) {
       var chip = event.target.closest("[data-filter]");
       if (!chip) return;
       applyFilter(chip.getAttribute("data-filter"), true);
     });
 
-    var requested = new URLSearchParams(window.location.search).get("topic");
+    var requested = new URLSearchParams(window.location.search).get(param);
     if (requested && chips.some(function (chip) { return chip.getAttribute("data-filter") === requested; })) {
       applyFilter(requested, false);
     }
-  }
+  });
 
   /* Notes: table of contents --------------------------------------------- */
   var toc = document.querySelector("[data-toc]");

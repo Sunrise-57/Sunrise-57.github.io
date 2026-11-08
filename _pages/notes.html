@@ -14,13 +14,13 @@ description: "Working notes on papers and ideas in machine learning, deep learni
   </div>
 </section>
 
-<section class="notes-main">
+<section class="notes-main" data-filter-scope>
   <div class="wrap">
     {% assign notes = site.notes | sort: "date" | reverse %}
 
     {% if notes.size > 0 %}
     <div class="notes-toolbar">
-      <div class="notes-filter" role="group" aria-label="Filter notes by topic" data-notes-filter>
+      <div class="notes-filter" role="group" aria-label="Filter notes by topic" data-filter-bar data-filter-param="topic" data-filter-noun="note">
         <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">
           All <span class="filter-chip__count">{{ notes.size }}</span>
         </button>
@@ -36,12 +36,12 @@ description: "Working notes on papers and ideas in machine learning, deep learni
           {% endif %}
         {% endfor %}
       </div>
-      <p class="notes-count" data-notes-count>{{ notes.size }} {% if notes.size == 1 %}note{% else %}notes{% endif %}</p>
+      <p class="notes-count" data-filter-count>{{ notes.size }} {% if notes.size == 1 %}note{% else %}notes{% endif %}</p>
     </div>
 
-    <div class="notes-list" data-notes-list>
+    <div class="notes-list">
       {% for note in notes %}
-      <a class="note-row" href="{{ note.url | relative_url }}" data-topics="{{ note.topics | join: ' ' }}">
+      <a class="note-row" href="{{ note.url | relative_url }}" data-filter-item data-filter-tags="{{ note.topics | join: ' ' }}">
         <time class="note-row__date" datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: "%Y-%m-%d" }}</time>
         <div class="note-row__body">
           <h2 class="note-row__title">{{ note.title }}</h2>
@@ -62,7 +62,7 @@ description: "Working notes on papers and ideas in machine learning, deep learni
       {% endfor %}
     </div>
 
-    <p class="notes-empty-filter" data-notes-empty-filter hidden>No notes in this topic yet.</p>
+    <p class="notes-empty-filter" data-filter-empty hidden>No notes in this topic yet.</p>
     {% else %}
     <div class="notes-empty">
       <svg class="notes-empty__mark" width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
