@@ -1566,7 +1566,7 @@ html.reveal-ready [data-reveal].is-visible {
 .notes-list { border-top: 1px solid var(--line); }
 .note-row {
   display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 1.5rem;
   align-items: start;
   padding: 1.6rem 0.75rem 1.6rem 0;
@@ -1577,6 +1577,7 @@ html.reveal-ready [data-reveal].is-visible {
 .note-row[hidden] { display: none; }
 
 .note-row__date {
+  display: none;
   padding-top: 0.35rem;
   color: var(--ink-muted);
   font-family: var(--font-mono);
@@ -1743,6 +1744,7 @@ html.reveal-ready [data-reveal].is-visible {
   margin-top: 1.4rem;
 }
 .note-meta__date {
+  display: none;
   color: var(--ink-muted);
   font-family: var(--font-mono);
   font-size: 0.74rem;
