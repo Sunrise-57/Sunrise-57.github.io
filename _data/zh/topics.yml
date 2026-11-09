@@ -1,4 +1,7 @@
 # 笔记主题词表（中文）。英文对应文件是 _data/topics.yml。
+- slug: learning-theory
+  label: 学习理论
+
 - slug: machine-learning
   label: 机器学习
 

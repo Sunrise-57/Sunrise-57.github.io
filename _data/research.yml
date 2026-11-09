@@ -6,6 +6,11 @@ themes:
   - id: learning-theory
     label: "Learning theory"
     note: "Why in-context learning works — and what model depth, numerical precision, and explicit reasoning steps can, and cannot, buy."
+    notes:
+      - title: "线性 In-Context Query 任务与条件性单轮下界"
+        url: "/zh/notes/linicq-bound/"
+      - title: "固定深度表格基础模型的计算能力边界"
+        url: "/zh/notes/average-case-separation/"
 
   - id: multimodal
     label: "Uncertainty-aware multimodal methods"

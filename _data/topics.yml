@@ -1,5 +1,8 @@
 # Topic vocabulary for /notes/. Add a topic here, then use its slug in a
 # note's front matter:  topics: ["machine-learning", "sociology"]
+- slug: learning-theory
+  label: Learning theory
+
 - slug: machine-learning
   label: Machine Learning
 

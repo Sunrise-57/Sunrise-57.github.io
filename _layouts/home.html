@@ -109,6 +109,14 @@ layout: modern
           <div class="theme-block__intro">
             <h3 class="theme-block__title">{{ theme.label }}</h3>
             <p class="theme-block__note">{{ theme.note }}</p>
+            {% if theme.notes.size > 0 %}
+            <div class="theme-block__notes">
+              <span class="theme-block__notes-label">{{ ui.home.theme_notes }}</span>
+              {% for item in theme.notes %}
+              <a href="{{ item.url | relative_url }}" lang="zh-CN">{{ item.title }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
           </div>
           <span class="theme-block__count">{{ theme_projects.size }} {% if theme_projects.size == 1 %}{{ ui.home.project_one }}{% else %}{{ ui.home.project_many }}{% endif %}</span>
         </header>

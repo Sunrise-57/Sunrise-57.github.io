@@ -94,8 +94,8 @@ layout: null
   {% if page.math %}
   <link rel="stylesheet" href="{{ '/assets/katex/katex.min.css' | relative_url }}">
   <script defer src="{{ '/assets/katex/katex.min.js' | relative_url }}"></script>
-  <script defer src="{{ '/assets/katex/auto-render.min.js' | relative_url }}"
-          onload="renderMathInElement(document.querySelector('.prose') || document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}], throwOnError:false, ignoredTags:['script','noscript','style','textarea','pre','code']});"></script>
+  <script defer src="{{ '/assets/katex/auto-render.min.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/math.js' | relative_url }}"></script>
   {% endif %}
 </head>
 <body id="top">
