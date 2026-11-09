@@ -236,3 +236,13 @@ $$
 ## 小结
 
 这条边界只约束「一次非递归前向」。把状态传播展开成显式的推理步，或者把转移过程合并成一棵平衡树，都属于另一类计算模型，能力上界需要另行讨论——那是这个任务的下一步。
+
+## 参考文献
+
+1. D. A. Barrington. Bounded-width polynomial-size branching programs recognize exactly those languages in NC1. *Journal of Computer and System Sciences*, 38(1):150–164, 1989.
+2. W. Merrill and A. Sabharwal. The parallelism tradeoff: Limitations of log-precision transformers. *Transactions of the Association for Computational Linguistics*, 11:531–545, 2023. [arXiv:2207.00729](https://arxiv.org/abs/2207.00729)
+3. G. Feng, B. Zhang, Y. Gu, H. Ye, D. He, and L. Wang. Towards revealing the mystery behind chain of thought: A theoretical perspective. In *NeurIPS*, 2023. [arXiv:2305.15408](https://arxiv.org/abs/2305.15408)
+4. A. Moitra, E. Mossel, and C. Sandon. Parallels between phase transitions and circuit complexity? 2019. [arXiv:1904.05483](https://arxiv.org/abs/1904.05483)
+5. N. Hollmann, S. Müller, L. Purucker, A. Krishnakumar, M. Körfer, S. B. Hoo, R. T. Schirrmeister, and F. Hutter. Accurate predictions on small data with a tabular foundation model. *Nature*, 637:319–326, 2025.
+6. LimiX Team (Stable AI and Tsinghua University). LimiX: Unleashing structured-data modeling capability for generalist intelligence. Technical report, 2025.
+7. S. Müller, N. Hollmann, S. Pineda Arango, J. Grabocka, and F. Hutter. Transformers can do Bayesian inference. In *ICLR*, 2022. [arXiv:2112.10510](https://arxiv.org/abs/2112.10510)

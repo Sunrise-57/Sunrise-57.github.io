@@ -236,3 +236,13 @@ For fixed state numbering, symbol numbering and table layout, every output cell 
 ## Closing
 
 This bound only constrains a single non-recursive forward pass. Unfolding the state propagation into explicit reasoning steps, or merging transitions into a balanced tree, belongs to a different computational model whose upper bounds have to be discussed separately — that is the next step for this task.
+
+## References
+
+1. D. A. Barrington. Bounded-width polynomial-size branching programs recognize exactly those languages in NC1. *Journal of Computer and System Sciences*, 38(1):150–164, 1989.
+2. W. Merrill and A. Sabharwal. The parallelism tradeoff: Limitations of log-precision transformers. *Transactions of the Association for Computational Linguistics*, 11:531–545, 2023. [arXiv:2207.00729](https://arxiv.org/abs/2207.00729)
+3. G. Feng, B. Zhang, Y. Gu, H. Ye, D. He, and L. Wang. Towards revealing the mystery behind chain of thought: A theoretical perspective. In *NeurIPS*, 2023. [arXiv:2305.15408](https://arxiv.org/abs/2305.15408)
+4. A. Moitra, E. Mossel, and C. Sandon. Parallels between phase transitions and circuit complexity? 2019. [arXiv:1904.05483](https://arxiv.org/abs/1904.05483)
+5. N. Hollmann, S. Müller, L. Purucker, A. Krishnakumar, M. Körfer, S. B. Hoo, R. T. Schirrmeister, and F. Hutter. Accurate predictions on small data with a tabular foundation model. *Nature*, 637:319–326, 2025.
+6. LimiX Team (Stable AI and Tsinghua University). LimiX: Unleashing structured-data modeling capability for generalist intelligence. Technical report, 2025.
+7. S. Müller, N. Hollmann, S. Pineda Arango, J. Grabocka, and F. Hutter. Transformers can do Bayesian inference. In *ICLR*, 2022. [arXiv:2112.10510](https://arxiv.org/abs/2112.10510)
