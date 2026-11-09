@@ -4,12 +4,14 @@ layout: modern
 {% assign d = site.data %}
 {% if page.lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
 {% assign ui = d.ui %}
+{% assign author_name = site.author.name %}
+{% if page.lang == "zh" %}{% assign author_name = site.author.name_zh | default: author_name %}{% endif %}
 
 <div class="cv">
   <div class="wrap">
     <header class="cv-hero">
       <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{{ ui.cv.eyebrow }}</p>
-      <h1 class="cv-hero__name">{{ site.author.name }}</h1>
+      <h1 class="cv-hero__name">{{ author_name }}</h1>
       <p class="cv-hero__role">{{ d.cv.basics.label }} · {{ d.cv.basics.affiliation }}</p>
       <div class="cv-hero__actions">
         <button class="btn btn--primary" type="button" data-print>

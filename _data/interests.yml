@@ -1,15 +1,15 @@
 - glyph: "∑"
   title: "Mathematics"
-  text: "Mathematical principles, rigorous reasoning, and theoretical analysis."
+  text: "Principles · proof · theory"
 
 - glyph: "λ"
   title: "Computer science"
-  text: "Fundamental principles of computation and algorithms, with an emphasis on understanding why and under what conditions methods work."
+  text: "Computation · algorithms · limits"
 
 - glyph: "∇"
   title: "AI principles"
-  text: "Why learning systems work, what they can and cannot compute, and where their assumptions stop holding."
+  text: "Learning theory · limits · reasoning"
 
 - glyph: "⇌"
   title: "Economics"
-  text: "Economic reasoning and models — incentives, choice, and the assumptions that make a model useful."
+  text: "Models · incentives · choice"

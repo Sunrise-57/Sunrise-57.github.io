@@ -5,6 +5,12 @@ layout: null
 {% assign d = site.data %}
 {% if lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
 {% assign ui = d.ui %}
+{% assign author_name = site.author.name %}
+{% assign brand_name = site.title %}
+{% if lang == "zh" %}
+  {% assign author_name = site.author.name_zh | default: author_name %}
+  {% assign brand_name = site.author.name_zh | default: brand_name %}
+{% endif %}
 {% assign base = "" %}
 {% if lang == "zh" %}{% assign base = "/zh" %}{% endif %}
 {% assign home_url = base | append: "/" %}
@@ -31,7 +37,7 @@ layout: null
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: page.summary | default: site.description | escape }}">
-  <meta name="author" content="{{ site.author.name }}">
+  <meta name="author" content="{{ author_name }}">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <link rel="alternate" hreflang="en" href="{{ site.url }}{{ en_url }}">
   <link rel="alternate" hreflang="zh-CN" href="{{ site.url }}{{ zh_url }}">
@@ -74,7 +80,7 @@ layout: null
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "{{ site.author.name }}",
+      "name": "{{ author_name }}",
       "url": "{{ site.url }}",
       "jobTitle": "{{ ui.cv.eyebrow }}",
       "affiliation": { "@type": "Organization", "name": "{{ site.author.employer }}" },
@@ -112,13 +118,13 @@ layout: null
 
   <header class="site-header" id="site-header">
     <div class="wrap header__inner">
-      <a class="brand" href="{{ home_url }}" aria-label="{{ site.title }} — {{ ui.header.brand }}">
+      <a class="brand" href="{{ home_url }}" aria-label="{{ brand_name }} — {{ ui.header.brand }}">
         <svg class="brand__mark" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M2.5 17.5h19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <path d="M6.75 17.5a5.25 5.25 0 0 1 10.5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <path d="M12 4.5v2.1M5.9 7.15l1.5 1.5M18.1 7.15l-1.5 1.5" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <span class="brand__name">{{ site.title }}</span>
+        <span class="brand__name">{{ brand_name }}</span>
       </a>
 
       <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
@@ -157,7 +163,7 @@ layout: null
 
   <footer class="site-footer">
     <div class="wrap footer__inner">
-      <p class="footer__copy">© {{ site.time | date: "%Y" }} {{ site.author.name }}</p>
+      <p class="footer__copy">© {{ site.time | date: "%Y" }} {{ author_name }}</p>
       <p class="footer__meta">
         {{ ui.footer.built }} <a href="https://jekyllrb.com">Jekyll</a> {{ ui.footer.and }} <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>
         <span class="footer__dot" aria-hidden="true">·</span>

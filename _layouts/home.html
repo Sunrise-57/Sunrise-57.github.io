@@ -4,6 +4,8 @@ layout: modern
 {% assign d = site.data %}
 {% if page.lang == "zh" %}{% assign d = site.data.zh %}{% endif %}
 {% assign ui = d.ui %}
+{% assign author_name = site.author.name %}
+{% if page.lang == "zh" %}{% assign author_name = site.author.name_zh | default: author_name %}{% endif %}
 {% assign base = "" %}
 {% if page.lang == "zh" %}{% assign base = "/zh" %}{% endif %}
 {% assign home_url = base | append: "/" %}
@@ -12,7 +14,7 @@ layout: modern
 <div class="wrap home-grid">
   <aside class="home-rail">
     <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{{ ui.home.eyebrow }}</p>
-    <h1 class="home-rail__name">{{ site.author.name }}</h1>
+    <h1 class="home-rail__name">{{ author_name }}</h1>
     <p class="home-rail__role">{{ ui.home.lede }}</p>
     <div class="home-rail__actions">
       <a class="btn btn--primary" href="{{ cv_url }}">

@@ -24,6 +24,7 @@ author:
   # Biographic information
   avatar           : "profile-landscape.webp"
   name             : "Shiqi Wu"
+  name_zh          : "武诗绮"
   pronouns         : # example: "she/her"  
   bio              : "Master's student in Mathematics. Interested in the foundations of mathematics, computer science, AI, and economics."
   location         :
