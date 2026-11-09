@@ -138,6 +138,7 @@ layout: null
         <a href="{{ home_url }}#about">{{ ui.nav.about }}</a>
         <a href="{{ home_url }}#research">{{ ui.nav.research }}</a>
         <a href="{{ home_url }}#projects">{{ ui.nav.projects }}</a>
+        <a href="{{ notes_url }}"{% if page.url contains "/notes/" %} aria-current="page"{% endif %}>{{ ui.nav.notes }}</a>
         <a href="{{ cv_url }}"{% if page.url == cv_url %} aria-current="page"{% endif %}>{{ ui.nav.cv }}</a>
         <a href="{{ home_url }}#contact">{{ ui.nav.contact }}</a>
       </nav>
