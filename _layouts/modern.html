@@ -37,6 +37,7 @@ layout: null
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: page.summary | default: site.description | escape }}">
+  {% if page.noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
   <meta name="author" content="{{ author_name }}">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <link rel="alternate" hreflang="en" href="{{ site.url }}{{ en_url }}">
@@ -137,8 +138,6 @@ layout: null
         <a href="{{ home_url }}#about">{{ ui.nav.about }}</a>
         <a href="{{ home_url }}#research">{{ ui.nav.research }}</a>
         <a href="{{ home_url }}#projects">{{ ui.nav.projects }}</a>
-        <a href="{{ notes_url }}"{% if page.url contains "/notes/" %} aria-current="page"{% endif %}>{{ ui.nav.notes }}</a>
-        <a href="{{ library_url }}"{% if page.url contains "/library/" %} aria-current="page"{% endif %}>{{ ui.nav.library }}</a>
         <a href="{{ cv_url }}"{% if page.url == cv_url %} aria-current="page"{% endif %}>{{ ui.nav.cv }}</a>
         <a href="{{ home_url }}#contact">{{ ui.nav.contact }}</a>
       </nav>
