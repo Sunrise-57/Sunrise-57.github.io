@@ -10,6 +10,7 @@ layout: modern
 {% if page.lang == "zh" %}{% assign base = "/zh" %}{% endif %}
 {% assign home_url = base | append: "/" %}
 {% assign cv_url = base | append: "/cv/" %}
+{% assign notes_url = base | append: "/notes/" %}
 
 <div class="wrap home-grid">
   <aside class="home-rail">
@@ -113,8 +114,9 @@ layout: modern
             <div class="theme-block__notes">
               <span class="theme-block__notes-label">{{ ui.home.theme_notes }}</span>
               {% for item in theme.notes %}
-              <a href="{{ item.url | relative_url }}" lang="zh-CN">{{ item.title }}</a>
+              <a href="{{ item.url | relative_url }}" lang="zh-CN" title="{{ item.title }}">{{ item.short | default: item.title }}</a>
               {% endfor %}
+              <a class="theme-block__notes-more" href="{{ notes_url }}">{{ ui.home.notes_more }} →</a>
             </div>
             {% endif %}
           </div>
