@@ -132,20 +132,9 @@
           if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-18% 0px -72% 0px", threshold: 0 }
     );
     sections.forEach(function (section) { navObserver.observe(section); });
-
-    var clearNavActive = function () {
-      navLinks.forEach(function (link) {
-        link.classList.remove("is-active");
-        if (link.getAttribute("aria-current") === "true") link.removeAttribute("aria-current");
-      });
-    };
-    window.addEventListener("scroll", function () {
-      if ((window.scrollY || window.pageYOffset) < 240) clearNavActive();
-    }, { passive: true });
-    if ((window.scrollY || window.pageYOffset) < 240) clearNavActive();
   }
 
   /* Toast ---------------------------------------------------------------- */
