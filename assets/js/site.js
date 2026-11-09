@@ -145,6 +145,7 @@
     window.addEventListener("scroll", function () {
       if ((window.scrollY || window.pageYOffset) < 240) clearNavActive();
     }, { passive: true });
+    if ((window.scrollY || window.pageYOffset) < 240) clearNavActive();
   }
 
   /* Toast ---------------------------------------------------------------- */
