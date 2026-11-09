@@ -834,11 +834,11 @@ html[lang="zh-CN"] .cv-hero__name { letter-spacing: -0.01em; }
   align-items: start;
 }
 .about__statement {
-  max-width: 24ch;
+  max-width: 34ch;
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 2.7vw, 2.1rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.4;
   letter-spacing: -0.01em;
 }
 .about__statement strong { font-weight: 550; }
@@ -862,33 +862,28 @@ html[lang="zh-CN"] .cv-hero__name { letter-spacing: -0.01em; }
 }
 .interest-card {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: 2rem minmax(0, 1fr);
   grid-template-rows: auto auto;
   grid-template-areas:
     "glyph title"
     "glyph text";
-  column-gap: 1.15rem;
+  column-gap: 0.85rem;
   row-gap: 0;
   align-content: start;
-  padding: clamp(1.4rem, 2.4vw, 1.9rem);
-  background: var(--paper-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
 }
-.interest-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow-md);
-}
+.interest-card:hover { border-color: var(--line); }
 .interest-card__glyph {
   grid-area: glyph;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px; height: 46px;
-  border-radius: 14px;
+  width: 2rem; height: 2rem;
+  border-radius: 8px;
   background: var(--accent-soft);
   color: var(--accent-ink);
   font-family: var(--font-serif);
@@ -897,15 +892,15 @@ html[lang="zh-CN"] .cv-hero__name { letter-spacing: -0.01em; }
 }
 .interest-card h3 {
   grid-area: title;
-  margin: 0.15rem 0 0.4rem;
-  font-size: 1.32rem;
+  margin: 0 0 0.15rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 .interest-card p {
   grid-area: text;
   color: var(--ink-soft);
-  font-size: 0.93rem;
-  line-height: 1.68;
+  font-size: 0.88rem;
+  line-height: 1.55;
 }
 
 /* Research themes --------------------------------------------------------- */
