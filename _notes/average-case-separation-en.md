@@ -12,7 +12,7 @@ math: true
 
 Prior-data fitted networks (PFNs) and their tabular instantiations TabPFN and LimiX read labelled context rows and an unlabelled query row in a single forward pass. This raises a distinction: does a model fail because **the context does not identify the task**, or because **the information is there but a fixed-depth computation cannot process it**?
 
-The task constructed here separates the two. Fix a scale parameter $n$; each episode first samples a hidden parameter $\theta$, then samples $m$ context rows and one query row i.i.d. from the same row distribution. The context contains neither the query answer nor any intermediate computation, and at $m=2n$ the Bayes accuracy tends to $1$. At the same time, every label contains an NC1-hard linear solving kernel.
+The task constructed here separates the two. Fix a scale parameter $n$; each episode first samples a hidden parameter $\theta$, then samples $m$ context rows and one query row i.i.d. from the same row distribution. The context contains neither the query answer nor any intermediate computation, and at $m=2n$ the Bayes accuracy tends to $1$. At the same time, every label contains an NC1-hard linear computation.
 
 The conclusion can be summarised as
 
@@ -56,7 +56,7 @@ Let $N$ be the binary input length. TC0 is the class computed by constant-depth,
 
 > **Assumption.** $\mathrm{TC}^0\neq\mathrm{NC}^1$.
 
-Barrington's theorem shows that the word problem of a fixed non-solvable finite group (for instance $A_5$) is NC1-complete; Section 3 reduces that problem to the linear kernel below.
+Barrington's theorem shows that the word problem of a fixed non-solvable finite group (for instance $A_5$) is NC1-complete; Section 3 reduces that problem to the linear task below.
 
 Non-uniform models allow the $n$-th circuit to hard-code constants that depend only on $n$ and have polynomial length. That suffices to fix the random masks guaranteed by a probabilistic method, and the contexts selected by an averaging argument. It does not allow the resource exponents to change after seeing $n$: the depth bound $L$ and the size exponent $k$ are fixed in advance, so one circuit family satisfies $\operatorname{depth}(C_n)\le L$ and $\operatorname{size}(C_n)\le N^{k}+k$.
 
@@ -68,7 +68,7 @@ $$
 \mathcal{M}_n(L,k):=\Big\{M:\ \text{the full inference of } M \text{ is simulated by a threshold circuit of depth}\le L \text{ and size}\le N_n^{k}+k\Big\}.
 $$
 
-## A one-coordinate linear kernel over a finite field
+## A one-coordinate linear task over a finite field
 
 ### Task definition and label balance
 
@@ -150,7 +150,7 @@ A fixed column permutation moves any coordinate of $u_\ell$ to the first coordin
 
 ### A near-random-guessing bound on the uniform distribution
 
-**Theorem 3.5 (average-case lower bound for the linear kernel).** Under $\mathrm{TC}^0\neq\mathrm{NC}^1$, for any fixed $L,k$ and any $\gamma>0$ there are infinitely many $n$ with
+**Theorem 3.5 (average-case lower bound for the one-coordinate linear task).** Under $\mathrm{TC}^0\neq\mathrm{NC}^1$, for any fixed $L,k$ and any $\gamma>0$ there are infinitely many $n$ with
 
 $$
 \sup_{h\in C_n(L,k)}\ \Pr_{(A,b)\sim\mathrm{Unif}(\Omega_n)}\big[h(A,b)=g_n(A,b)\big]\le\frac12+\gamma .
@@ -270,13 +270,13 @@ Turn to the query row. Define $u^{*}:=(A^{*})^{-1}b^{*}\in\mathbb{F}_2^{n}$, so 
 
 Fix $U$ and $y_D$, and let $r:=\operatorname{rank}(U)$. There are two cases.
 
-In the first case $(u^{*})^{\top}$ lies in the row space $\operatorname{row}(U)$. Then there is $\lambda\in\mathbb{F}_2^{m}$ with $(u^{*})^{\top}=\lambda^{\top}U$, so for every compatible candidate $\vartheta\in S(U,y_D)$,
+In the first case $(u^{*})^{\top}$ lies in the row space $\operatorname{row}(U)$. Then there is $\lambda\in\mathbb{F}_2^{m}$ with $(u^{*})^{\top}=\lambda^{\top}U$, so for every consistent candidate $\vartheta\in S(U,y_D)$,
 
 $$
 (u^{*})^{\top}\vartheta=\lambda^{\top}U\vartheta=\lambda^{\top}y_D ,
 $$
 
-whose right side depends only on the observed context labels and not on the candidate. All compatible candidates give the same query label, so the Bayes prediction determines $y^{*}$ exactly and the conditional accuracy is $1$.
+whose right side depends only on the observed context labels and not on the candidate. All consistent candidates give the same query label, so the Bayes prediction determines $y^{*}$ exactly and the conditional accuracy is $1$.
 
 In the second case $(u^{*})^{\top}\notin\operatorname{row}(U)$. Using $\operatorname{row}(U)=\ker(U)^{\perp}$ there is $v\in\mathbb{F}_2^{n}$ with
 
@@ -284,7 +284,7 @@ $$
 Uv=0,\qquad (u^{*})^{\top}v=1 .
 $$
 
-For any $\vartheta\in S(U,y_D)$ the vector $\vartheta\oplus v$ is still compatible, since $U(\vartheta\oplus v)=y_D$; but the two candidates give opposite query labels:
+For any $\vartheta\in S(U,y_D)$ the vector $\vartheta\oplus v$ is still consistent, since $U(\vartheta\oplus v)=y_D$; but the two candidates give opposite query labels:
 
 $$
 (u^{*})^{\top}(\vartheta\oplus v)=(u^{*})^{\top}\vartheta\oplus 1 .
@@ -338,7 +338,7 @@ where accuracy averages over the joint distribution of $\theta$, context and que
 
 **Proof idea.** Suppose there are fixed $L,k,\gamma>0$ such that for all large $n$ a predictor $M_n$ has average accuracy above $1/2+\gamma$. The event $\theta=0$ has probability $2^{-n}$ and conditional accuracy at most $1$, so for large $n$ the accuracy conditional on $\theta\neq 0$ still exceeds $1/2+\gamma/2$. Averaging over non-zero $\theta$ and contexts $D$, there are a fixed $\theta_0\neq 0$ and a legal context $D_0$ such that $M_n(D_0,\cdot)$ has accuracy above $1/2+\gamma/2$ on a random query.
 
-Extend the non-zero row vector $\theta_0^{\top}$ to a basis of $\mathbb{F}_2^{n}$ and take those basis vectors as the rows of $S\in\mathrm{GL}(n,2)$. The first row of $S$ is $\theta_0^{\top}$, so $\theta_0^{\top}S^{-1}=e_1^{\top}$. For a linear-kernel input $(A,b)$ define
+Extend the non-zero row vector $\theta_0^{\top}$ to a basis of $\mathbb{F}_2^{n}$ and take those basis vectors as the rows of $S\in\mathrm{GL}(n,2)$. The first row of $S$ is $\theta_0^{\top}$, so $\theta_0^{\top}S^{-1}=e_1^{\top}$. For an input of this task $(A,b)$ define
 
 $$
 h_n(A,b):=M_n\big(D_0,(AS,b)\big).
@@ -364,7 +364,7 @@ $$
 
 Any single noiseless context row determines $\tau=y_1\oplus g_n(A_1,b_1)$ uniquely, so the Bayes risk is strictly zero. Under $\mathrm{TC}^0\neq\mathrm{NC}^1$, for any fixed $L,k,\gamma>0$ there are still infinitely many $n$ where the best single-pass predictor has accuracy at most $1/2+\gamma$.
 
-**Proof.** The Bayes claim follows directly from the label definition. If some single-pass predictor sustained average accuracy above $1/2+\gamma$, averaging over $(\tau,D)$ would fix a pair $(\tau_0,D_0)$; XOR-ing the prediction with $\tau_0$ then gives a fixed-depth circuit with the same advantage on the linear kernel, contradicting Theorem 3.5.
+**Proof.** The Bayes claim follows directly from the label definition. If some single-pass predictor sustained average accuracy above $1/2+\gamma$, averaging over $(\tau,D)$ would fix a pair $(\tau_0,D_0)$; XOR-ing the prediction with $\tau_0$ then gives a fixed-depth circuit with the same advantage on this task, contradicting Theorem 3.5.
 
 ## References
 

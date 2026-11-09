@@ -1,5 +1,5 @@
 ---
-title: "线性 In-Context Query 任务与条件性单轮下界"
+title: "线性 In-Context Query 任务与条件性单次前向下界"
 subtitle: "一个表格原生任务，以及固定深度模型一次前向的能力边界"
 date: 2026-11-09
 topics: ["learning-theory", "mathematics"]
@@ -171,7 +171,7 @@ $$
 
 一个自动机成员实例 $w$，就这样被转化成了一个纯数值的 Context / Query 表格预测实例。
 
-## 条件性单轮能力边界
+## 条件性单次前向能力边界
 
 设 $N$ 表示整个表格 episode 的二进制编码长度。考虑一族 TabPFN / LimiX 式轴向表格 Transformer，并施加以下资源限制：
 

@@ -6,7 +6,7 @@ themes:
     note: "上下文学习为何有效——模型深度、数值精度与显式推理步骤能带来什么，又带不来什么。"
     notes:
       - short: "LinICQ：一个表格原生的计算任务"
-        title: "线性 In-Context Query 任务与条件性单轮下界"
+        title: "线性 In-Context Query 任务与条件性单次前向下界"
         url: "/zh/notes/linicq-bound/"
       - short: "固定深度模型：一个条件性平均情形分离"
         title: "固定深度表格基础模型的计算能力边界"
@@ -37,8 +37,8 @@ projects:
         label: "平均风险分析"
         title: "固定深度表格基础模型的计算极限：一个条件的平均情形分离"
         source_file: "tabf_bounds_revised.tex"
-        summary: "研究构造的表格上下文学习任务中的平均预测风险。在一个电路复杂性分离假设下，比较固定深度预测与随问题规模增长的回馈计算。"
-        keywords: ["平均风险", "贝叶斯风险", "固定深度计算", "回馈计算"]
+        summary: "研究构造的表格上下文学习任务中的平均预测风险。在一个电路复杂性分离假设下，比较固定深度预测与随问题规模增长的反馈计算。"
+        keywords: ["平均风险", "贝叶斯风险", "固定深度计算", "反馈计算"]
 
   - id: ast3
     theme: multimodal
