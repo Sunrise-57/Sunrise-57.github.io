@@ -6,6 +6,7 @@ topics: ["learning-theory", "mathematics"]
 summary: "当上下文已经包含足够信息时，固定深度、单次前向的表格预测器是否仍可能因计算不足而失败？本文构造一族无噪声表格任务，在 TC0 ≠ NC1 的假设下给出一个平均情形的分离。"
 lang: zh
 permalink: /zh/notes/average-case-separation/
+alt_url: /notes/average-case-separation/
 math: true
 ---
 

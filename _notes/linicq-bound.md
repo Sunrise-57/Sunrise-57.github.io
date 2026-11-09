@@ -6,6 +6,7 @@ topics: ["learning-theory", "mathematics"]
 summary: "定义一个表格原生的纯数值任务 LinICQ，并用一个 NC1-困难的自动机子族说明：在 TC0 ≠ NC1 的假设下，固定深度、对数精度、单次前向的表格基础模型不可能在所有规模上精确求解它。"
 lang: zh
 permalink: /zh/notes/linicq-bound/
+alt_url: /notes/linicq-bound/
 math: true
 ---
 
