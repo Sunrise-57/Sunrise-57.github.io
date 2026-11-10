@@ -532,6 +532,37 @@ html[lang="zh-CN"] .cv-hero__name { letter-spacing: -0.01em; }
   border-radius: 2px;
 }
 .prose .katex-display { padding-block: 0.2rem; }
+
+/* Figures in notes ---------------------------------------------------------- */
+.note-figure {
+  margin: 2.4rem 0;
+  padding: 1.2rem 1.2rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+}
+.note-figure svg { display: block; width: 100%; height: auto; }
+.note-figure figcaption {
+  margin-top: 1rem;
+  color: var(--ink-muted);
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+}
+.note-figure .f-line { fill: none; stroke: var(--line-strong); stroke-width: 1.2; }
+.note-figure .f-thin { fill: none; stroke: var(--line-strong); stroke-width: 1; }
+.note-figure .f-accent { fill: none; stroke: var(--accent); stroke-width: 1.4; }
+.note-figure .f-text { fill: var(--ink); font-family: var(--font-serif); font-size: 13px; }
+.note-figure .f-muted { fill: var(--ink-soft); font-family: var(--font-serif); font-size: 12px; }
+.note-figure .f-label {
+  fill: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+}
+.note-figure .f-accent-text { fill: var(--accent-ink); font-family: var(--font-serif); font-size: 13px; }
 [data-theme="dark"] .theme-toggle__sun { display: block; }
 [data-theme="dark"] .theme-toggle__moon { display: none; }
 

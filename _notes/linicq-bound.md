@@ -77,6 +77,31 @@ $$
 
 Context 行可以任意重排；若同时置换 $A$ 的列、$q$ 的坐标和 $\theta$ 的坐标，任务答案保持不变。因此，该任务不依赖自然语言 token 的绝对顺序。
 
+<figure class="note-figure">
+<svg aria-hidden="true" focusable="false" viewBox="0 0 640 250" role="img">
+  <text class="f-label" x="330" y="24" text-anchor="middle">特征</text>
+  <text class="f-label" x="497" y="24" text-anchor="middle">标签</text>
+  <rect class="f-line" x="210" y="40" width="240" height="36" rx="4"/>
+  <rect class="f-line" x="462" y="40" width="70" height="36" rx="4"/>
+  <text class="f-text" x="330" y="63" text-anchor="middle">a₁</text>
+  <text class="f-text" x="497" y="63" text-anchor="middle">b₁</text>
+  <rect class="f-line" x="210" y="82" width="240" height="36" rx="4"/>
+  <rect class="f-line" x="462" y="82" width="70" height="36" rx="4"/>
+  <text class="f-text" x="330" y="105" text-anchor="middle">a₂</text>
+  <text class="f-text" x="497" y="105" text-anchor="middle">b₂</text>
+  <rect class="f-line" x="210" y="124" width="240" height="36" rx="4"/>
+  <rect class="f-line" x="462" y="124" width="70" height="36" rx="4"/>
+  <text class="f-text" x="330" y="147" text-anchor="middle">⋮</text>
+  <text class="f-text" x="497" y="147" text-anchor="middle">⋮</text>
+  <rect class="f-accent" x="210" y="176" width="322" height="36" rx="4"/>
+  <text class="f-accent-text" x="330" y="199" text-anchor="middle">q</text>
+  <text class="f-accent-text" x="497" y="199" text-anchor="middle">MASK</text>
+  <text class="f-label" x="196" y="100" text-anchor="end">上下文</text>
+  <text class="f-label" x="196" y="198" text-anchor="end">查询</text>
+</svg>
+<figcaption>图 1　一个 LinICQ episode 就是一张普通的数值表：前几行是带标签的上下文，最后一行是待预测的查询。</figcaption>
+</figure>
+
 ## 由有限自动机产生的困难子族
 
 为了说明 LinICQ 包含长顺序计算，固定一个确定有限自动机
@@ -171,6 +196,32 @@ q^{\top}A_w^{-1}b_w=u=\mathbf{1}\{w\in L(D)\}.
 $$
 
 一个自动机成员实例 $w$，就这样被转化成了一个纯数值的 Context / Query 表格预测实例。
+
+<figure class="note-figure">
+<svg aria-hidden="true" focusable="false" viewBox="0 0 640 170" role="img">
+  <rect class="f-line" x="16" y="52" width="132" height="56" rx="6"/>
+  <text class="f-text" x="82" y="76" text-anchor="middle">DFA D</text>
+  <text class="f-muted" x="82" y="94" text-anchor="middle">词 w</text>
+  <rect class="f-line" x="192" y="52" width="168" height="56" rx="6"/>
+  <text class="f-text" x="276" y="76" text-anchor="middle">A_w, b_w, e_u</text>
+  <text class="f-muted" x="276" y="94" text-anchor="middle">线性方程组</text>
+  <rect class="f-line" x="404" y="52" width="120" height="56" rx="6"/>
+  <text class="f-text" x="464" y="76" text-anchor="middle">表格 T</text>
+  <text class="f-muted" x="464" y="94" text-anchor="middle">一个 episode</text>
+  <rect class="f-accent" x="560" y="52" width="64" height="56" rx="6"/>
+  <text class="f-accent-text" x="592" y="86" text-anchor="middle">u</text>
+  <path class="f-thin" d="M148 80h32"/>
+  <path class="f-thin" d="M174 75l6 5-6 5"/>
+  <path class="f-thin" d="M360 80h38"/>
+  <path class="f-thin" d="M392 75l6 5-6 5"/>
+  <path class="f-thin" d="M524 80h30"/>
+  <path class="f-thin" d="M548 75l6 5-6 5"/>
+  <text class="f-label" x="166" y="130" text-anchor="middle">ρ ∈ AC⁰</text>
+  <text class="f-label" x="380" y="130" text-anchor="middle">填充</text>
+  <text class="f-label" x="540" y="130" text-anchor="middle">一次前向</text>
+</svg>
+<figcaption>图 2　从自动机成员实例到表格 episode 的归约只写出系数和右端，不预先计算自动机的运行轨迹。</figcaption>
+</figure>
 
 ## 条件性单次前向能力边界
 

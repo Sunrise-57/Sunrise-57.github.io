@@ -25,6 +25,22 @@ $$
 
 The left side says the information is sufficient; the right side says fixed-depth single-pass computation is not.
 
+<figure class="note-figure">
+<svg aria-hidden="true" focusable="false" viewBox="0 0 640 330" role="img">
+  <path class="f-thin" d="M84 56V264H592"/>
+  <path class="f-thin" d="M78 264h6M78 170h6M78 76h6"/>
+  <text class="f-label" x="68" y="268" text-anchor="end">0</text>
+  <text class="f-label" x="68" y="174" text-anchor="end">1/2</text>
+  <text class="f-label" x="68" y="80" text-anchor="end">1</text>
+  <text class="f-label" x="592" y="292" text-anchor="end">scale n</text>
+  <path class="f-thin" d="M104 170H566" stroke-dasharray="4 6"/>
+  <path class="f-accent" d="M104 166C210 158 310 120 390 96S520 80 566 78"/>
+  <text class="f-accent-text" x="566" y="64" text-anchor="end">Bayes</text>
+  <text class="f-muted" x="566" y="192" text-anchor="end">best fixed-depth single pass</text>
+</svg>
+<figcaption>Figure 3　Information and computation part ways here: Bayes accuracy tends to 1, while the best fixed-depth single pass stays at 1/2.</figcaption>
+</figure>
+
 ## Formal framework
 
 ### Tabular ICL, average accuracy and Bayes risk
@@ -50,6 +66,30 @@ R_{n,m}(M):=1-\mathrm{Acc}_{n,m}(M).
 $$
 
 Bayes accuracy is the best average accuracy attainable from the current context and query when computation is unrestricted and the task prior and data-generating law are known. It measures whether **the predictive information is sufficient**, not whether computation is affordable.
+
+<figure class="note-figure">
+<svg aria-hidden="true" focusable="false" viewBox="0 0 640 240" role="img">
+  <rect class="f-line" x="60" y="44" width="112" height="46" rx="6"/>
+  <text class="f-text" x="116" y="73" text-anchor="middle">AC⁰</text>
+  <rect class="f-line" x="240" y="44" width="112" height="46" rx="6"/>
+  <text class="f-text" x="296" y="73" text-anchor="middle">TC⁰</text>
+  <rect class="f-line" x="420" y="44" width="112" height="46" rx="6"/>
+  <text class="f-text" x="476" y="73" text-anchor="middle">NC¹</text>
+  <path class="f-thin" d="M176 67h50"/>
+  <path class="f-thin" d="M220 62l6 5-6 5"/>
+  <text class="f-label" x="201" y="56" text-anchor="middle">⊆</text>
+  <path class="f-thin" d="M356 67h50"/>
+  <path class="f-thin" d="M400 62l6 5-6 5"/>
+  <text class="f-label" x="381" y="56" text-anchor="middle">⊆</text>
+  <text class="f-muted" x="384" y="100" text-anchor="middle">assumed ≠</text>
+  <rect class="f-line" x="186" y="152" width="220" height="46" rx="6"/>
+  <text class="f-muted" x="296" y="180" text-anchor="middle">fixed-depth single pass</text>
+  <path class="f-thin" d="M296 152v-50"/>
+  <path class="f-thin" d="M291 108l5-6 5 6"/>
+  <text class="f-label" x="306" y="136">⊆</text>
+</svg>
+<figcaption>Figure 4　The shape of the argument: a single-pass model sits in TC0; solving an NC1-hard task exactly would force NC1 ⊆ TC0.</figcaption>
+</figure>
 
 ### Complexity classes and the conditional premise
 

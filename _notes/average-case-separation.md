@@ -25,6 +25,22 @@ $$
 
 左边表示信息充分，右边表示固定深度的单次前向计算不足。
 
+<figure class="note-figure">
+<svg aria-hidden="true" focusable="false" viewBox="0 0 640 330" role="img">
+  <path class="f-thin" d="M84 56V264H592"/>
+  <path class="f-thin" d="M78 264h6M78 170h6M78 76h6"/>
+  <text class="f-label" x="68" y="268" text-anchor="end">0</text>
+  <text class="f-label" x="68" y="174" text-anchor="end">1/2</text>
+  <text class="f-label" x="68" y="80" text-anchor="end">1</text>
+  <text class="f-label" x="592" y="292" text-anchor="end">规模 n</text>
+  <path class="f-thin" d="M104 170H566" stroke-dasharray="4 6"/>
+  <path class="f-accent" d="M104 166C210 158 310 120 390 96S520 80 566 78"/>
+  <text class="f-accent-text" x="566" y="64" text-anchor="end">贝叶斯</text>
+  <text class="f-muted" x="566" y="192" text-anchor="end">最优固定深度单次前向</text>
+</svg>
+<figcaption>图 3　信息与计算在这里分叉：Bayes 准确率随规模趋于 1，而固定深度单次前向的最优准确率停在 1/2。</figcaption>
+</figure>
+
 ## 形式框架
 
 ### 表格 ICL、平均准确率与 Bayes 风险
@@ -50,6 +66,30 @@ R_{n,m}(M):=1-\mathrm{Acc}_{n,m}(M).
 $$
 
 Bayes 准确率可以直观理解为「数据本身最多允许预测多准」：若不限制计算资源，并已知任务先验与数据生成规律，只根据当前 context 和 query 所能达到的最高平均正确率。它衡量的是**预测信息是否充分**，而不是计算是否够用。
+
+<figure class="note-figure">
+<svg aria-hidden="true" focusable="false" viewBox="0 0 640 240" role="img">
+  <rect class="f-line" x="60" y="44" width="112" height="46" rx="6"/>
+  <text class="f-text" x="116" y="73" text-anchor="middle">AC⁰</text>
+  <rect class="f-line" x="240" y="44" width="112" height="46" rx="6"/>
+  <text class="f-text" x="296" y="73" text-anchor="middle">TC⁰</text>
+  <rect class="f-line" x="420" y="44" width="112" height="46" rx="6"/>
+  <text class="f-text" x="476" y="73" text-anchor="middle">NC¹</text>
+  <path class="f-thin" d="M176 67h50"/>
+  <path class="f-thin" d="M220 62l6 5-6 5"/>
+  <text class="f-label" x="201" y="56" text-anchor="middle">⊆</text>
+  <path class="f-thin" d="M356 67h50"/>
+  <path class="f-thin" d="M400 62l6 5-6 5"/>
+  <text class="f-label" x="381" y="56" text-anchor="middle">⊆</text>
+  <text class="f-muted" x="384" y="100" text-anchor="middle">假设 ≠</text>
+  <rect class="f-line" x="186" y="152" width="220" height="46" rx="6"/>
+  <text class="f-muted" x="296" y="180" text-anchor="middle">固定深度单次前向</text>
+  <path class="f-thin" d="M296 152v-50"/>
+  <path class="f-thin" d="M291 108l5-6 5 6"/>
+  <text class="f-label" x="306" y="136">⊆</text>
+</svg>
+<figcaption>图 4　论证的结构：单次前向的模型落在 TC0 内；若它能精确求解 NC1-困难的任务，就会推出 NC1 ⊆ TC0。</figcaption>
+</figure>
 
 ### 复杂度类与条件性前提
 
