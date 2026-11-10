@@ -1,6 +1,6 @@
 ---
 title: "How to Combine Modalities: Weights, Experts, Gradients, Order, Conditions"
-subtitle: "Reading notes on five fusion architectures"
+subtitle: "Five papers on how several streams of information should be combined"
 date: 2026-11-10
 topics: ["deep-learning", "machine-learning"]
 summary: "Fusion is not concatenation. Five papers each move a different part: the weights (uncertainty), the division of labour (interaction experts), the gradients (decoupling), the order (reinforcement learning), the source of parameters (hypernetworks)."
@@ -19,7 +19,7 @@ alt_url: /zh/notes/multimodal-fusion/
 | MvRL | CVPR 2025 | The order in which views are combined |
 | HyperDet3D | CVPR 2022 / TPAMI 2024 | Generate network parameters from a scene prior |
 
-## FUML: confidence and conflict
+## When the streams disagree, who gets the weight (FUML)
 
 Trustworthy multi-view classification often builds on evidential deep learning, but most methods look only at the amount of evidence, not at whether the evidence agrees. The consequence is paradoxical: on a conflicting instance, several views can each give strong but contradictory evidence, and the aggregated uncertainty comes out low, badly underestimating the risk.
 
@@ -29,7 +29,7 @@ Decision uncertainty alone captures only within-modal doubt, not disagreement be
 
 The theoretical intuition is clean. Fuse a clean view A with a noisy view B and B carries high uncertainty, so its weight drops. Fuse A with a misaligned view C and C's uncertainty may be unremarkable, but its conflict with the others is high, so its weight drops as well. Fuse B with C and both terms are in play.
 
-## I²MoE: experts by interaction type
+## Give each way of combining information its own expert (I²MoE)
 
 Most fusion methods use one set of parameters for every modality interaction, so complementary, redundant and conflicting information is treated identically — information is lost, and the decision is unreadable.
 
@@ -43,7 +43,7 @@ A reweighting module then scores the experts per sample. The weight distribution
 
 A few ablation results are worth keeping: applying the interaction loss to intermediate embeddings beats applying it to outputs; replacing sample-level reweighting with a shared global weight degrades results noticeably; and more thorough perturbation during training produces more complete coverage of interaction types.
 
-## DGL: the root cause is gradient competition
+## Multimodal training stalls when fusion cuts the gradients (DGL)
 
 Multimodal models often fail to match the single-modal version of their own strongest encoder. The usual explanation is imbalance between modalities — a strong modality suppressing a weak one — and the usual remedies are teacher assistance, gradient modulation and alternating optimisation. Each has a cost: teacher methods need extra training stages, gradient modulation improves the weak modality while degrading the strong one, and alternating optimisation does not explain why the strong modality gets worse.
 
@@ -53,7 +53,7 @@ Two operations decouple the gradients. Gradient detaching applies `detach()` to 
 
 Experiments use ResNet18 throughout on three datasets and compare against G-Blending, the CVPR 2020 gradient-blending method that balances modality gradients with dynamic weights. G-Blending still lets every gradient share a path, so it cannot remove the conflict between encoder and fusion layer.
 
-## MvRL: fusion order as a sequential decision
+## The order in which streams are combined can itself be learned (MvRL)
 
 Parallel fusion assumes all views are merged once, at the same stage. That ignores two things: views may contradict each other, and different views deserve different importance and possibly a different order.
 
@@ -63,7 +63,7 @@ The key design on the PI side is a clustering head. Multi-view clustering has no
 
 Beyond accuracy, the paper analyses the effect of fusion order, the reward hyperparameters, and whether views may be reused (with a cooldown mechanism), and visualises the sequences the agent selects.
 
-## HyperDet3D: parameters generated from a scene prior
+## Guess the scene first, then generate the weights (HyperDet3D)
 
 Point clouds are sparse and unordered, and looking only at the object produces ambiguity — a fridge read as a cabinet. Knowing that the candidate sits in something like a kitchen changes the answer. HyperDet3D injects this scene-conditioned information into the backbone's parameters.
 

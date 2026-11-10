@@ -1,6 +1,6 @@
 ---
 title: "Judging a Representation: Quality, Interpretability, Capacity"
-subtitle: "Reading notes on three ways to measure what a representation is worth"
+subtitle: "Three papers on how to tell whether a feature representation is any good"
 date: 2026-11-10
 topics: ["machine-learning", "deep-learning"]
 summary: "Quality can be approximated by rank (QME), interpretability by the area under a fidelity–sparsity curve (IIS), and capacity by whether modalities compete for the same gradients (Uni-X)."
@@ -17,7 +17,7 @@ The earlier notes asked how to combine modalities. This one asks a different que
 | IIS | ICLR 2025 | Area under the fidelity–sparsity curve |
 | Uni-X | ICLR 2026 | Similarity of gradients as a conflict score |
 
-## QME: rank as quality
+## No quality labels? Use rank instead (QME)
 
 Whole-body biometrics models faces, gait and body separately and then fuses the scores. The usual approach weights the per-modality similarity matrices and averages them, but each modality produces its own score distribution, so simple weighting neither aligns the distributions nor assigns sensible importance.
 
@@ -29,7 +29,7 @@ The loss is also modified. A standard triplet loss constrains only relative orde
 
 Training runs in two stages: the quality estimator is trained first, frozen, and then the mixture of experts is trained on top. Ablations show that dropping the estimator in favour of averaging all experts degrades performance, and a scatter plot confirms that predicted quality weights correlate with true ranks.
 
-## IIS: interpretability as a measurable area
+## Turning "interpretable" into a number you can compute (IIS)
 
 Pretrained visual representations are usually optimised for downstream discriminability, while applications increasingly demand interpretability. Both existing routes pay a price. Interpretability-oriented methods impose semantic constraints on the representation space and often lose accuracy; discriminability-oriented methods explain after the fact, but nothing guarantees the semantics are captured by the explainer, so information is lost.
 
@@ -37,7 +37,7 @@ The paper defines interpretability as **how much task-relevant semantics survive
 
 The empirical claim is counter-intuitive and useful: across models, IIS and predictive accuracy are positively correlated. Interpretability and discriminability are not necessarily in tension — training that improves interpretability can raise accuracy, and more discriminative representations can yield more faithful explanations.
 
-## Uni-X: gradient conflict and separating the ends
+## Stop squeezing text and image into the same layers (Uni-X)
 
 Unified multimodal models try to put text reasoning, visual understanding and image generation into one framework. The mainstream route quantises visual input into discrete tokens and predicts a single sequence autoregressively. The problem: a standard Transformer with fully shared parameters suffers severe gradient conflict on such input.
 

@@ -1,9 +1,9 @@
 ---
 title: "Adapting at Inference Time: Statistics, Consistency, Attention"
-subtitle: "Seven papers on test-time adaptation for multimodal models"
+subtitle: "Seven papers on how a trained model adjusts itself in a new environment"
 date: 2026-11-10
 topics: ["deep-learning", "machine-learning"]
-summary: "What the design space looks like when adaptation happens on unlabelled test data, at frame rate, with several modalities that can fail independently."
+summary: "A model meets an environment it was never trained on and may only use unlabelled data to adjust. With several streams that can fail independently, the questions become: what to update, how to judge trust, and what signal to learn from."
 lang: en
 permalink: /notes/test-time-adaptation/
 alt_url: /zh/notes/test-time-adaptation/
@@ -20,10 +20,10 @@ The seven papers below are ordered along three questions: what gets updated, how
 | Learnable consistency | CVPR 2023 | Parameterise the auxiliary loss so it aligns with the main task |
 | CTTA-OD | CVPR 2025 | Domain-sensitive channels should be pruned, not adapted |
 | ABPEM | AAAI 2025 | The self/cross-attention gap is itself an optimisable object |
-| RGB-T TTA | CVPR 2025 | No gradients: EMA on batch statistics, plus periodic recovery |
-| TCR | Cross-modal retrieval | When the query itself shifts, optimise the query predictions first |
+| Infrared + visible object tracking | CVPR 2025 | No gradients: EMA on batch statistics, plus periodic recovery |
+| TCR | — | When the thing you are searching for has itself changed, fix the query first |
 
-## READ: reliability bias, and updating only what is safe
+## Decide which stream is broken before weighting it (READ)
 
 The difficulty in multimodal TTA is not only that each modality shifts, but that reliability ceases to be equal across modalities after the shift. Some modalities are contaminated at test time while others stay clean. If the model cannot identify this, the contaminated modality dominates the fused prediction — fusion can end up worse than a single modality. The authors call this reliability bias.
 
@@ -31,7 +31,7 @@ The method has two parts. Reliable fusion inserts a learnable projection layer b
 
 Experiments use video–audio data with and without corruption. One detail is telling: if attention queries video with audio, then when the video is corrupted the model fails to extract good features even though the audio is clean. The direction of fusion decides whether a broken modality can contaminate a good one.
 
-## MM-TTA: agreement between a fast and a slow model
+## Let a slower copy of the model score itself (MM-TTA)
 
 TTA for 2D/3D semantic segmentation. Two copies of the model are maintained: the fast model $F$ replaces and updates its batch-norm statistics directly from test data; the slow model $S$ is pretrained on source data and then updated from $F$ by momentum. Inference uses $S$ only.
 
@@ -39,7 +39,7 @@ Pseudo-labels are produced in two stages. Intra-modally, a consistency measure b
 
 Ablations show the slow model is necessary. It is the simplest form of self-scoring: no extra network, just a copy of the model that moves more slowly, and therefore disagrees where the fast copy is guessing.
 
-## A learnable consistency loss: why the auxiliary task pulls the model off course
+## Stop the test-time objective from fighting the main one (learnable consistency loss)
 
 Test-time training uses an auxiliary task on test samples for a few gradient steps, but the auxiliary loss and the classification loss need not agree; the update can hurt. Updating all parameters overfits, and updating only batch-norm parameters sometimes degrades as well.
 
@@ -49,7 +49,7 @@ For parameter selection, a small adaptive block is appended after each encoder b
 
 The takeaway is worth keeping: update capacity and stability trade against each other, and adding parameters is safer than opening up all of them.
 
-## CTTA-OD: some features should be pruned, not adapted
+## Some features should be pruned rather than adapted (CTTA-OD)
 
 Continual TTA for object detection, where the test distribution keeps changing and the deployment target is resource constrained.
 
@@ -59,7 +59,7 @@ Pruning uses the batch-norm scaling factors: an L1 penalty drives $\gamma_i$ tow
 
 Results are reported on Cityscapes → Cityscapes-C and UAVDT → UAVDT-C; t-SNE shows the surviving channels mix better across target domains.
 
-## ABPEM: the attention gap, and entropy over the principal classes
+## Close the gap between looking inward and looking across (ABPEM)
 
 Another quantity that can be modelled explicitly: the gap between self-attention (intra-modal) and cross-attention (inter-modal). Distribution shift causes both intra-modal and inter-modal change; the latter weakens alignment and fusion, showing up as a relative drop in cross-attention. Empirically the gap grows with the strength of the shift.
 
@@ -69,9 +69,9 @@ Experiments use Kinetics50-C (video-dominant) and VGGSound-C (audio-dominant) to
 
 A transferable lesson: putting a reliability gate in front of a self-supervised signal matters more than tuning the learning rate.
 
-## RGB-T tracking: fast parameter updates without gradients
+## Object tracking: keeping up without backpropagation (CVPR 2025)
 
-RGB-T tracking needs real-time speed (tens of frames per second). Entropy-minimisation methods require backpropagation and updates to batch-norm affine parameters; long online updates drift, forget what was learned, and cost compute. Consistency-regularisation methods need heavy augmentation and a teacher–student pair, which is slower still. The binding constraint is therefore that no gradient may be computed at inference.
+Tracking needs real-time speed (tens of frames per second). Entropy-minimisation methods require backpropagation and updates to batch-norm affine parameters; long online updates drift, forget what was learned, and cost compute. Consistency-regularisation methods need heavy augmentation and a teacher–student pair, which is slower still. The binding constraint is therefore that no gradient may be computed at inference.
 
 The method works with batch-norm statistics. During training, an EMA over each batch gives the expected mean and variance; at inference the EMA continues from the training values as a prior, moving the feature distribution toward the test domain without any gradient.
 
@@ -79,7 +79,7 @@ Long adaptation accumulates error, so a recovery step is added: the change in ba
 
 The value of the paper is that it separates "adapt" and "recover" into two independently tunable actions.
 
-## TCR: cross-modal retrieval when the query shifts
+## Retrieval: when the thing you are looking for has itself changed (TCR)
 
 Retrieval has its own difficulty: no labels, and no reliable neighbours. Most methods assume queries follow the source distribution, but real query streams can come from scarce or highly personalised domains. The assumption breaks in two ways: consistency within the query modality weakens, and the modality gap widens.
 

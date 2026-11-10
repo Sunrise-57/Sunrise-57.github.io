@@ -1,9 +1,9 @@
 ---
 title: "Infrared and Visible: Fusion, Restoration, Pretraining"
-subtitle: "Reading notes on five papers"
+subtitle: "Five papers on how infrared and visible images work together"
 date: 2026-11-10
 topics: ["deep-learning", "machine-learning"]
-summary: "The problem statement keeps moving: from making a fused image look good, to making fusion serve detection, to learning representations that transfer without labels."
+summary: "The question keeps changing: first make two images into one that looks good, then make that result actually help a detector, then learn from unlabelled pairs before any task exists."
 lang: en
 permalink: /notes/ir-visible-fusion/
 alt_url: /zh/notes/ir-visible-fusion/
@@ -14,12 +14,12 @@ The complementarity of infrared and visible images is the shared premise of this
 | Paper | Venue | Which layer |
 | --- | --- | --- |
 | UMCFuse | TIP 2025 | Fusion under compound degradation |
-| IVIF + detection | CVPR 2025 | Joint optimisation of fusion and a downstream task |
+| Image fusion + detection | CVPR 2025 | Joint optimisation of fusion and a downstream task |
 | CWNet | ICCV 2025 | Semantic consistency in low-light enhancement |
 | M-SpecGene | ICCV 2025 | Multispectral self-supervised pretraining |
 | Retina-inspired contrastive pretraining | — | Cross-modal alignment during pretraining |
 
-## UMCFuse: one physical prior for many degradations
+## One image hit by fog, low light and noise at once (UMCFuse)
 
 Real acquisition rarely satisfies the implicit "high-quality imaging" assumption. Low light, fog, rain and snow, overexposure, noise, flames and sensor blur frequently co-occur; the visible domain loses detail and contrast, and infrared texture suffers from weak signal and atmospheric disturbance.
 
@@ -29,7 +29,7 @@ The decomposition has three steps: estimate and refine a transmission map; use i
 
 Fusion then treats high frequencies with adaptive denoising, detail-preserving discrimination and salient-detail weighting, and low frequencies with energy-guided Gabor multi-orientation features, before reconstruction. The significance is architectural: instead of one module per degradation, every degradation is explained as a difference in the transmission map.
 
-## IVIF and detection: telling the fusion network what downstream needs
+## The fused image has to be usable by the detector (IVIF + detection)
 
 A fused image that looks good to a human is not necessarily useful for detection. Most methods keep fusion and high-level tasks separate, so the fused result brings limited accuracy gain and the task output gives little signal back to fusion.
 
@@ -39,7 +39,7 @@ The method encodes infrared and visible images into two low-dimensional fused fe
 
 The weights of the two task losses are searched by an evolutionary algorithm rather than set by hand. Comparing three coefficient strategies (empirical, uniform, searched) and two training schemes (separate, joint), the searched combination gives the best mAP/mIoU.
 
-## CWNet: causality decides what to keep, wavelets execute how
+## Separate the semantics to keep from the anomalies to remove (CWNet)
 
 Low-light enhancement has to brighten an image while keeping colour and semantics consistent, and high-frequency detail is entangled with noise, so treating them together yields results that are bright but unnatural.
 
@@ -49,17 +49,17 @@ Architecturally the backbone is wavelet based. A discrete wavelet transform give
 
 The authors state the relationship between the two components plainly: causal reasoning decides the principle of enhancement, the wavelet network executes it. The limitation is equally clear — under compound degradation (low light plus blur or haze) only colour and brightness are partly preserved, and detail recovery falls short.
 
-## M-SpecGene: self-supervised pretraining for RGBT
+## Learning how infrared and visible correspond, without labels (M-SpecGene)
 
-Most RGBT tasks still use task-specific two-branch networks with hand-designed fusion modules, which brings three problems: inductive bias that only works for one task; modality bias, since thermal branches are often initialised from ImageNet weights that encode priors inconsistent with thermal imaging; and a data bottleneck, since aligned RGBT data is hard to collect and expensive to annotate.
+Most infrared–visible tasks still use task-specific two-branch networks with hand-designed fusion modules, which brings three problems: inductive bias that only works for one task; modality bias, since thermal branches are often initialised from ImageNet weights that encode priors inconsistent with thermal imaging; and a data bottleneck, since aligned RGBT data is hard to collect and expensive to annotate.
 
-M-SpecGene learns modality-invariant representations from large-scale unlabelled multispectral data under a self-supervised objective. The core idea is an information-aware masking strategy. RGBT data is markedly imbalanced: object scale and spatial distribution vary, and the two modalities carry asymmetric information density. ImageNet objects are usually centred and large, whereas RGBT datasets are not object-centric and contain smaller, weaker, unevenly distributed objects, so random masking spends too much of its budget on sparse regions.
+M-SpecGene learns modality-invariant representations from large-scale unlabelled multispectral data under a self-supervised objective. The core idea is an information-aware masking strategy. Infrared–visible data is markedly imbalanced: object scale and spatial distribution vary, and the two modalities carry asymmetric information density. ImageNet objects are usually centred and large, whereas RGBT datasets are not object-centric and contain smaller, weaker, unevenly distributed objects, so random masking spends too much of its budget on sparse regions.
 
 The paper defines cross-modality structural sparsity (CMSS). In low-information regions such as sky, patches have high similarity and low structural variance, so CMSS is high; in semantically rich regions such as pedestrians, patches differ more, so CMSS is low. A Gaussian mixture model fits the CMSS distribution and is re-estimated every epoch alongside pretraining; masking samples around the distribution and covers the nearest set of patches, with a bias term on top of the base masking ratio that adapts to the difference between the two modalities' reconstruction losses.
 
 Validation spans detection, segmentation, matching and salient object detection across 11 datasets, with ablations on the pretrained model, architecture, masking strategy, decoder depth and base masking ratio.
 
-## Retina-inspired cross-modal contrastive pretraining
+## Borrowing from the retina to line up thermal and visible semantics
 
 Visible and infrared pretrained models are each strong in their own domain but often fail when used across modalities: an infrared model's sensitivity to brightness transfers badly to RGB and breaks localisation, while an RGB model cannot adapt to the absence of hue and texture in thermal images.
 

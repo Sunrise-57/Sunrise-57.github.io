@@ -1,9 +1,9 @@
 ---
 title: "Adapting Without Touching the Weights: Prompts, Routing, Text"
-subtitle: "Four papers on test-time prompting and training-free adaptation"
+subtitle: "Four papers on adapting without retraining: change the input, or the choice inside"
 date: 2026-11-10
 topics: ["deep-learning", "machine-learning"]
-summary: "When backpropagation is unavailable or undesirable, adaptation moves to the edges: prompt vectors, expert routing, and the text embedding itself."
+summary: "When backpropagation is unavailable or unwanted, adaptation moves to the edges: the prompt at the input, the choice of internal expert, and the text side alone."
 lang: en
 permalink: /notes/test-time-prompting/
 alt_url: /zh/notes/test-time-prompting/
@@ -18,7 +18,7 @@ Backpropagation has a cost. Quantised models, hard-coded models, and services th
 | R²-T² | ICML 2026 | Router weights are sub-optimal; re-route using similar correct cases |
 | NEAT | Negation understanding | Look at VLM negation through the TTA lens |
 
-## D²TPT: two removals of prompt-optimisation bias
+## Tuning a prompt on test data drifts; correct it twice (D²TPT)
 
 Test-time prompt tuning (TPT) avoids labels by optimising a learnable prompt to fit the target task. Optimising on unlabelled test data alone, however, introduces a prompt-optimisation bias that can hurt downstream accuracy.
 
@@ -30,7 +30,7 @@ Evaluations span 15 benchmarks covering natural distribution shift and cross-dat
 
 One design choice is worth remembering: **the knowledge base stores only high-confidence samples and evicts by entropy**. That converts an unlabelled problem into a self-consistency problem.
 
-## FOZO: prompt optimisation with forward passes only
+## Improve a prompt without computing gradients (FOZO)
 
 The motivation for zeroth-order optimisation in TTA is straightforward: update without gradients, and without modifying internal parameters, which makes the method applicable to quantised or immutable models.
 
@@ -42,7 +42,7 @@ For supervision, [CLS] tokens from intermediate layers are split into a shallow 
 
 Experiments cover ImageNet-C, a quantised ViT (8-bit PTQ4ViT), ImageNet-R and ImageNet-Sketch. One practical note: overly large batches smooth the feature statistics and lose fine-grained domain information.
 
-## R²-T²: re-routing at test time
+## When the model picks the wrong expert, similar past cases can correct it (R²-T²)
 
 Multimodal MoE performance depends heavily on the router, and a router trained end to end does not always produce optimal routing weights for a given test sample. This is a decision-level issue, independent of model size.
 
@@ -56,7 +56,7 @@ Three optimisation strategies trade cost against quality:
 
 On MoAI-7B, across 9 benchmarks against 7B/8B/13B vision-language models, the base 7B model improves substantially. Ablations cover neighbourhood hyperparameters, similarity kernels, gradient steps and embedding models. The authors conclude that the routing decision matters as much as model scale.
 
-## NEAT: reading negation as double concept shift
+## Reading the word "not" (NEAT)
 
 Vision-language models struggle with negation ("a road without ice", "a lung nodule without malignant features"). Pretraining data is dominated by affirmative descriptions, so negation is rare; data-driven remedies such as NegBench and NegationCLIP need millions of generated negative image–text pairs, which is expensive and hard to sustain.
 

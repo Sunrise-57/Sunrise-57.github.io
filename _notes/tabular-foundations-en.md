@@ -1,6 +1,6 @@
 ---
 title: "Tabular Foundation Models: Consistency, a Map, and Expressivity"
-subtitle: "Three sets of reading notes: the Bayesian promise, the family tree, circuit complexity"
+subtitle: "Three sets of notes: is the model self-consistent, what does the field look like, what can it actually compute"
 date: 2026-11-10
 topics: ["learning-theory", "machine-learning", "mathematics"]
 summary: "Tabular foundation models claim to output posterior predictive distributions. This note replaces 'how far from the true posterior' with a testable joint-consistency question, measured by total variation, and adds a map of the field plus three expressivity bounds."
