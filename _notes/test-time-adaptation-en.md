@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Adapting at Inference Time: Statistics, Consistency, Attention"
 subtitle: "Seven papers on test-time adaptation for multimodal models"
 date: 2026-11-10
