@@ -7,6 +7,9 @@ layout: modern
 {% assign base = "" %}
 {% if page.lang == "zh" %}{% assign base = "/zh" %}{% endif %}
 {% assign notes = site.notes | where: "lang", page.lang | sort: "date" | reverse %}
+{% assign pinned = notes | where: "pinned", true %}
+{% assign others = notes | where_exp: "n", "n.pinned != true" %}
+{% assign ordered = pinned | concat: others %}
 
 <section class="notes-hero">
   <div class="wrap">
@@ -40,14 +43,15 @@ layout: modern
     </div>
 
     <div class="notes-list">
-      {% for note in notes %}
+      {% for note in ordered %}
       <a class="note-row" href="{{ note.url | relative_url }}" data-filter-item data-filter-tags="{{ note.topics | join: ' ' }}">
         <time class="note-row__date" datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: "%Y-%m-%d" }}</time>
         <div class="note-row__body">
           <h2 class="note-row__title">{{ note.title }}</h2>
           {% if note.summary %}<p class="note-row__summary">{{ note.summary }}</p>{% endif %}
-          {% if note.topics and note.topics.size > 0 %}
+          {% if note.pinned or note.topics.size > 0 %}
           <ul class="note-row__topics">
+            {% if note.pinned %}<li class="chip chip--accent">{{ ui.notes.pinned }}</li>{% endif %}
             {% for slug in note.topics %}
               {% assign topic = d.topics | where: "slug", slug | first %}
               <li class="chip">{{ topic.label | default: slug }}</li>

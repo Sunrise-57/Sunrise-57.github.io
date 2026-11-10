@@ -2,6 +2,7 @@
 title: "固定深度表格基础模型的计算能力边界"
 subtitle: "一个条件性平均情形分离"
 date: 2026-11-09
+pinned: true
 topics: ["learning-theory", "mathematics"]
 summary: "当上下文已经包含足够信息时，固定深度、单次前向的表格预测器是否仍可能因计算不足而失败？本文构造一族无噪声表格任务，在 TC0 ≠ NC1 的假设下给出一个平均情形的分离。"
 lang: zh

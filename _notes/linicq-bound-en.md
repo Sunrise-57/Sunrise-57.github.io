@@ -2,6 +2,7 @@
 title: "Linear In-Context Query Tasks and a Conditional One-Shot Bound"
 subtitle: "A tabular-native task, and what a fixed-depth model can do in a single forward pass"
 date: 2026-11-09
+pinned: true
 topics: ["learning-theory", "mathematics"]
 summary: "A tabular-native numeric task and an NC1-hard automaton subfamily: under TC0 ≠ NC1, no fixed-depth, log-precision, single-pass tabular model can solve it exactly at every scale."
 lang: en

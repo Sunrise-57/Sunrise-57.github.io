@@ -2,6 +2,7 @@
 title: "Computational Limits of Fixed-Depth Tabular Foundation Models"
 subtitle: "A conditional average-case separation"
 date: 2026-11-09
+pinned: true
 topics: ["learning-theory", "mathematics"]
 summary: "When the context already carries enough information, can a fixed-depth single-pass tabular predictor still fail for lack of computation? A family of noiseless tabular tasks gives an average-case separation under TC0 ≠ NC1."
 lang: en

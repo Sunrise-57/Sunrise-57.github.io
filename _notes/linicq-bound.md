@@ -2,6 +2,7 @@
 title: "线性 In-Context Query 任务与条件性单次前向下界"
 subtitle: "一个表格原生任务，以及固定深度模型一次前向的能力边界"
 date: 2026-11-09
+pinned: true
 topics: ["learning-theory", "mathematics"]
 summary: "定义一个表格原生的纯数值任务 LinICQ，并用一个 NC1-困难的自动机子族说明：在 TC0 ≠ NC1 的假设下，固定深度、对数精度、单次前向的表格基础模型不可能在所有规模上精确求解它。"
 lang: zh

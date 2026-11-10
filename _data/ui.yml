@@ -79,6 +79,7 @@ notes:
   eyebrow: "Notes"
   title: "Reading notes"
   lede: "Working notes on papers, talks, and ideas — multimodal learning, computer vision, test-time adaptation, learning theory, sociology, and whatever else keeps me thinking."
+  pinned: "Pinned"
   all: "All"
   one: "note"
   many: "notes"
