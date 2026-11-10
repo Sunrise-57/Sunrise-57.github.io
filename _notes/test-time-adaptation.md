@@ -2,7 +2,7 @@
 title: "推理阶段的自适应：统计量、一致性与注意力"
 subtitle: "七篇关于「模型到了新环境怎么自己调整」的论文笔记"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["test-time-adaptation", "multimodal-learning", "computer-vision"]
 summary: "模型到了没见过的新环境，只能靠手头的无标签数据自己调整。几路信号还可能各自失效，于是问题变成：动哪里、凭什么判断谁可信、用什么信号来更新。"
 lang: zh
 permalink: /zh/notes/test-time-adaptation/

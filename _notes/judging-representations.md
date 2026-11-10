@@ -2,7 +2,7 @@
 title: "怎样判断一个表示好不好：质量、可解释性、容量"
 subtitle: "三篇关于「怎么判断一个特征表示靠不靠谱」的笔记"
 date: 2026-11-10
-topics: ["machine-learning", "deep-learning"]
+topics: ["computer-vision", "uncertainty"]
 summary: "合完之后怎么判断这个表示靠不靠谱：质量可以用排名近似，可解释性可以用「解释得很稀疏时还剩多少准确率」来量，容量则要看不同模态的梯度是否互相打架。"
 lang: zh
 permalink: /zh/notes/judging-representations/

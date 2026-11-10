@@ -2,7 +2,7 @@
 title: "Adapting at Inference Time: Statistics, Consistency, Attention"
 subtitle: "Seven papers on how a trained model adjusts itself in a new environment"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["test-time-adaptation", "multimodal-learning", "computer-vision"]
 summary: "A model meets an environment it was never trained on and may only use unlabelled data to adjust. With several streams that can fail independently, the questions become: what to update, how to judge trust, and what signal to learn from."
 lang: en
 permalink: /notes/test-time-adaptation/

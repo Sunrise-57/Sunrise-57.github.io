@@ -19,3 +19,20 @@
 
 - slug: economics
   label: 经济学
+- slug: multimodal-learning
+  label: 多模态学习
+
+- slug: computer-vision
+  label: 计算机视觉
+
+- slug: test-time-adaptation
+  label: 测试时适应
+
+- slug: gradient-learning
+  label: 梯度学习
+
+- slug: uncertainty
+  label: 不确定性
+
+- slug: foundation-models
+  label: 基础模型

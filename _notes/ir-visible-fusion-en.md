@@ -2,7 +2,7 @@
 title: "Infrared and Visible: Fusion, Restoration, Pretraining"
 subtitle: "Five papers on how infrared and visible images work together"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["computer-vision", "multimodal-learning"]
 summary: "The question keeps changing: first make two images into one that looks good, then make that result actually help a detector, then learn from unlabelled pairs before any task exists."
 lang: en
 permalink: /notes/ir-visible-fusion/

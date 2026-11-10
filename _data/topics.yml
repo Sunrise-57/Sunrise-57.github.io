@@ -20,3 +20,20 @@
 
 - slug: economics
   label: Economics
+- slug: multimodal-learning
+  label: Multimodal Learning
+
+- slug: computer-vision
+  label: Computer Vision
+
+- slug: test-time-adaptation
+  label: Test-Time Adaptation
+
+- slug: gradient-learning
+  label: Gradient Learning
+
+- slug: uncertainty
+  label: Uncertainty
+
+- slug: foundation-models
+  label: Foundation Models

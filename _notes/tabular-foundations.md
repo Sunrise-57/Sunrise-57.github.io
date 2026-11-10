@@ -2,7 +2,7 @@
 title: "表格基础模型：一致性、地图与表达力"
 subtitle: "三组笔记：模型说的话自己圆得上吗、这个领域长什么样、它到底能算什么"
 date: 2026-11-10
-topics: ["learning-theory", "machine-learning", "mathematics"]
+topics: ["foundation-models", "learning-theory", "machine-learning"]
 summary: "表格基础模型自称给出的是后验预测分布。这篇论文把「离真实后验有多远」换成一个能检验的问题：这些预测自己圆得上吗？另附领域地图与三条能力边界。"
 lang: zh
 permalink: /zh/notes/tabular-foundations/

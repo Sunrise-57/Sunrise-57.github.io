@@ -2,7 +2,7 @@
 title: "How to Combine Modalities: Weights, Experts, Gradients, Order, Conditions"
 subtitle: "Five papers on how several streams of information should be combined"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["multimodal-learning", "gradient-learning", "uncertainty"]
 summary: "Fusion is not concatenation. Five papers each move a different part: the weights (uncertainty), the division of labour (interaction experts), the gradients (decoupling), the order (reinforcement learning), the source of parameters (hypernetworks)."
 lang: en
 permalink: /notes/multimodal-fusion/

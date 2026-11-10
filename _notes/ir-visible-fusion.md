@@ -2,7 +2,7 @@
 title: "红外与可见光：融合、复原与预训练"
 subtitle: "五篇关于红外与可见光画面如何配合的笔记"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["computer-vision", "multimodal-learning"]
 summary: "从「把两张图合成一张好看的图」，到「让合成结果真的帮到检测」，再到「不标注就先学一遍」，这条线上的问题定义一直在变。"
 lang: zh
 permalink: /zh/notes/ir-visible-fusion/

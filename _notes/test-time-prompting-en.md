@@ -2,7 +2,7 @@
 title: "Adapting Without Touching the Weights: Prompts, Routing, Text"
 subtitle: "Four papers on adapting without retraining: change the input, or the choice inside"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["test-time-adaptation", "multimodal-learning", "computer-vision"]
 summary: "When backpropagation is unavailable or unwanted, adaptation moves to the edges: the prompt at the input, the choice of internal expert, and the text side alone."
 lang: en
 permalink: /notes/test-time-prompting/

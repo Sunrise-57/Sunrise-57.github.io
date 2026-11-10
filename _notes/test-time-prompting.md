@@ -2,7 +2,7 @@
 title: "不改权重也能适应：提示、路由与文本侧"
 subtitle: "四篇关于「不重新训练、只改输入或内部选择」的笔记"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["test-time-adaptation", "multimodal-learning", "computer-vision"]
 summary: "不能反传、或者不想改动模型内部时，还有三条路：改输入的提示、重排模型内部的「专家」选择、只动文本那一侧。四篇工作分别把其中一条走到了极端。"
 lang: zh
 permalink: /zh/notes/test-time-prompting/

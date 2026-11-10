@@ -2,7 +2,7 @@
 title: "多模态该怎么合：权重、专家、梯度、顺序与条件"
 subtitle: "五篇关于「好几路信息该怎么合并」的阅读笔记"
 date: 2026-11-10
-topics: ["deep-learning", "machine-learning"]
+topics: ["multimodal-learning", "gradient-learning", "uncertainty"]
 summary: "「多接一路信号」不会自动变好：合并层可能把编码器压住，几路信息也可能互相矛盾。五篇工作分别改权重、改分工、改梯度、改顺序、改参数的来源。"
 lang: zh
 permalink: /zh/notes/multimodal-fusion/

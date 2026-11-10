@@ -2,7 +2,7 @@
 title: "Judging a Representation: Quality, Interpretability, Capacity"
 subtitle: "Three papers on how to tell whether a feature representation is any good"
 date: 2026-11-10
-topics: ["machine-learning", "deep-learning"]
+topics: ["computer-vision", "uncertainty"]
 summary: "Quality can be approximated by rank (QME), interpretability by the area under a fidelity–sparsity curve (IIS), and capacity by whether modalities compete for the same gradients (Uni-X)."
 lang: en
 permalink: /notes/judging-representations/
