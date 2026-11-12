@@ -1,18 +1,18 @@
 ---
-title: "Traditional Vision Tasks Are Only \"Insight\""
+title: "Traditional Vision Tasks Are Only the Perception Stage"
 subtitle: "Starting from one closed-loop diagram: which stage traditional computer vision belongs to, and why that definition does not survive scrutiny"
 date: 2026-11-12
 topics: ["computer-vision", "machine-learning", "uncertainty"]
-summary: "Once the diagram \"insight — prediction/reasoning — action\" is formalised, traditional vision tasks occupy only the first box: a one-way, open-loop, offline observation encoder. From there the five causes of the loose definition of \"vision task\" can be separated one by one, together with a replacement definition centred on what an agent needs."
+summary: "Once the diagram \"perception — prediction/reasoning — action\" is formalised, traditional vision tasks occupy only the first box: a one-way, open-loop, offline observation encoder. From there the five causes of the loose definition of \"vision task\" can be separated one by one, together with a replacement definition centred on what an agent needs."
 lang: en
 permalink: /notes/vision-task-definition/
 alt_url: /zh/notes/vision-task-definition/
 math: true
 ---
 
-A frequently cited diagram draws the agent loop in four segments: **insight → prediction ⇄ reasoning → action**, with action flowing back into insight. The question most often asked of it is: which of these segments do traditional computer vision tasks belong to?
+A frequently cited diagram draws the agent loop in four segments: **perception → prediction ⇄ reasoning → action**, with action flowing back into perception. The question most often asked of it is: which of these segments do traditional computer vision tasks belong to?
 
-The answer looks simple — insight. But to make that answer stand, one first has to say what "belong to" means, and then why this division keeps producing a series of doubts about how "vision tasks" are defined. This note does both.
+The answer looks simple — perception. But to make that answer stand, one first has to say what "belong to" means, and then why this division keeps producing a series of doubts about how "vision tasks" are defined. This note does both.
 
 ## 1. First, read the diagram as a formal structure
 
@@ -20,7 +20,7 @@ The four boxes plus the one return arrow line up closely with the language of a 
 
 | Box in the diagram | Mathematical role | What it does |
 | --- | --- | --- |
-| Insight | Observation model $e: \mathcal{I} \to \mathcal{S}$ | Compresses pixels into a legible state description |
+| Perception | Observation model $e: \mathcal{I} \to \mathcal{S}$ | Compresses pixels into a legible state description |
 | Prediction | Transition model $T: \mathcal{S} \times \mathcal{A} \to \Delta(\mathcal{S})$ | Gives a distribution over "what happens next" |
 | Reasoning | Counterfactual reasoning and planning over $T$ | Compares the futures that different actions lead to |
 | Action | Policy $\pi: \mathcal{S} \to \mathcal{A}$ | Turns state into an action on the world |
@@ -28,7 +28,7 @@ The four boxes plus the one return arrow line up closely with the language of a 
 
 Two details are worth noting: **the arrow between prediction and reasoning runs both ways**, which indicates an internal loop of conjecture, test, and revision; and **the return arrow at the bottom** indicates that the whole system is fed by its own actions.
 
-*On the word itself: the diagram says 洞察力, which is closer to "insight" or "discernment" than to the standard term "perception". I keep "insight" rather than substituting "perception", because that substitution would quietly make "vision equals perception" look natural — and that equation is one of the things this note questions. In the table above it is what maps to the observation model.*
+*On the word: the source diagram is from [Zhenhailong Wang's lab at Westlake University](https://mikewangwzhl.github.io/lab/), where this stage is called **Perception**. A widely circulated Chinese redrawing renders it as 洞察力, literally "the capacity to see through" — closer to "insight" or "discernment" than to "perception". That rendering is an upgrade, not a translation, and the upgrade is worth flagging rather than smoothing over: the box delivers a state estimate, not insight. I keep the source's own word here, and note the Chinese one, because the substitution illustrates precisely what this note argues — labels that promise more than the stage delivers.*
 
 ## 2. Traditional CV occupies only the first box
 
@@ -44,7 +44,7 @@ This is not rhetoric; it can be checked item by item:
 | Does a decision change the next input? | No — open-loop, offline, per-frame evaluation | Active perception, an embodied loop |
 | Is the objective task return? | No — it is label likelihood (cross-entropy, IoU, AP) | A reward or value function |
 
-All five answers are no, so it falls squarely within insight: **it is an eye, not a brain, and not a hand.**
+All five answers are no, so it falls squarely within perception: **it is an eye, not a brain, and not a hand.**
 
 Put more sharply: traditional CV optimises the empirical risk of $P(y \mid I)$, whereas a closed-loop system solves $\arg\max_a \mathbb{E}[R \mid s]$. The former is statistical inference; the latter is control.
 
@@ -85,13 +85,13 @@ Traditional CV covers less than half of the first. This also explains why the "t
 
 ## 7. Conclusion
 
-> A traditional computer vision task can be characterised as the empirical fit of an observation model $e: I \to s$: the input is a single frame or a short observation window, the output is a description of the current state, the objective is label likelihood rather than task return, and the evaluation protocol is offline, open-loop, and per-frame. Within the loop "insight — prediction/reasoning — action" it therefore performs the function of perceptual encoding only: it possesses no state-transition model and produces no action on the environment, and so does not constitute a closed loop. To equate such tasks with "visual capability" is, in essence, to mistake an operational definition anchored in datasets and annotation protocols for a definition of capability — and this is precisely the root of why the boundary of the task has long been loose.
+> A traditional computer vision task can be characterised as the empirical fit of an observation model $e: I \to s$: the input is a single frame or a short observation window, the output is a description of the current state, the objective is label likelihood rather than task return, and the evaluation protocol is offline, open-loop, and per-frame. Within the loop "perception — prediction/reasoning — action" it therefore performs the function of perceptual encoding only: it possesses no state-transition model and produces no action on the environment, and so does not constitute a closed loop. To equate such tasks with "visual capability" is, in essence, to mistake an operational definition anchored in datasets and annotation protocols for a definition of capability — and this is precisely the root of why the boundary of the task has long been loose.
 
 ## Glossary
 
 | 中文 | English | Note |
 | --- | --- | --- |
-| 洞察力 | insight | the word used in the diagram; kept untranslated-in-spirit, not replaced by "perception" |
+| 洞察力 | perception | the Chinese redrawing's word for the source's "Perception"; literally "the capacity to see through", hence an upgrade rather than a translation |
 | 观测模型 | observation model | $e: I \to s$ |
 | 转移模型 | transition model | $T: (s, a) \to \Delta(\mathcal{S})$ |
 | 策略 | policy | $\pi: s \to a$ |
@@ -106,6 +106,7 @@ Traditional CV covers less than half of the first. This also explains why the "t
 
 ## References
 
+- [Zhenhailong Wang's Lab, Westlake University](https://mikewangwzhl.github.io/lab/) — source of the closed-loop diagram.
 - Marr, *Vision: A Computational Investigation into the Human Representation and Processing of Visual Information* (1982).
 - Bertero, Poggio & Torre, [Ill-posed problems in early vision](https://scholar.google.fr/citations?view_op=view_citation&hl=ja&user=ngaTx78AAAAJ&citation_for_view=ngaTx78AAAAJ:u-x6o8ySG0sC), *Proceedings of the IEEE* (1988).
 - Geirhos et al., [Shortcut learning in deep neural networks](https://ei.is.mpg.de/publications/geirhosetal20), *Nature Machine Intelligence* (2020).

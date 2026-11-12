@@ -20,13 +20,15 @@ math: true
 
 | 图中的框 | 数学角色 | 做什么 |
 | --- | --- | --- |
-| 洞察力 | 观测模型 $e: \mathcal{I} \to \mathcal{S}$ | 把像素压成可判读的状态描述 |
+| 洞察力（Perception） | 观测模型 $e: \mathcal{I} \to \mathcal{S}$ | 把像素压成可判读的状态描述 |
 | 预测 | 转移模型 $T: \mathcal{S} \times \mathcal{A} \to \Delta(\mathcal{S})$ | 给出「下一步会怎样」的分布 |
 | 推理 | 在 $T$ 上做反事实与规划 | 比较不同动作导致的未来 |
 | 行动 | 策略 $\pi: \mathcal{S} \to \mathcal{A}$ | 把状态变成作用于世界的动作 |
 | 回流 | $a_t \to I_{t+1}$ | 决策改变下一次观测 |
 
 两个细节值得留意：**预测与推理之间是双向箭头**，说明这里有「假设—检验—修正」的内部循环；**底部那条回流箭头**说明整个系统被自己的行动喂养。
+
+**关于这个词**：图出自[西湖大学 Zhenhailong Wang 实验室](https://mikewangwzhl.github.io/lab/)，原图英文写的是 **Perception**（感知）；流传的中文版把它译作「洞察力」。这不是翻译，是升格——把"感知"说成"看穿"，而这一格实际交付的只是状态估计。这处用词本身就是下文要论证的事：标签承诺的比阶段交付的多。下面沿用中文图的「洞察力」，但请记住原文是 Perception。
 
 ## 二、传统 CV 只占第一格
 
@@ -89,7 +91,7 @@ math: true
 
 | 中文 | English | 说明 |
 | --- | --- | --- |
-| 洞察力 | insight | 图中的用词；不替换为 perception |
+| 洞察力 | perception | 中文版对原文 Perception 的译法；字面义近 insight，属升格 |
 | 观测模型 | observation model | $e: I \to s$ |
 | 转移模型 | transition model | $T: (s, a) \to \Delta(\mathcal{S})$ |
 | 策略 | policy | $\pi: s \to a$ |
@@ -104,6 +106,7 @@ math: true
 
 ## 参考文献
 
+- [Zhenhailong Wang's Lab, Westlake University](https://mikewangwzhl.github.io/lab/) — 闭环图的出处。
 - Marr, *Vision: A Computational Investigation into the Human Representation and Processing of Visual Information* (1982).
 - Bertero, Poggio & Torre, [Ill-posed problems in early vision](https://scholar.google.fr/citations?view_op=view_citation&hl=ja&user=ngaTx78AAAAJ&citation_for_view=ngaTx78AAAAJ:u-x6o8ySG0sC), *Proceedings of the IEEE* (1988).
 - Geirhos et al., [Shortcut learning in deep neural networks](https://ei.is.mpg.de/publications/geirhosetal20), *Nature Machine Intelligence* (2020).
