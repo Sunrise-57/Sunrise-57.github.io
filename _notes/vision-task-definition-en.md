@@ -10,7 +10,7 @@ alt_url: /zh/notes/vision-task-definition/
 math: true
 ---
 
-A frequently cited diagram draws the agent loop in four segments: **perception → prediction ⇄ reasoning → action**, with action flowing back into perception. The question most often asked of it is: which of these segments do traditional computer vision tasks belong to?
+A closed-loop diagram draws the agent loop in four segments: **perception → prediction ⇄ reasoning → action**, with action flowing back into perception. The question most often asked of it is: which of these segments do traditional computer vision tasks belong to?
 
 The answer looks simple — perception. But to make that answer stand, one first has to say what "belong to" means, and then why this division keeps producing a series of doubts about how "vision tasks" are defined. This note does both.
 
@@ -27,8 +27,6 @@ The four boxes plus the one return arrow line up closely with the language of a 
 | Return arrow | $a_t \to I_{t+1}$ | A decision changes the next observation |
 
 Two details are worth noting: **the arrow between prediction and reasoning runs both ways**, which indicates an internal loop of conjecture, test, and revision; and **the return arrow at the bottom** indicates that the whole system is fed by its own actions.
-
-*On the word: the source diagram is from [Zhenhailong Wang's lab at Westlake University](https://mikewangwzhl.github.io/lab/), where this stage is called **Perception**. A widely circulated Chinese redrawing renders it as 洞察力, literally "the capacity to see through" — closer to "insight" or "discernment" than to "perception". That rendering is a shift in register, not a translation — and it is not a scientific term either: it cannot be operationalised, carries no metric, and presupposes the conclusion. The box delivers a state estimate, not insight. I keep the source's own word here, and note the Chinese one, because the substitution illustrates precisely what this note argues — labels that promise more than the stage delivers.*
 
 ## 2. Traditional CV occupies only the first box
 
@@ -91,7 +89,7 @@ Traditional CV covers less than half of the first. This also explains why the "t
 
 | 中文 | English | Note |
 | --- | --- | --- |
-| 洞察力 | perception | the Chinese redrawing's word for the source's "Perception"; literally "the capacity to see through", hence an upgrade rather than a translation |
+| 感知 | perception | first stage of the loop: the observation model |
 | 观测模型 | observation model | $e: I \to s$ |
 | 转移模型 | transition model | $T: (s, a) \to \Delta(\mathcal{S})$ |
 | 策略 | policy | $\pi: s \to a$ |
