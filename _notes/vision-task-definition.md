@@ -85,6 +85,23 @@ math: true
 
 > 传统计算机视觉任务可被刻画为观测模型 $e: I \to s$ 的经验拟合：输入为单帧或短时观测，输出为对当前状态的描述，优化目标为标注似然而非任务回报，评估协议为离线、开环、逐帧。因此它在「洞察力—预测/推理—行动」的闭环中仅承担感知编码职能，既不具备状态转移模型，也不产生作用于环境的动作，因而不构成闭环。将此类任务等同于「视觉能力」，本质上是把一个由数据集与标注协议锚定的操作定义误当成了能力定义，这正是其任务边界长期含混的根源。
 
+## 附：术语对照
+
+| 中文 | English | 说明 |
+| --- | --- | --- |
+| 洞察力 | insight | 图中的用词；不替换为 perception |
+| 观测模型 | observation model | $e: I \to s$ |
+| 转移模型 | transition model | $T: (s, a) \to \Delta(\mathcal{S})$ |
+| 策略 | policy | $\pi: s \to a$ |
+| 开环 / 闭环 | open-loop / closed-loop | |
+| 标注似然 | label likelihood | 传统任务的优化目标 |
+| 操作定义 | operational definition | |
+| 构念效度 | construct validity | |
+| 可供性 | affordance | |
+| 欠定 | underdetermined | |
+| 历史堆积 | historical accretion | |
+| 逐帧评估 | per-frame evaluation | |
+
 ## 参考文献
 
 - Marr, *Vision: A Computational Investigation into the Human Representation and Processing of Visual Information* (1982).

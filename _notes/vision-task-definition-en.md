@@ -1,89 +1,108 @@
 ---
-title: "Traditional Vision Tasks Are Only the Perception Box"
-subtitle: "Starting from a closed-loop diagram: which stage traditional computer vision occupies, and why that definition does not survive scrutiny"
+title: "Traditional Vision Tasks Are Only \"Insight\""
+subtitle: "Starting from one closed-loop diagram: which stage traditional computer vision belongs to, and why that definition does not survive scrutiny"
 date: 2026-11-12
 topics: ["computer-vision", "machine-learning", "uncertainty"]
-summary: "Formalised, the loop 'perception — prediction/reasoning — action' leaves traditional vision tasks in the first box alone: a one-way, open-loop, offline observation encoder. From there, five causes of the persistent vagueness in 'vision task' can be separated, and a replacement definition organised around what an agent needs becomes available."
+summary: "Once the diagram \"insight — prediction/reasoning — action\" is formalised, traditional vision tasks occupy only the first box: a one-way, open-loop, offline observation encoder. From there the five causes of the loose definition of \"vision task\" can be separated one by one, together with a replacement definition centred on what an agent needs."
 lang: en
 permalink: /notes/vision-task-definition/
 alt_url: /zh/notes/vision-task-definition/
 math: true
 ---
 
-A frequently reproduced diagram draws the agent loop in four segments: **perception → prediction ⇄ reasoning → action**, with an arrow feeding action back into perception. The question usually asked of it is: which segment do traditional computer vision tasks belong to?
+A frequently cited diagram draws the agent loop in four segments: **insight → prediction ⇄ reasoning → action**, with action flowing back into insight. The question most often asked of it is: which of these segments do traditional computer vision tasks belong to?
 
-The answer looks simple — perception. Making it hold up requires saying what "belong to" means, and then why this division keeps generating doubts about how "vision tasks" are defined. This note does both.
+The answer looks simple — insight. But to make that answer stand, one first has to say what "belong to" means, and then why this division keeps producing a series of doubts about how "vision tasks" are defined. This note does both.
 
-## 1. Read the diagram as a formal structure
+## 1. First, read the diagram as a formal structure
 
-The four boxes plus the return arrow map cleanly onto a POMDP:
+The four boxes plus the one return arrow line up closely with the language of a POMDP:
 
 | Box in the diagram | Mathematical role | What it does |
 | --- | --- | --- |
-| Perception | Observation model $e: \mathcal{I} \to \mathcal{S}$ | Compresses pixels into a readable state description |
+| Insight | Observation model $e: \mathcal{I} \to \mathcal{S}$ | Compresses pixels into a legible state description |
 | Prediction | Transition model $T: \mathcal{S} \times \mathcal{A} \to \Delta(\mathcal{S})$ | Gives a distribution over "what happens next" |
-| Reasoning | Counterfactuals and planning over $T$ | Compares futures induced by different actions |
+| Reasoning | Counterfactual reasoning and planning over $T$ | Compares the futures that different actions lead to |
 | Action | Policy $\pi: \mathcal{S} \to \mathcal{A}$ | Turns state into an action on the world |
-| Return arrow | $a_t \to I_{t+1}$ | Decisions change the next observation |
+| Return arrow | $a_t \to I_{t+1}$ | A decision changes the next observation |
 
-Two details matter. **Prediction and reasoning are joined by a two-way arrow**, so there is an internal loop of conjecture, test, and revision. And **the bottom return arrow** means the whole system is fed by its own actions.
+Two details are worth noting: **the arrow between prediction and reasoning runs both ways**, which indicates an internal loop of conjecture, test, and revision; and **the return arrow at the bottom** indicates that the whole system is fed by its own actions.
 
-## 2. Traditional computer vision occupies only the first box
+*On the word itself: the diagram says 洞察力, which is closer to "insight" or "discernment" than to the standard term "perception". I keep "insight" rather than substituting "perception", because that substitution would quietly make "vision equals perception" look natural — and that equation is one of the things this note questions. In the table above it is what maps to the observation model.*
 
-Definition: a traditional vision task is a **one-way, open-loop, offline** observation encoder. It maps an image to a description. There is no action $a$ in the middle, and no next state $s'$.
+## 2. Traditional CV occupies only the first box
 
-This is checkable, not rhetorical:
+In one sentence: a traditional vision task is a **one-way, open-loop, offline** observation encoder. The input is an image, the output is a description; in between there is no action $a$, and no next state $s'$.
 
-| Question | Traditional CV | What crossing the boundary requires |
+This is not rhetoric; it can be checked item by item:
+
+| Question | Answer for traditional CV | What it takes to cross this box |
 | --- | --- | --- |
-| Does the output contain "what happens next"? | No, only properties of the current frame | Transition models, video prediction |
-| Does it support "what if"? | No, it fits correlations | Intervenable causal or dynamical models |
-| Does it produce actions on the environment? | No, output goes to a human or a downstream module | Policy and actuators |
-| Does a decision change the next input? | No: open-loop, offline, per-frame evaluation | Active perception, embodied loops |
-| Is the objective task return? | No, it is label likelihood (cross-entropy, IoU, AP) | Reward and value functions |
+| Does the output contain "what happens next"? | No — only properties of the current frame | A transition model, video prediction |
+| Does it support "what if …"? | No — it fits correlations only | Causal or dynamical models that admit intervention |
+| Does it produce actions on the environment? | No — the output goes to a human or a downstream module | A policy and actuators |
+| Does a decision change the next input? | No — open-loop, offline, per-frame evaluation | Active perception, an embodied loop |
+| Is the objective task return? | No — it is label likelihood (cross-entropy, IoU, AP) | A reward or value function |
 
-All five answers are no. It sits squarely in perception: **an eye, not a brain, and not a hand.**
+All five answers are no, so it falls squarely within insight: **it is an eye, not a brain, and not a hand.**
 
-A sharper way to put it: traditional CV minimises the empirical risk of $P(y \mid I)$, while a closed-loop system solves $\arg\max_a \mathbb{E}[R \mid s]$. The first is statistical inference; the second is control.
+Put more sharply: traditional CV optimises the empirical risk of $P(y \mid I)$, whereas a closed-loop system solves $\arg\max_a \mathbb{E}[R \mid s]$. The former is statistical inference; the latter is control.
 
-## 3. Three bodies of work that look like they cross the boundary
+## 3. Three kinds of work that look as if they cross the boundary
 
-1. **Optical flow, video prediction, trajectory forecasting, early action recognition.** These do implement $s \to s'$, but they predict the continuation of an observable, serve no decision, and have no counterfactual branch. They are a precursor to prediction, not a world model. The test is single: can it answer "what happens if I do $a$"?
-2. **SLAM, multi-view geometry, NeRF and 3D reconstruction.** They output pose, structure, radiance — state estimation. That is the *interface* to a loop (it supplies $s$), but the loop is not closed: no action, no return.
-3. **Active vision and embodied agents.** Only here is "where to look, and moving to look again" decided by a policy, so only here is the return arrow actually used. This is the one real bridge between traditional CV and action.
+1. **Optical flow, video prediction, trajectory forecasting, early action recognition.** Formally these do implement $s \to s'$, but what they predict is the continuation of an observable; they serve no decision, and have no counterfactual branch. This is the precursor of prediction, not a world model. There is only one test: can it answer "what happens if I do $a$"?
+2. **SLAM, multi-view geometry, NeRF and 3D reconstruction.** These output pose, structure, or radiance fields; that is state estimation. They are the *interface* to a closed loop (they supply $s$ downstream), but they do not close it themselves — no action, and no return.
+3. **Active vision and embodied intelligence.** Only here is "where to look, and moving in order to look again" decided by a policy, so only here is that return arrow actually used. This is the only real bridge between traditional CV and action.
 
-## 4. Why the definition of "a vision task" does not survive scrutiny
+## 4. Why this definition of "vision task" does not survive scrutiny
 
 | # | Cause | Example |
 | --- | --- | --- |
-| 1 | Tasks are defined by **datasets**, not by problems | COCO detection and LVIS detection are not the same task; the IoU thresholds and NMS inside AP are part of the definition |
-| 2 | **Ground truth is convention**, and conventions conflict | The same pixel has four different "correct" answers across semantic, part, amodal, and panoptic segmentation |
-| 3 | Tasks are assumed to be **functions** but are conditional distributions | Shape under occlusion and monocular depth are genuinely underdetermined; one-to-many is collapsed to the mode |
-| 4 | The task list is **historical accretion** without an ontology | MNIST → ImageNet → COCO → VQA: each step is "the previous gap plus a new dataset" |
-| 5 | **The defining principle is misplaced**: tasks are derived backwards from what humans can annotate, not forwards from what is needed | Affordance, physical properties, and uncertainty have no standard task; some finely specified tasks have thin downstream use |
+| 1 | Tasks are defined by **datasets**, not by problems | COCO detection and LVIS detection are not the same task; the IoU thresholds and NMS inside AP substantively participate in defining the task |
+| 2 | **Ground truth is a human convention**, and conventions conflict | The same pixel has four different "correct answers" across semantic, part, amodal, and panoptic segmentation |
+| 3 | Tasks are assumed to be **functions**, but are conditional distributions | Shape under occlusion and monocular depth are underdetermined in essence; one-to-many gets collapsed into the mode |
+| 4 | The task list is a **historical accretion** with no ontology | MNIST → ImageNet → COCO → VQA: each step is "the previous gap plus a new dataset" |
+| 5 | **The defining principle is out of position**: tasks are derived backwards from what humans can annotate, rather than forwards from what is needed | Affordance, physical properties, and uncertainty have no standard task; and some finely specified tasks have very thin use upstream and downstream |
 
-Cause 5 is the root; the first four are symptoms.
+Cause 5 is the root; the first four are its symptoms.
 
 ## 5. Construct validity: measuring something other than what is claimed
 
-Every symptom converges on a measurement problem. Models can pass a test by exploiting spurious correlations (shortcut learning), and can exceed human accuracy on ImageNet while collapsing under distribution shift. The mapping being optimised is therefore not the capability the task name claims to measure.
+All these symptoms converge on a problem in measurement. A model can pass a test by exploiting spurious correlations in the data (shortcut learning), and can surpass human accuracy on ImageNet while collapsing under distribution shift. This shows that the mapping being defined and optimised is not the capability the task name claims.
 
-This is a failure of **construct validity**: a benchmark is an operational definition, and the operational definition has been mistaken for the essential one. Traditional tasks are well defined *internally* — given a data distribution, an annotation protocol, and a metric, they are precise optimisation problems. Their vagueness is entirely *external*: whether they transfer, whether they correspond to a real capability, and where their boundaries lie.
+That is a failure of **construct validity**: a benchmark is an operational definition, and the operational definition has been taken for the essential one. Traditional tasks are well defined *internally* — given a data distribution, an annotation protocol, and a metric, each is a precise optimisation problem; all of their looseness is *external*: whether they transfer, whether they correspond to a real capability, and where the boundary lies.
 
 ## 6. A more workable replacement definition
 
-Instead of asking "which vision tasks exist", ask "what does an agent need to know". Under that criterion there are only four kinds of task:
+Rather than asking "which vision tasks exist", ask "what does an agent need to know". By that criterion there are only four kinds of task:
 
-1. **State estimation**: $I \to \Delta(\mathcal{S})$, with calibrated uncertainty;
+1. **State estimation**: $I \to \Delta(\mathcal{S})$, and it must supply calibrated uncertainty;
 2. **Dynamics**: $(s, a) \to \Delta(\mathcal{S})$;
-3. **Affordance**: $s \to 2^{\mathcal{A}}$, the set of actions the state permits;
-4. **Value**: $s \to \mathbb{R}$, how good the state is.
+3. **Affordance**: $s \to 2^{\mathcal{A}}$, i.e. which actions the state permits;
+4. **Value**: $s \to \mathbb{R}$, i.e. how good the state is.
 
-Traditional CV covers less than half of the first. This also explains why the traditional task list looks diffuse: it projects a four-dimensional space through the lens of annotation cost, and projections distort.
+Traditional CV covers less than half of the first. This also explains why the "traditional task list" looks diffuse: it projects a four-dimensional space using annotation cost as the projection, and a projection of course distorts.
 
 ## 7. Conclusion
 
-> A traditional computer vision task can be characterised as the empirical fit of an observation model $e: I \to s$: the input is a frame or a short window, the output is a description of the current state, the objective is label likelihood rather than task return, and the protocol is offline, open-loop, and per-frame. It therefore performs perceptual encoding only within the loop "perception — prediction/reasoning — action": it carries no transition model and produces no action on the environment, so it does not close the loop. Identifying such tasks with "visual capability" mistakes an operational definition anchored in datasets and annotation protocols for a capability definition — which is precisely why the boundary of the field has stayed vague.
+> A traditional computer vision task can be characterised as the empirical fit of an observation model $e: I \to s$: the input is a single frame or a short observation window, the output is a description of the current state, the objective is label likelihood rather than task return, and the evaluation protocol is offline, open-loop, and per-frame. Within the loop "insight — prediction/reasoning — action" it therefore performs the function of perceptual encoding only: it possesses no state-transition model and produces no action on the environment, and so does not constitute a closed loop. To equate such tasks with "visual capability" is, in essence, to mistake an operational definition anchored in datasets and annotation protocols for a definition of capability — and this is precisely the root of why the boundary of the task has long been loose.
+
+## Glossary
+
+| 中文 | English | Note |
+| --- | --- | --- |
+| 洞察力 | insight | the word used in the diagram; kept untranslated-in-spirit, not replaced by "perception" |
+| 观测模型 | observation model | $e: I \to s$ |
+| 转移模型 | transition model | $T: (s, a) \to \Delta(\mathcal{S})$ |
+| 策略 | policy | $\pi: s \to a$ |
+| 开环 / 闭环 | open-loop / closed-loop | |
+| 标注似然 | label likelihood | the objective of a traditional task |
+| 操作定义 | operational definition | |
+| 构念效度 | construct validity | |
+| 可供性 | affordance | |
+| 欠定 | underdetermined | |
+| 历史堆积 | historical accretion | |
+| 逐帧评估 | per-frame evaluation | |
 
 ## References
 
@@ -98,4 +117,4 @@ Traditional CV covers less than half of the first. This also explains why the tr
 
 ---
 
-*In one sentence: traditional vision made "seeing" a measurable problem, and never asked what the seeing is for.*
+*In one sentence: traditional vision tasks turned "seeing" into an evaluable problem, and never answered what the seeing is for.*
